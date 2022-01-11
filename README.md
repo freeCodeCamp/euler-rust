@@ -37,3 +37,22 @@ code .
 4. A new VSCode window will open and begin building the Docker image. It will take several minutes to build the first time.
 5. Add content to `tooling/locales/english` folder following the example structure provided
 6. For the _seed_ content, commit the _seed_ within the `curriculum` folder as you want the Camper to see it
+
+```bash
+git checkout -b "curriculum"
+# Example
+mkdir curriculum/src
+git add .
+# Commit message must match lesson name/number
+git commit -m "1"
+```
+
+7. _Oh, no! You have updated the lessons, and need to change the first lesson_ **Have no fear!**
+
+```bash
+# The latest commit matching the lesson number is used
+mv curriculum/src curriculum/source
+git add .
+git commit -m "1"
+# Much Wow! Super wooper!
+```
