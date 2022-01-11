@@ -1,9 +1,9 @@
 const fs = require("fs");
 
-const LOCALE = getProjectMeta().LOCALE;
+const LOCALE = readAsEnv(".meta").LOCALE;
 
 function t(key, args = {}, forceLangToUse) {
-  const loc = getProjectMeta().LOCALE;
+  const loc = readAsEnv(".meta").LOCALE;
   // Get key from ./locales/{locale}/comments.json
   // Read file and parse JSON
   const locale = forceLangToUse ?? loc === "undefined" ? "en" : loc;
@@ -20,15 +20,14 @@ function t(key, args = {}, forceLangToUse) {
   return result;
 }
 
-function getProjectMeta() {
-  // Read .meta file for CURRENT_PROJECT variable
-  const META_FILE = "tooling/.meta";
+function readAsEnv(file) {
   let meta = {
     CURRENT_PROJECT: "calculator",
-    LOCALE: "en",
+    LOCALE: "english",
+    TEST_POLLING_RATE: "1000",
   };
   try {
-    const META = fs.readFileSync(META_FILE, "utf8");
+    const META = fs.readFileSync(file, "utf8");
     const metaArr = META.split("\n").filter(Boolean);
     const new_meta = metaArr.reduce((meta, line) => {
       const [key, value] = line.split("=");
@@ -36,10 +35,10 @@ function getProjectMeta() {
     }, "");
     meta = { ...meta, ...new_meta };
   } catch (err) {
-    console.log(`${t("meta-file-error", { metaFile: META_FILE })}`);
+    console.log(`${t("file-error", { file })}`);
     console.error(err);
   }
   return meta;
 }
 
-module.exports = { t, LOCALE, getProjectMeta };
+module.exports = { t, LOCALE, readAsEnv };

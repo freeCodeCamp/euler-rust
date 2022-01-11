@@ -2,13 +2,13 @@
 const fs = require("fs");
 
 const DESCRIPTION_MARKER = "### --description--";
-const SEED_MARKER = "### --seed--";
+// const SEED_MARKER = "### --seed--"; // No seed with .git
 const TEST_MARKER = "### --tests--";
 
 /**
  * Gets all content within a lesson
- * @param {string} file - The relative path to the
- * @param {number} lessonNumber - The author of the book.
+ * @param {string} file - The relative path to the english locale file
+ * @param {number} lessonNumber - The number of the lesson
  * @returns {string} The content of the lesson
  */
 function getLessonFromFile(file, lessonNumber) {
@@ -32,15 +32,14 @@ function getLessonDescription(lesson) {
 }
 
 /**
- * Gets the seed of the lesson
- * @param {string} lesson - The lesson content
- * @returns {string} The seed of the lesson
+ * Sets `/curriculum` to match the lesson seed
+ * @param {number} lessonNumber - The lesson number
  */
-function getLessonSeed(lesson) {
-  const seed = lesson.match(
-    new RegExp(`${SEED_MARKER}\n(.*?)\n${TEST_MARKER}`, "s")
-  )?.[1];
-  return seed;
+function setLessonToGitSeed(lessonNumber, done) {
+  // Reset /curriculum folder to match the git history based on the lessonNumber
+  // TODO(TOM): Get help reading/using Node to execute `git reset` command?
+  // TODO: done error, if git reset fails
+  // TODO: done success, if git reset succeeds
 }
 
 /**
@@ -66,7 +65,7 @@ function getLessonTests(lesson) {
 module.exports = {
   getLessonFromFile,
   getLessonDescription,
-  getLessonSeed,
+  setLessonToGitSeed,
   removeMarkdownFromSeed,
   getLessonTests,
 };

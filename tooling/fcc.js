@@ -14,14 +14,14 @@ const runLesson = require("./lesson");
 const runSolution = require("./solution");
 const runTests = require("./test");
 const resetLesson = require("./reset");
-const { t, getProjectMeta } = require("./t");
+const { t, readAsEnv } = require("./t");
 
 const { locales, translatedLocales } = require("./locales/conf");
 const setLocale = require("./set-locale");
 
 const ARGS = process.argv;
-const CURRENT_PROJECT = getProjectMeta().CURRENT_PROJECT;
-const LOCALE = getProjectMeta().LOCALE;
+const CURRENT_PROJECT = readAsEnv(".meta").CURRENT_PROJECT;
+const LOCALE = readAsEnv(".meta").LOCALE;
 
 if (!locales.includes(LOCALE)) {
   console.error(t("call-to-translate", { locale: LOCALE }));

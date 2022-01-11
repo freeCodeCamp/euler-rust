@@ -25,7 +25,7 @@
   "cargo-run": "Runs the <project>/src/main.rs binary",
   "rust-docs": "Rust documentation",
   "rust-book": "Rust book",
-  "meta-file-error": "Defaulting to 'calculator' project.\n\nError reading {{metaFile}}",
+  "file-error": "Error reading {{file}}",
   "not-enough-arguments": "Not enough arguments given",
   "too-many-arguments": "Too many arguments given",
   "already-on-project": "Already on project {{project}}",

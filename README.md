@@ -16,6 +16,7 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [ ] Add Chai.js for tests
 - [ ] Add Prism for syntax highlighting
 - [ ] Add helpers for testing files/folders
+- [ ] Add logs for terminal input/output
 
 ## Guide
 
