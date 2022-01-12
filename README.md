@@ -24,7 +24,7 @@ Shaun is having fun testing a minimal way to run courses locally.
 
 ```bash
 # Once the repo is transferred. For now, use Gitpod
-git clone https://github.com/freeCodeCamp/external-courses rust-in-replit
+git clone https://github.com/freeCodeCamp/external-project rust-in-replit
 ```
 
 2. Navigate into the directory, and open VSCode:

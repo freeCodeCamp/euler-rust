@@ -1,8 +1,10 @@
 // IMPORTS
 const fs = require("fs");
 const util = require("util");
+// This is used in the local scope of the `eval` in `runTests`
+const assert = require("assert");
 
-const { getLessonFromFile, getLessonTests } = require("./parser.js");
+const { getLessonFromFile, getLessonHintsAndTests } = require("./parser.js");
 
 const execute = util.promisify(require("child_process").exec);
 const readFile = util.promisify(fs.readFile);
@@ -29,70 +31,29 @@ const getFileContents = async (file) => {
 };
 
 async function runTests(project, lessonNumber) {
-  const locale = LOCALE === "undefined" ? "en" : LOCALE;
+  const locale = LOCALE === "undefined" ? "english" : LOCALE;
   try {
-    const camperCodeFile = `./${project}/src/main.rs`;
-    let camperCode = "";
-    try {
-      camperCode = await getFileContents(camperCodeFile);
-    } catch (err) {
-      return console.log(
-        `\n${t("create-new-project-error")}\n\t$ cargo new <crate_name>\n`
-      );
-    }
-    const answerFile = `./tooling/locales/${locale}/answers-${project}.md`;
+    const answerFile = `./tooling/locales/${locale}/${project}.md`;
     const lesson = getLessonFromFile(answerFile, lessonNumber);
-    const testTexts = getLessonTests(lesson);
+    const hintsAndTestsArr = getLessonHintsAndTests(lesson);
 
-    const testTextsArr = testTexts
-      .split(/\n-/)
-      .filter((x) => x.length > 1)
-      .map((x) => x.trim().replace(/^- /, ""));
-
-    const numTests = testTextsArr.length / 2;
-    let c = 0;
-    for (let i = 0; i < numTests * 2; i += 2) {
-      const text = testTextsArr[i];
-      if (testTextsArr[i + 1].includes("getCommandOutput")) {
-        const commandOutput = await getCommandOutput(
-          `cargo run --bin ${project}`
-        );
-        const re = new RegExp(
-          testTextsArr[i + 1]
-            .replace(/[`]/g, "")
-            .replace(/getCommandOutput\(/, "")
-            .replace(/\)$/, "")
-        );
-        if (re.test(commandOutput)) {
-          c++;
-        } else {
-          console.log(`\n${text}\n`);
+    // const numTests = hintsAndTestsArr.length / 2;
+    let numFailed = 0;
+    hintsAndTestsArr.forEach(([hint, test]) => {
+      try {
+        // TODO: I do not know if the return is ever useful?
+        const _result = eval(test);
+      } catch (e) {
+        numFailed++;
+        console.log(hint);
+        if (e.actual !== undefined && e.expected !== undefined) {
+          // TODO: This is optional, and can be easily improved
+          // console.log(`Expected ${e.expected}, got ${e.actual}`);
         }
-        // Feature for seeing if all Cargo tests pass
-      } else if (testTextsArr[i + 1].includes("getTestOutput")) {
-        const commandOutput = await getCommandOutput(
-          `cargo test --bin ${project}`
-        );
-        const re = new RegExp(
-          testTextsArr[i + 1]
-            .replace(/[`]/g, "")
-            .replace(/getTestOutput\(/, "")
-            .replace(/\)$/, "")
-        );
-        if (re.test(commandOutput)) {
-          c++;
-        } else {
-          console.log(`\n${text}\n`);
-        }
-      } else if (
-        new RegExp(testTextsArr[i + 1].replace(/[`]/g, "")).test(camperCode)
-      ) {
-        c++;
-      } else {
-        console.log(`\n${text}\n`);
+        return;
       }
-    }
-    if (c === numTests) {
+    });
+    if (numFailed === 0) {
       console.log(t("lesson-correct", { lessonNumber }));
     }
   } catch (e) {

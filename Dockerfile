@@ -35,6 +35,9 @@ RUN sudo locale-gen ${LOCALE} && sudo update-locale LANG=${LOCALE}
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN sudo apt install -y nodejs
 
+# Give permissions to run scripts
+RUN chmod +x fcc
+
 # Configure project directory
 RUN mkdir ${HOMEDIR}/project
 WORKDIR ${HOMEDIR}/project

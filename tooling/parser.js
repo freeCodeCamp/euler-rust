@@ -53,13 +53,27 @@ function removeMarkdownFromSeed(seed) {
 }
 
 /**
- * Gets the tests of the lesson
+ * Gets the hints and tests of the lesson
  * @param {string} lesson - The lesson content
- * @returns {string} The tests of the lesson
+ * @returns {[string, string]} An array of [hint, test]
  */
-function getLessonTests(lesson) {
-  const tests = lesson.match(new RegExp(`${TEST_MARKER}\n(.*)`, "s"))?.[1];
-  return tests;
+function getLessonHintsAndTests(lesson) {
+  const testsString = lesson.match(
+    new RegExp(`${TEST_MARKER}\n(.*)`, "s")
+  )?.[1];
+  const hintsAndTestsArr = [];
+  testsString
+    .split(/```\n/)
+    .slice(0, -1)
+    .forEach((x) => {
+      if (x.length < 1) {
+        return;
+      }
+      const test = x.replace(/.*?```js/s, "").trim();
+      const hint = x.replace(/\n```js.*/s, "").trim();
+      hintsAndTestsArr.push([hint, test]);
+    });
+  return hintsAndTestsArr;
 }
 
 module.exports = {
@@ -67,5 +81,5 @@ module.exports = {
   getLessonDescription,
   setLessonToGitSeed,
   removeMarkdownFromSeed,
-  getLessonTests,
+  getLessonHintsAndTests,
 };
