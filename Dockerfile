@@ -39,7 +39,7 @@ RUN sudo apt install -y nodejs
 RUN chmod +x fcc
 
 # Install marked globally for node
-RUN npm install marked -g
+RUN npm install marked prism -g
 
 # Configure project directory
 RUN mkdir ${HOMEDIR}/project
