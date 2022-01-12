@@ -1,37 +1,32 @@
 // This file parses answer files for lesson content
-const { getLessonFromFile, getLessonDescription } = require("./parser");
+const { getLessonFromFile, getLessonDescription, log } = require("./parser");
 const { t, LOCALE } = require("./t");
 
-function runLesson(project, lessonNumber) {
-  const locale = LOCALE === "undefined" ? "en" : LOCALE ?? "en";
-  const answerFile = `./tooling/locales/${locale}/answers-${project}.md`;
+async function runLesson(project, lessonNumber) {
+  const locale = LOCALE === "undefined" ? "english" : LOCALE ?? "english";
+  const answerFile = `./tooling/locales/${locale}/${project}.md`;
   const lesson = getLessonFromFile(answerFile, lessonNumber);
-  const nextLesson = getLessonFromFile(answerFile, lessonNumber + 1);
-  const description = getLessonDescription(lesson)
-    .replace(
-      new RegExp(`${t("task")}:`, "g"),
-      `${Colour.FgMagenta}${t("task")}:${Colour.Reset}`
-    )
-    .replace(
-      /```(rust|bash)\n(.+?)```\n/gs,
-      `${Colour.FgCyan}$2${Colour.Reset}`
-    )
-    .replace(/`([^`]+)`/g, `${Colour.FgBlue}$1${Colour.Reset}`)
-    .replace(/\*\*([^\*]+)\*\*/g, `${Colour.Bright}$1${Colour.Reset}`)
-    .replace(/(\s)_([^_]+)_(\s)/g, `$1${Colour.Italic}$2${Colour.Reset}$3`);
-  console.log(
-    `\n${Colour.Underscore + Colour.FgGreen}${t("lesson")} #${lessonNumber}${
-      Colour.Reset
-    }\n`
-  );
-  console.log(description);
-  if (!!nextLesson) {
-    console.log(
-      `${t("next-lesson")}\n\t${Colour.FgCyan}$ fcc ${lessonNumber + 1}${
-        Colour.Reset
-      }\n`
-    );
-  }
+  // const nextLesson = getLessonFromFile(answerFile, lessonNumber + 1);
+  const description = getLessonDescription(lesson);
+  //   .replace(
+  //     new RegExp(`${t("task")}:`, "g"),
+  //     `${Colour.FgMagenta}${t("task")}:${Colour.Reset}`
+  //   )
+  //   .replace(
+  //     /```(rust|bash)\n(.+?)```\n/gs,
+  //     `${Colour.FgCyan}$2${Colour.Reset}`
+  //   )
+  //   .replace(/`([^`]+)`/g, `${Colour.FgBlue}$1${Colour.Reset}`)
+  //   .replace(/\*\*([^\*]+)\*\*/g, `${Colour.Bright}$1${Colour.Reset}`)
+  //   .replace(/(\s)_([^_]+)_(\s)/g, `$1${Colour.Italic}$2${Colour.Reset}$3`);
+  // console.log(
+  //   `\n${Colour.Underscore + Colour.FgGreen}${t("lesson")} #${lessonNumber}${
+  //     Colour.Reset
+  //   }\n`
+  // );
+  // console.log(description);
+
+  log(description);
 }
 
 module.exports = runLesson;

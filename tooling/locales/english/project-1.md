@@ -8,6 +8,12 @@ Start by creating a new directory called `src`.
 
 _Tom, once you save the file, the tests should run_
 
+```rust
+fn main() {
+  let my_str: &str = "Wow! Rust is rendered with colour to the terminal!";
+}
+```
+
 ### --tests--
 
 You should create a new directory `combiner` in the root.

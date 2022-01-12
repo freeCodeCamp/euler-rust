@@ -1,5 +1,7 @@
 // This file contains the parser for the markdown lessons
 const fs = require("fs");
+const util = require("util");
+const execute = util.promisify(require("child_process").exec);
 
 const DESCRIPTION_MARKER = "### --description--";
 // const SEED_MARKER = "### --seed--"; // No seed with .git
@@ -26,7 +28,7 @@ function getLessonFromFile(file, lessonNumber) {
  */
 function getLessonDescription(lesson) {
   const description = lesson.match(
-    new RegExp(`${DESCRIPTION_MARKER}\n(.*)\n${SEED_MARKER}`, "s")
+    new RegExp(`${DESCRIPTION_MARKER}\n(.*)\n${TEST_MARKER}`, "s")
   )?.[1];
   return description;
 }
@@ -76,10 +78,61 @@ function getLessonHintsAndTests(lesson) {
   return hintsAndTestsArr;
 }
 
+// ----------------
+// MARKED PARSING
+// ----------------
+const marked = require("marked");
+const prism = require("prismjs");
+
+require("prismjs/components/prism-markup-templating");
+require("prismjs/components/prism-css");
+// require("prismjs/components/prism-html");
+require("prismjs/components/prism-json");
+require("prismjs/components/prism-javascript");
+require("prismjs/components/prism-jsx");
+require("prismjs/components/prism-bash");
+require("prismjs/components/prism-yaml");
+require("prismjs/components/prism-toml");
+require("prismjs/components/prism-rust");
+
+marked.setOptions({
+  highlight: (code, lang) => {
+    if (prism.languages[lang]) {
+      return prism.highlight(code, prism.languages[lang], lang);
+    } else {
+      return code;
+    }
+  },
+});
+
+function parseMarkdown(markdown) {
+  return marked.parse(markdown);
+}
+
+function createTempHTMLFile(html, done) {
+  fs.writeFile("temp.html", html, done);
+}
+
+async function printTempHTMLFile() {
+  const { stdout: descriptionToHTML } = await execute(
+    `lynx -prettysrc -dump temp.html`
+  );
+  console.log(descriptionToHTML);
+}
+
+function log(markdown) {
+  createTempHTMLFile(parseMarkdown(markdown), printTempHTMLFile);
+}
+
+// ----------------
+// EXPORT
+// ----------------
 module.exports = {
   getLessonFromFile,
   getLessonDescription,
-  setLessonToGitSeed,
-  removeMarkdownFromSeed,
   getLessonHintsAndTests,
+  log,
+  parseMarkdown,
+  removeMarkdownFromSeed,
+  setLessonToGitSeed,
 };

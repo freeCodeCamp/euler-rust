@@ -9,6 +9,7 @@ const { getLessonFromFile, getLessonHintsAndTests } = require("./parser.js");
 const execute = util.promisify(require("child_process").exec);
 const readFile = util.promisify(fs.readFile);
 const { t, LOCALE } = require("./t");
+const { updateEnv } = require("./env.js");
 
 // HELPER FUNCTIONS
 const getCommandOutput = async function (command) {
@@ -39,13 +40,16 @@ async function runTests(project, lessonNumber) {
 
     // const numTests = hintsAndTestsArr.length / 2;
     let numFailed = 0;
-    hintsAndTestsArr.forEach(([hint, test]) => {
+    hintsAndTestsArr.forEach(async ([hint, test]) => {
       try {
         // TODO: I do not know if the return is ever useful?
         const _result = eval(test);
       } catch (e) {
         numFailed++;
-        console.log(hint);
+        const { stdout: hintToHTML } = await execute(
+          `markdown """${hint}""" | lynx -dump -stdin`
+        );
+        console.log(hintToHTML);
         if (e.actual !== undefined && e.expected !== undefined) {
           // TODO: This is optional, and can be easily improved
           // console.log(`Expected ${e.expected}, got ${e.actual}`);
@@ -55,6 +59,7 @@ async function runTests(project, lessonNumber) {
     });
     if (numFailed === 0) {
       console.log(t("lesson-correct", { lessonNumber }));
+      updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
     }
   } catch (e) {
     console.log(t("tests-error"));

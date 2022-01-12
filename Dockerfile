@@ -26,7 +26,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 USER ${USERNAME}
 
 # Install packages for projects
-RUN sudo apt install -y curl git locale-gen nano bash-completion man-db
+RUN sudo apt install -y curl git lynx locale-gen nano bash-completion man-db
 
 # Set up locales
 RUN sudo locale-gen ${LOCALE} && sudo update-locale LANG=${LOCALE}
@@ -37,6 +37,9 @@ RUN sudo apt install -y nodejs
 
 # Give permissions to run scripts
 RUN chmod +x fcc
+
+# Install marked globally for node
+RUN npm install marked -g
 
 # Configure project directory
 RUN mkdir ${HOMEDIR}/project
