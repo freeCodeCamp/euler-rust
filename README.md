@@ -57,3 +57,36 @@ git add .
 git commit -m "1"
 # Much Wow! Super wooper!
 ```
+
+## How To Run the Course
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/freeCodeCamp/external-project
+```
+
+2. Navigate into the directory, and open VSCode:
+
+```bash
+cd external-project
+code .
+```
+
+3. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`
+
+4. Open `Simple Browser` (`Ctrl + Shift + P` and enter `Simple Browser: Show`)
+
+5. Within `Simple Browser`, navigate to `http://127.0.0.1:8080`
+
+6. Start `live-server`:
+
+```bash
+live-server --entry-file=temp.html
+```
+
+7. Start the actual course in a new terminal:
+
+```bash
+./fcc start
+```

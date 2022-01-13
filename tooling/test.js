@@ -4,7 +4,11 @@ const util = require("util");
 // This is used in the local scope of the `eval` in `runTests`
 const assert = require("assert");
 
-const { getLessonFromFile, getLessonHintsAndTests } = require("./parser.js");
+const {
+  getLessonFromFile,
+  getLessonHintsAndTests,
+  log,
+} = require("./parser.js");
 
 const execute = util.promisify(require("child_process").exec);
 const readFile = util.promisify(fs.readFile);
@@ -46,10 +50,7 @@ async function runTests(project, lessonNumber) {
         const _result = eval(test);
       } catch (e) {
         numFailed++;
-        const { stdout: hintToHTML } = await execute(
-          `markdown """${hint}""" | lynx -dump -stdin`
-        );
-        console.log(hintToHTML);
+        log(hint);
         if (e.actual !== undefined && e.expected !== undefined) {
           // TODO: This is optional, and can be easily improved
           // console.log(`Expected ${e.expected}, got ${e.actual}`);

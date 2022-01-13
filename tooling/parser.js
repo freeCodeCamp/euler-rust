@@ -106,23 +106,26 @@ marked.setOptions({
 });
 
 function parseMarkdown(markdown) {
-  return marked.parse(markdown);
+  return marked.parse(markdown, { gfm: true });
 }
 
 function createTempHTMLFile(html, done) {
-  fs.writeFile("temp.html", html, done);
+  const htmlTop = fs.readFileSync("./assets/top.html", "utf8");
+  const htmlBottom = fs.readFileSync("./assets/bottom.html", "utf8");
+  fs.writeFile("temp.html", htmlTop + html + htmlBottom, done);
 }
 
 async function printTempHTMLFile() {
-  const { stdout: descriptionToHTML } = await execute(
-    `lynx -prettysrc -dump temp.html`
-  );
-  console.log(descriptionToHTML);
+  console.log("Updated temp.html");
 }
 
 function log(markdown) {
   createTempHTMLFile(parseMarkdown(markdown), printTempHTMLFile);
 }
+
+function updateHTMLTests(markdown) {}
+
+function updateHTMLDescription(markdown) {}
 
 // ----------------
 // EXPORT
