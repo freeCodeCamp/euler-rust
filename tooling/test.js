@@ -2,18 +2,20 @@
 const fs = require("fs");
 const util = require("util");
 // This is used in the local scope of the `eval` in `runTests`
-const assert = require("assert");
+const assert = require("chai").assert;
+const __helpers = require("./test-utils");
 
 const {
   getLessonFromFile,
   getLessonHintsAndTests,
-  log,
+  // log,
 } = require("./parser.js");
 
 const execute = util.promisify(require("child_process").exec);
 const readFile = util.promisify(fs.readFile);
 const { t, LOCALE } = require("./t");
 const { updateEnv } = require("./env.js");
+const { updateTests } = require("./testerizer.js");
 
 // HELPER FUNCTIONS
 const getCommandOutput = async function (command) {
@@ -37,6 +39,7 @@ const getFileContents = async (file) => {
 
 async function runTests(project, lessonNumber) {
   const locale = LOCALE === "undefined" ? "english" : LOCALE;
+  let hintsMarkdown = "";
   try {
     const answerFile = `./tooling/locales/${locale}/${project}.md`;
     const lesson = getLessonFromFile(answerFile, lessonNumber);
@@ -44,13 +47,16 @@ async function runTests(project, lessonNumber) {
 
     // const numTests = hintsAndTestsArr.length / 2;
     let numFailed = 0;
+    // TODO: Test is broken... Never fails - need to await?
     hintsAndTestsArr.forEach(async ([hint, test]) => {
       try {
         // TODO: I do not know if the return is ever useful?
-        const _result = eval(test);
+        const _result = await eval(`(async () => {${test}})();`);
+        console.log(_result);
       } catch (e) {
         numFailed++;
-        log(hint);
+        // log(hint);
+        hintsMarkdown += `- ${hint}\n`;
         if (e.actual !== undefined && e.expected !== undefined) {
           // TODO: This is optional, and can be easily improved
           // console.log(`Expected ${e.expected}, got ${e.actual}`);
@@ -65,6 +71,8 @@ async function runTests(project, lessonNumber) {
   } catch (e) {
     console.log(t("tests-error"));
     console.error(e);
+  } finally {
+    updateTests(hintsMarkdown);
   }
 }
 

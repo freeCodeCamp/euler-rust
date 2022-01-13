@@ -1,98 +1,84 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link href="assets/prism.css" rel="stylesheet" />
-  </head>
-  <style>
-    :root {
-      --dark-1: #0a0a23;
-      --dark-2: #1b1b32;
-      --dark-3: #2a2a40;
-      --dark-4: #3b3b4f;
-      --light-1: #ffffff;
-      --light-2: #f5f6f7;
-      --light-3: #dfdfe2;
-      --light-4: #d0d0d5;
-      --light-purple: #dbb8ff;
-      --light-yellow: #f1be32;
-      --light-blue: #99c9ff;
-      --light-green: #acd157;
-      --dark-purple: #5a01a7;
-      --dark-yellow: #4d3800;
-      --dark-blue: #002ead;
-      --dark-green: #00471b;
-    }
-    body {
-      background-color: black;
-    }
-    * {
-      color: white;
-    }
+<html><head>
+    <link href="assets/prism.css" rel="stylesheet">
+    <style>
+      :root {
+        --dark-1: #0a0a23;
+        --dark-2: #1b1b32;
+        --dark-3: #2a2a40;
+        --dark-4: #3b3b4f;
+        --light-1: #ffffff;
+        --light-2: #f5f6f7;
+        --light-3: #dfdfe2;
+        --light-4: #d0d0d5;
+        --light-purple: #dbb8ff;
+        --light-yellow: #f1be32;
+        --light-blue: #99c9ff;
+        --light-green: #acd157;
+        --dark-purple: #5a01a7;
+        --dark-yellow: #4d3800;
+        --dark-blue: #002ead;
+        --dark-green: #00471b;
+      }
+      body {
+        background-color: black;
+      }
+      * {
+        color: white;
+      }
 
-    header {
-      width: 100%;
-      height: 55px;
-      background-color: var(--dark-2);
-    }
-    #logo {
-      width: 350px;
-      height: 42px;
-      max-height: 100%;
-      background-color: var(--dark-1);
-      padding: 0.4rem;
-    }
-    footer {
-      margin-top: 20px;
-      width: 100%;
-      height: 55px;
-      background-color: var(--dark-2);
-    }
-    footer > button {
-      width: 100%;
-      height: 100%;
-      background-color: var(--dark-1);
-      border: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: var(--light-1);
-      cursor: pointer;
-    }
-    footer > button:hover {
-      background-color: var(--dark-3);
-    }
-  </style>
+      header {
+        width: 100%;
+        height: 55px;
+        background-color: var(--dark-2);
+      }
+      #logo {
+        width: 350px;
+        height: 42px;
+        max-height: 100%;
+        background-color: var(--dark-1);
+        padding: 0.4rem;
+      }
+      footer {
+        margin-top: 20px;
+        width: 100%;
+        height: 55px;
+        background-color: var(--dark-2);
+      }
+      footer > button {
+        width: 100%;
+        height: 100%;
+        background-color: var(--dark-1);
+        border: none;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--light-1);
+        cursor: pointer;
+      }
+      footer > button:hover {
+        background-color: var(--dark-3);
+      }
+    </style>
+  </head>
+
   <body>
     <header>
-      <img
-        src="https://raw.githubusercontent.com/freeCodeCamp/cdn/main/build/platform/universal/fcc_primary.svg"
-        id="logo"
-        alt="freeCodeCamp logo"
-      />
+      <img src="https://raw.githubusercontent.com/freeCodeCamp/cdn/main/build/platform/universal/fcc_primary.svg" id="logo" alt="freeCodeCamp logo">
     </header>
     <h2>Description</h2>
-    <section id="description">
-      <p>Start by creating a new directory called <code>src</code>.</p>
-      <p><em>Tom, once you make a change, the tests should run</em></p>
-      <pre><code class="language-rust"><span class="token keyword">fn</span> <span class="token function-definition function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
-  <span class="token keyword">let</span> my_str<span class="token punctuation">:</span> <span class="token operator">&amp;</span><span class="token keyword">str</span> <span class="token operator">=</span> <span class="token string">"Wow! Rust is rendered with colour to the terminal!"</span><span class="token punctuation">;</span>
-<span class="token punctuation">}</span>
-</code></pre>
-    </section>
+    <section id="description"><p>Tom, create a file named <code>index.js</code> within <code>src</code>.</p>
+</section>
 
     <h2>Tests</h2>
-    <section id="tests">
-      <details>
-        <summary>Click for hints</summary>
-        <ul>
-          <li>I am a hint, I guess</li>
-        </ul>
-      </details>
-    </section>
+    <details>
+      <summary>Click for Hints</summary>
+      <section id="tests"></section>
+    </details>
 
     <footer>
       <button onclick="window.location.reload()">Run Tests</button>
     </footer>
     <script src="assets/prism.js"></script>
     <script src="tooling/testerizer.js"></script>
-  </body>
-</html>
+  
+
+</body></html>

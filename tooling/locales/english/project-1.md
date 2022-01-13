@@ -6,7 +6,7 @@
 
 Start by creating a new directory called `src`.
 
-_Tom, once you save the file, the tests should run_
+_Tom, once you save, the tests should run_
 
 ```rust
 fn main() {
@@ -16,16 +16,12 @@ fn main() {
 
 ### --tests--
 
-You should create a new directory `combiner` in the root.
+You can use the command `mkdir src` to create the directory.
 
 ```js
-assert(true);
-```
-
-This is a failing test.
-
-```js
-assert(false);
+const files = await __helpers.getDirectory(".");
+console.log(files);
+assert.include(files ?? "", "src");
 ```
 
 ## 2
