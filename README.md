@@ -9,12 +9,12 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [x] Change parser to accept tests in the form of Node/JS codeblocks
 - [ ] Change parser to read seed from Git?
 - [x] Add ability to automatically run tests on file save/change
-- [ ] Style terminal to look interactive
-- [ ] Add Markdown to terminal
-- [ ] Add button to terminal to run/reset?
+- [x] ~Style terminal to look interactive~ Use `Simple Browser`
+- [x] ~Add Markdown to terminal~ Use `Simple Browser`
+- [x] Add button to ~terminal~ to run/reset?
 - [x] Seed should come from Git with matching lesson name/number
 - [ ] Add Chai.js for tests
-- [ ] Add Prism for syntax highlighting
+- [x] Add Prism for syntax highlighting
 - [ ] Add helpers for testing files/folders
 - [ ] Add logs for terminal input/output
 
