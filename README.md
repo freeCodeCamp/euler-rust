@@ -71,6 +71,7 @@ git clone https://github.com/freeCodeCamp/external-project
 ```bash
 cd external-project
 code .
+cp sample.env .env
 ```
 
 3. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`
