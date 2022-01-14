@@ -39,40 +39,36 @@ const getFileContents = async (file) => {
 
 async function runTests(project, lessonNumber) {
   const locale = LOCALE === "undefined" ? "english" : LOCALE;
-  let hintsMarkdown = "";
   try {
     const answerFile = `./tooling/locales/${locale}/${project}.md`;
     const lesson = getLessonFromFile(answerFile, lessonNumber);
     const hintsAndTestsArr = getLessonHintsAndTests(lesson);
 
-    // const numTests = hintsAndTestsArr.length / 2;
-    let numFailed = 0;
-    // TODO: Test is broken... Never fails - need to await?
-    hintsAndTestsArr.forEach(async ([hint, test]) => {
+    const testPromises = hintsAndTestsArr.map(async ([hint, test]) => {
       try {
-        // TODO: I do not know if the return is ever useful?
-        const _result = await eval(`(async () => {${test}})();`);
-        console.log(_result);
+        const _testOutput = await eval(`(async () => {${test}})();`);
       } catch (e) {
         numFailed++;
-        // log(hint);
-        hintsMarkdown += `- ${hint}\n`;
-        if (e.actual !== undefined && e.expected !== undefined) {
-          // TODO: This is optional, and can be easily improved
-          // console.log(`Expected ${e.expected}, got ${e.actual}`);
-        }
-        return;
+        console.log(
+          `${t("testFailed")} ${testName}: ${test} ${t("testOutput")}`
+        );
+        return Promise.reject(`- ${hint}\n`);
       }
+      return Promise.resolve();
     });
-    if (numFailed === 0) {
-      console.log(t("lesson-correct", { lessonNumber }));
-      updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
+
+    try {
+      const passed = await Promise.all(testPromises);
+      if (passed) {
+        console.log(t("lesson-correct", { lessonNumber }));
+        updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
+      }
+    } catch (e) {
+      updateTests(e);
     }
   } catch (e) {
     console.log(t("tests-error"));
-    console.error(e);
-  } finally {
-    updateTests(hintsMarkdown);
+    console.log(e);
   }
 }
 
