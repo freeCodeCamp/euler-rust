@@ -16,6 +16,7 @@ const readFile = util.promisify(fs.readFile);
 const { t, LOCALE } = require("./t");
 const { updateEnv } = require("./env.js");
 const { updateTests } = require("./testerizer.js");
+const runLesson = require("./lesson");
 
 // HELPER FUNCTIONS
 const getCommandOutput = async function (command) {
@@ -61,6 +62,8 @@ async function runTests(project, lessonNumber) {
       if (passed) {
         console.log(t("lesson-correct", { lessonNumber }));
         updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
+        runLesson(project, lessonNumber + 1);
+        updateTests("");
       }
     } catch (e) {
       console.log(e);

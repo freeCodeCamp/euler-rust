@@ -35,8 +35,8 @@ Tom, create a file named `index.js` within `src`.
 You should add the file `src/index.js`. If you are seeing this, Tom, I am worried about you...
 
 ```js
-// TODO: add helpers to look for files/folders
-assert(true);
+const files = await __helpers.getDirectory("src");
+assert.include(files ?? "", "index.js");
 ```
 
 ## 3
@@ -51,8 +51,10 @@ console.log("Hello, Tom");
 
 ### --tests--
 
+You will always fail this. LOL
+
 ```js
-assert(true);
+assert(false);
 ```
 
 ## 4
