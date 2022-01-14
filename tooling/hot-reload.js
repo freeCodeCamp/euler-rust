@@ -27,7 +27,7 @@ fs.watch(curriculumFolder, (event, name) => {
       console.clear();
     }
     runLesson(CURRENT_PROJECT, Number(CURRENT_LESSON));
-    console.log(`${name} Changed`);
+    // console.log(`${name} Changed`);
     runTests(CURRENT_PROJECT, Number(CURRENT_LESSON));
   }
 });

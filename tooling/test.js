@@ -48,10 +48,9 @@ async function runTests(project, lessonNumber) {
       try {
         const _testOutput = await eval(`(async () => {${test}})();`);
       } catch (e) {
-        numFailed++;
-        console.log(
-          `${t("testFailed")} ${testName}: ${test} ${t("testOutput")}`
-        );
+        // console.log(
+        //   `${t("testFailed")} ${testName}: ${test} ${t("testOutput")}`
+        // );
         return Promise.reject(`- ${hint}\n`);
       }
       return Promise.resolve();
@@ -64,6 +63,7 @@ async function runTests(project, lessonNumber) {
         updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
       }
     } catch (e) {
+      console.log(e);
       updateTests(e);
     }
   } catch (e) {

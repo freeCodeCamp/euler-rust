@@ -20,7 +20,7 @@ You can use the command `mkdir src` to create the directory.
 
 ```js
 const files = await __helpers.getDirectory(".");
-console.log(files);
+console.log("files: ", files);
 assert.include(files ?? "", "src");
 ```
 

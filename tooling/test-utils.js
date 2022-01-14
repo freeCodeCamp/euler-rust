@@ -2,9 +2,8 @@
 const fs = require("fs");
 
 async function getDirectory(path) {
-  return fs.readdir(path, (err, files) => {
-    return files;
-  });
+  const files = await fs.promises.readdir(`./curriculum/${path}`);
+  return files;
 }
 
 const __helpers = {
