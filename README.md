@@ -91,3 +91,45 @@ live-server --entry-file=temp.html
 ```bash
 ./fcc start
 ```
+
+## Ideal Dev Setup
+
+1. Clone Template Repo:
+
+```bash
+git clone https://github.com/ShaunSHamilton/external-project
+```
+
+2. Navigate into directory:
+
+```bash
+cd external-project
+```
+
+3. Open VSCode:
+
+```bash
+code .
+```
+
+4. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`.
+
+This should do the following:
+
+- [ ] Install necessary tooling for container
+- [ ] Install necessary libraries for project
+- [ ] Copy `sample.env` to `.env`
+
+5. Start project in a terminal:
+
+```bash
+./fcc
+```
+
+This should do the following:
+
+- [ ] Run `hot-reload.js` script
+- [ ] Run `live-server` for browser view
+- [ ] Open `Simple Browser` at `http://127.0.0.1:8080`
+
+From here, you are able to navigate to `tooling/locales/english/project-1.md` and start developing the first lesson.
