@@ -6,11 +6,8 @@
     {
       "label": "Start Browser",
       "type": "process",
-      "command": "workbench.action.tasks.runTask",
-      "args": ["Simple Browser: Show"],
-      "presentation": {
-        "reveal": "always"
-      }
+      "command": "vscode.simple-browser",
+      "args": ["http://127.0.0.1:8080", "This does not work!!"]
     },
     {
       "label": "Start Live-Server",
