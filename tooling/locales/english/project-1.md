@@ -36,6 +36,7 @@ You should add the file `src/index.js`. If you are seeing this, Tom, I am worrie
 
 ```js
 const files = await __helpers.getDirectory("src");
+console.log("files: ", files);
 assert.include(files ?? "", "index.js");
 ```
 
