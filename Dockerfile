@@ -41,6 +41,8 @@ RUN chmod +x fcc
 # Install marked globally for node
 RUN npm install marked prism live-server chai chokidar -g
 
-# Configure project directory
+RUN cp sample.env .env
+
+# Configure project directory?
 RUN mkdir ${HOMEDIR}/project
 WORKDIR ${HOMEDIR}/project

@@ -76,21 +76,9 @@ cp sample.env .env
 
 3. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`
 
-4. Open `Simple Browser` (`Ctrl + Shift + P` and enter `Simple Browser: Show`)
+4. Press `Ctrl + Shift + P` and type `Tasks: Run Task`
 
-5. Within `Simple Browser`, navigate to `http://127.0.0.1:8080`
-
-6. Start `live-server`:
-
-```bash
-live-server --entry-file=temp.html
-```
-
-7. Start the actual course in a new terminal:
-
-```bash
-./fcc start
-```
+5. Select `Start`
 
 ## Ideal Dev Setup
 
@@ -120,11 +108,7 @@ This should do the following:
 - [ ] Install necessary libraries for project
 - [ ] Copy `sample.env` to `.env`
 
-5. Start project in a terminal:
-
-```bash
-./fcc
-```
+5. `Ctrl + Shift + P` and type `Start`
 
 This should do the following:
 
