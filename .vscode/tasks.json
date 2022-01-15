@@ -6,8 +6,12 @@
     {
       "label": "Start Browser",
       "type": "process",
-      "command": "vscode.simple-browser",
-      "args": ["http://127.0.0.1:8080", "This does not work!!"]
+      "command": "vscode"
+    },
+    {
+      "label": "Test Start Browser",
+      "type": "process",
+      "command": "vscode.env.openExternal(vscode.Uri.parse('http://127.0.0.1:8080'))"
     },
     {
       "label": "Start Live-Server",
