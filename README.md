@@ -127,3 +127,63 @@ This should do the following:
 - [ ] Open `Simple Browser` at `http://127.0.0.1:8080`
 
 From here, you are able to navigate to `tooling/locales/english/project-1.md` and start developing the first lesson.
+
+## Making and Undoing Changes
+
+1. Ensure you are on the `curriculum` branch:
+
+```bash
+git checkout curriculum
+```
+
+2. Navigate into the `curriculum` directory:
+
+```bash
+cd curriculum
+```
+
+3. Make changes as the project requires:
+
+```bash
+# Example Instruction: Create a `src` directory
+mkdir source
+# Use `.gitkeep` to save file to Git
+touch source/.gitkeep
+```
+
+4. Commit changes with message equalling the lesson number:
+
+```bash
+# Example
+git add .
+git commit -m "1"
+```
+
+5. Make another change as required:
+
+```bash
+# Example Instruction: Create a `source/index.js` file
+touch source/index.js
+```
+
+6. Commit changes with message equalling the lesson number:
+
+```bash
+# Example
+git add .
+git commit -m "2"
+```
+
+7. Actually, you wanted the folder to be named `src` instead of `source`:
+
+```bash
+# Make changes for how it should be at this point in the project (Lesson 2)
+mv source src
+git add .
+git commit -m "2"
+# Change commit "1" to reflect the change
+git reset HEAD~1
+git add .
+git commit -m "1"
+
+```
