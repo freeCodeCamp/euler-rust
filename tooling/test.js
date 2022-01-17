@@ -17,6 +17,7 @@ const { t, LOCALE } = require("./t");
 const { updateEnv } = require("./env.js");
 const { updateTests } = require("./testerizer.js");
 const runLesson = require("./lesson");
+const { setFileSystemToLessonNumber } = require("./gitterizer");
 
 // HELPER FUNCTIONS
 const getCommandOutput = async function (command) {
