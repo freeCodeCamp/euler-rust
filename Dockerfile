@@ -3,8 +3,7 @@ FROM ubuntu
 ARG USERNAME=codeally
 ARG HOMEDIR=/home/$USERNAME
 
-ENV TZ="America/New_York" \
-  LOCALE=en_US.UTF-8
+ENV TZ="America/New_York"
 
 RUN apt update && apt install -y sudo
 
@@ -26,10 +25,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 USER ${USERNAME}
 
 # Install packages for projects
-RUN sudo apt install -y curl git locale-gen nano bash-completion man-db
-
-# Set up locales
-RUN sudo locale-gen ${LOCALE} && sudo update-locale LANG=${LOCALE}
+RUN sudo apt install -y curl git nano bash-completion man-db
 
 # Install Node LTS
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
