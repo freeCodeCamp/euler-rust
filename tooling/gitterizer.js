@@ -8,6 +8,9 @@ async function getCommitHashByNumber(number) {
     const { stdout, stderr } = await execute(
       `git log curriculum --oneline --grep="${number}"`
     );
+    if (stderr) {
+      throw new Error(stderr);
+    }
     const hash = stdout.match(/\w+/)?.[0];
     return hash;
   } catch (e) {
@@ -18,6 +21,9 @@ async function getCommitHashByNumber(number) {
 async function ensureNoUnfinishedGit() {
   try {
     const { stdout, stderr } = await execute(`git merge --abort`);
+    if (stderr) {
+      throw new Error(stderr);
+    }
   } catch (e) {
     console.error(e);
   }
@@ -28,6 +34,9 @@ async function setFileSystemToLessonNumber(lessonNumber) {
   const hash = await getCommitHashByNumber(lessonNumber);
   try {
     const { stdout, stderr } = await execute(`git merge --no-commit ${hash}`);
+    if (stderr) {
+      throw new Error(stderr);
+    }
   } catch (e) {
     console.error(e);
   }

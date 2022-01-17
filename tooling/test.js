@@ -64,6 +64,8 @@ async function runTests(project, lessonNumber) {
         updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
         runLesson(project, lessonNumber + 1);
         updateTests("");
+        // Current lesson number is used because commit contains expected answer for lesson
+        await setFileSystemToLessonNumber(lessonNumber);
       }
     } catch (e) {
       console.log(e);

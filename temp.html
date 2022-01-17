@@ -20,11 +20,13 @@
         --dark-blue: #002ead;
         --dark-green: #00471b;
       }
-      body {
-        background-color: black;
-      }
       * {
         color: white;
+      }
+      body {
+        background-color: black;
+        margin: 0;
+        text-align: center;
       }
 
       header {
@@ -38,12 +40,16 @@
         max-height: 100%;
         background-color: var(--dark-1);
         padding: 0.4rem;
+        display: block;
+        margin: 0 auto;
+        padding-left: 20px;
+        padding-right: 20px;
       }
       footer {
         margin-top: 20px;
         width: 100%;
         height: 55px;
-        background-color: var(--dark-2);
+        /* background-color: var(--dark-2); */
       }
       footer > button {
         width: 100%;
@@ -54,6 +60,7 @@
         font-weight: bold;
         color: var(--light-1);
         cursor: pointer;
+        margin-top: 20px;
       }
       footer > button:hover {
         background-color: var(--dark-3);
@@ -79,9 +86,10 @@
     </details>
 
     <footer>
-      <button onclick="window.location.reload()">Run Tests</button>
+      <button onclick="">Run Tests</button>
+      <button onclick="">Reset Lesson</button>
+      <button onclick="">Restart Project</button>
     </footer>
     <script src="assets/prism.js"></script>
-    <script src="tooling/testerizer.js"></script>
   </body>
 </html>
