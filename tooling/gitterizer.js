@@ -6,7 +6,7 @@ const execute = util.promisify(require("child_process").exec);
 async function getCommitHashByNumber(number) {
   try {
     const { stdout, stderr } = await execute(
-      `git log --oneline --grep="${number}"`
+      `git log curriculum --oneline --grep="${number}"`
     );
     const hash = stdout.match(/\w+/)?.[0];
     return hash;
@@ -15,10 +15,19 @@ async function getCommitHashByNumber(number) {
   }
 }
 
+async function ensureNoUnfinishedGit() {
+  try {
+    const { stdout, stderr } = await execute(`git merge --abort`);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
 async function setFileSystemToLessonNumber(lessonNumber) {
+  await ensureNoUnfinishedGit();
   const hash = await getCommitHashByNumber(lessonNumber);
   try {
-    const { stdout, stderr } = await execute(`git checkout ${hash}`);
+    const { stdout, stderr } = await execute(`git merge --no-commit ${hash}`);
   } catch (e) {
     console.error(e);
   }
