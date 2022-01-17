@@ -177,13 +177,108 @@ git commit -m "2"
 7. Actually, you wanted the folder to be named `src` instead of `source`:
 
 ```bash
-# Make changes for how it should be at this point in the project (Lesson 2)
-mv source src
-git add .
-git commit -m "2"
-# Change commit "1" to reflect the change
-git reset HEAD~1
-git add .
-git commit -m "1"
+# Example: Find commit hash before lesson 1
+$ git log --oneline
+c2316bb (HEAD -> curriculum) 2
+9feab3e 1
+a1b92d7 (origin/main, origin/HEAD, main) chore: add .gitpod.yml because Shaun likes to
 
+$ git rebase -i a1b92d7
+
+# Change `pick` to `edit`
+hint: Waiting for your editor to close the file...
+
+edit 9feab3e 1
+pick c2316bb 2
+
+# Save file
+Stopped at 9feab3e...  1
+You can amend the commit now, with
+
+  git commit --amend
+
+Once you are satisfied with your changes, run
+
+  git rebase --continue
+
+# Make Changes: Rename folder
+gitpod /workspace/external-project/curriculum $ mv source src
+gitpod /workspace/external-project/curriculum $ git add .
+gitpod /workspace/external-project/curriculum $ git commit -m "1"
+[detached HEAD 0e8de1b] 1
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename curriculum/{source => src}/.gitkeep (100%)
+gitpod /workspace/external-project/curriculum $ git rebase --continue
+Successfully rebased and updated refs/heads/curriculum.
+
+gitpod /workspace/external-project/curriculum $ git log --oneline
+3287942 (HEAD -> curriculum) 2
+1fc0ffb 1
+a1b92d7 (origin/main, origin/HEAD, main) chore: add .gitpod.yml because Shaun likes to
+```
+
+## Appendix
+
+```bash
+gitpod /workspace/external-project $ git checkout -b "curriculum"
+Switched to a new branch 'curriculum'
+gitpod /workspace/external-project $ cd curriculum
+gitpod /workspace/external-project/curriculum $ mkdir source
+gitpod /workspace/external-project/curriculum $ touch source/.gitkeep
+gitpod /workspace/external-project/curriculum $ git add .
+gitpod /workspace/external-project/curriculum $ git commit -m "1"
+[curriculum 9feab3e] 1
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 curriculum/source/.gitkeep
+gitpod /workspace/external-project/curriculum $ touch source/index.js
+gitpod /workspace/external-project/curriculum $ git add .
+gitpod /workspace/external-project/curriculum $ git commit -m "2"
+[curriculum c2316bb] 2
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 curriculum/source/index.js
+gitpod /workspace/external-project/curriculum $ git log --oneline
+
+c2316bb (HEAD -> curriculum) 2
+9feab3e 1
+a1b92d7 (origin/main, origin/HEAD, main) chore: add .gitpod.yml because Shaun likes to
+
+gitpod /workspace/external-project/curriculum $ git rebase -i a1b92d7
+hint: Waiting for your editor to close the file...
+
+edit 9feab3e 1
+pick c2316bb 2
+
+gitpod /workspace/external-project/curriculum $ git rebase -i a1b92d7
+Stopped at 9feab3e...  1
+You can amend the commit now, with
+
+  git commit --amend
+
+Once you are satisfied with your changes, run
+
+  git rebase --continue
+
+gitpod /workspace/external-project/curriculum $ mv source src
+gitpod /workspace/external-project/curriculum $ git commit --amend -m "1"
+[detached HEAD 1fc0ffb] 1
+ Date: Mon Jan 17 14:13:46 2022 +0000
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 curriculum/source/.gitkeep
+
+gitpod /workspace/external-project/curriculum $ git rebase --continue
+You must edit all merge conflicts and then
+mark them as resolved using git add
+gitpod /workspace/external-project/curriculum $ git add .
+gitpod /workspace/external-project/curriculum $ git commit -m "1"
+[detached HEAD 0e8de1b] 1
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename curriculum/{source => src}/.gitkeep (100%)
+gitpod /workspace/external-project/curriculum $ git rebase --continue
+Successfully rebased and updated refs/heads/curriculum.
+
+gitpod /workspace/external-project/curriculum $ git log --oneline
+3287942 (HEAD -> curriculum) 2
+0e8de1b 1
+1fc0ffb 1
+a1b92d7 (origin/main, origin/HEAD, main) chore: add .gitpod.yml because Shaun likes to
 ```
