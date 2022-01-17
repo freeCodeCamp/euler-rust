@@ -65,3 +65,9 @@ assert(false);
 That is all, folks! This lesson is just here to serve as the answer for #3
 
 ### --tests--
+
+Tom failed
+
+```js
+assert(false);
+```

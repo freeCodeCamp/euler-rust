@@ -29,6 +29,7 @@ async function ensureNoUnfinishedGit() {
   }
 }
 
+// TODO:
 async function setFileSystemToLessonNumber(lessonNumber) {
   await ensureNoUnfinishedGit();
   const hash = await getCommitHashByNumber(lessonNumber);

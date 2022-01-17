@@ -8,12 +8,13 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [x] Refactor files to follow a more specific pattern for structure and pattern
 - [x] Change parser to accept tests in the form of Node/JS codeblocks
 - [ ] Change parser to read seed from Git?
+  - [ ] Probably need to load commit `4` + all previous commits
 - [x] Add ability to automatically run tests on file save/change
 - [x] ~Style terminal to look interactive~ Use `Simple Browser`
 - [x] ~Add Markdown to terminal~ Use `Simple Browser`
 - [x] Add button to ~terminal~ to run/reset?
 - [x] Seed should come from Git with matching lesson name/number
-- [ ] Add Chai.js for tests
+- [x] Add Chai.js for tests
 - [x] Add Prism for syntax highlighting
 - [ ] Add helpers for testing files/folders
 - [ ] Add logs for terminal input/output
@@ -56,16 +57,6 @@ mkdir curriculum/src
 git add .
 # Commit message must match lesson name/number
 git commit -m "1"
-```
-
-7. _Oh, no! You have updated the lessons, and need to change the first lesson_ **Have no fear!**
-
-```bash
-# The latest commit matching the lesson number is used
-mv curriculum/src curriculum/source
-git add .
-git commit -m "1"
-# Much Wow! Super wooper!
 ```
 
 ## How To Run the Course
