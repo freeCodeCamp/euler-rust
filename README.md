@@ -34,8 +34,18 @@ cd rust-in-replit
 code .
 ```
 
-3. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`
-4. A new VSCode window will open and begin building the Docker image. It will take several minutes to build the first time.
+3. Install tooling:
+
+```bash
+npm ci
+```
+
+4. Copy `sample.env` to a new `.env` file:
+
+```bash
+cp sample.env .env
+```
+
 5. Add content to `tooling/locales/english` folder following the example structure provided
 6. For the _seed_ content, commit the _seed_ within the `curriculum` folder as you want the Camper to see it
 

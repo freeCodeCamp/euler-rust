@@ -1,6 +1,6 @@
 FROM ubuntu
 
-ARG USERNAME=codeally
+ARG USERNAME=camper
 ARG HOMEDIR=/home/$USERNAME
 
 ENV TZ="America/New_York"
