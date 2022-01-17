@@ -31,14 +31,12 @@ RUN sudo apt install -y curl git nano bash-completion man-db
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN sudo apt install -y nodejs
 
-# Give permissions to run scripts
-RUN chmod +x fcc
+
+# Configure project directory?
+RUN mkdir ${HOMEDIR}/project
+WORKDIR ${HOMEDIR}/project
 
 # Install marked globally for node
 RUN npm install marked prism live-server chai chokidar -g
 
 RUN cp sample.env .env
-
-# Configure project directory?
-RUN mkdir ${HOMEDIR}/project
-WORKDIR ${HOMEDIR}/project
