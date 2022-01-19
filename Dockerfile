@@ -37,6 +37,6 @@ RUN mkdir ${HOMEDIR}/project
 WORKDIR ${HOMEDIR}/project
 
 # Install marked globally for node
-RUN cd project && npm install marked prism live-server chai chokidar -g
+# RUN cd project && npm install marked prism live-server chai chokidar -g
 
-RUN cp sample.env .env
+# RUN cp sample.env .env
