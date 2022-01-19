@@ -1,9 +1,7 @@
 {
-  "scripts": {
-    "start": "",
-    "start:live-server": "live-server --port=8080 --entry-file=temp.html",
-    "start:watcher": "./fcc"
-  },
+  "name": "external-project",
+  "author": "freeCodeCamp",
+  "description": "Template used for freeCodeCamp projects with the freeCodeCamp Courses VSCode extension",
   "dependencies": {
     "chai": "^4.3.4",
     "chokidar": "^3.5.2",
@@ -11,12 +9,8 @@
     "marked": "^4.0.9",
     "prismjs": "^1.26.0"
   },
-  "contributes": {
-    "commands": [
-      {
-        "command": "fcc",
-        "title": "FCC"
-      }
-    ]
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShaunSHamilton/external-project"
   }
 }
