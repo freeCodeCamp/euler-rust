@@ -42,4 +42,17 @@ function resetTests() {
   fs.writeFileSync("temp.html", document.documentElement.outerHTML);
 }
 
-module.exports = { updateDescription, updateTests, resetTests };
+function toggleLoaderAnimation() {
+  const document = new JSDOM(fs.readFileSync("temp.html", "utf8")).window
+    .document;
+  const loaderElement = document.querySelector("#loader");
+  loaderElement.classList.toggle("hidden");
+  fs.writeFileSync("temp.html", document.documentElement.outerHTML);
+}
+
+module.exports = {
+  updateDescription,
+  updateTests,
+  resetTests,
+  toggleLoaderAnimation,
+};
