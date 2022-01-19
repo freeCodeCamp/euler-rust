@@ -16,8 +16,16 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [x] Seed should come from Git with matching lesson name/number
 - [x] Add Chai.js for tests
 - [x] Add Prism for syntax highlighting
-- [ ] Add helpers for testing files/folders
+- [x] Add helpers for testing files/folders
 - [ ] Add logs for terminal input/output
+- [ ] Re-enable more use of Dockerfile
+- [ ] Integrate with `freeCodeCamp Courses` extension
+- Spruce up `temp.html`:
+  - [ ] Use logic for toggling loader animation
+  - [ ] Separate CSS from HTML file
+- [ ] Refactor tooling/file names and structure to something that makes sense
+- [ ] Remove unused/old logic from tooling
+- [ ] Add workflow for translations to Crowdin
 
 ## Guide
 
@@ -83,41 +91,40 @@ cp sample.env .env
 
 ## Ideal Dev Setup
 
-1. Clone Template Repo:
+1. Clone this development repo into the new course:
 
 ```bash
-git clone https://github.com/ShaunSHamilton/external-project
+git clone https://github.com/ShaunSHamilton/external-project new-course
 ```
 
-2. Navigate into directory:
+2. Navigate into the directory, and open VSCode:
 
 ```bash
-cd external-project
-```
-
-3. Open VSCode:
-
-```bash
+cd new-course
 code .
 ```
 
-4. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`.
+3. Download/Install `freeCodeCamp Courses` extension in VSCode.
 
-This should do the following:
+4. Start the dev setup:
 
-- [ ] Install necessary tooling for container
-- [ ] Install necessary libraries for project
-- [ ] Copy `sample.env` to `.env`
+- `Ctrl + Shift + P` -> `freeCodeCamp Courses: Develop`
 
-5. `Ctrl + Shift + P` and type `Start`
+5. Follow development steps in [Creating a Course](#creating-a-course)
 
-This should do the following:
+## Creating a Course (_In Progress_)
 
-- [ ] Run `hot-reload.js` script
-- [ ] Run `live-server` for browser view
-- [ ] Open `Simple Browser` at `http://127.0.0.1:8080`
+### General Information
 
-From here, you are able to navigate to `tooling/locales/english/project-1.md` and start developing the first lesson.
+- You should not need to make any changes other than to the following files:
+  - `tooling/locales/english/project-1.md`
+  - `curriculum/`
+  - Edit this `README.md` to include information about the course
+
+### Adding the Course to the `freeCodeCamp Courses` Extension
+
+1. Go to the [freeCodeCamp/freecodecamp-course repo](https://github.com/freeCodeCamp/freecodecamp-course)
+2. Open a PR adding to the [resources/courses.json](https://github.com/freeCodeCamp/freecodecamp-course/blob/master/resources/courses.json) file.
 
 ## Making and Undoing Changes
 
