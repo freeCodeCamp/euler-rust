@@ -109,25 +109,6 @@ function parseMarkdown(markdown) {
   return marked.parse(markdown, { gfm: true });
 }
 
-function createTempHTMLFile(html, done) {
-  const htmlTop = fs.readFileSync("./assets/top.html", "utf8");
-  const htmlTests = fs.readFileSync("./assets/tests.html", "utf8");
-  const htmlBottom = fs.readFileSync("./assets/bottom.html", "utf8");
-  fs.writeFile("temp.html", htmlTop + html + htmlTests + htmlBottom, done);
-}
-
-async function printTempHTMLFile() {
-  console.log("Updated temp.html");
-}
-
-function log(markdown) {
-  createTempHTMLFile(parseMarkdown(markdown), printTempHTMLFile);
-}
-
-function updateHTMLTests(markdown) {}
-
-function updateHTMLDescription(markdown) {}
-
 // ----------------
 // EXPORT
 // ----------------
@@ -135,7 +116,6 @@ module.exports = {
   getLessonFromFile,
   getLessonDescription,
   getLessonHintsAndTests,
-  log,
   parseMarkdown,
   removeMarkdownFromSeed,
   setLessonToGitSeed,

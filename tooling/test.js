@@ -1,43 +1,15 @@
 // IMPORTS
-const fs = require("fs");
-const util = require("util");
-// This is used in the local scope of the `eval` in `runTests`
+// These are used in the local scope of the `eval` in `runTests`
 const assert = require("chai").assert;
 const __helpers = require("./test-utils");
 
-const {
-  getLessonFromFile,
-  getLessonHintsAndTests,
-  // log,
-} = require("./parser.js");
+const { getLessonFromFile, getLessonHintsAndTests } = require("./parser.js");
 
-const execute = util.promisify(require("child_process").exec);
-const readFile = util.promisify(fs.readFile);
 const { t, LOCALE } = require("./t");
 const { updateEnv } = require("./env.js");
 const { updateTests } = require("./testerizer.js");
 const runLesson = require("./lesson");
 const { setFileSystemToLessonNumber } = require("./gitterizer");
-
-// HELPER FUNCTIONS
-const getCommandOutput = async function (command) {
-  let output = "";
-  try {
-    const { stdout } = await execute(command, {
-      cwd: ".",
-      shell: "/bin/bash",
-    });
-    output = stdout;
-  } catch (err) {
-    console.log(output);
-  }
-  return output;
-};
-
-const getFileContents = async (file) => {
-  const fileContents = await readFile(file);
-  return fileContents.toString();
-};
 
 async function runTests(project, lessonNumber) {
   const locale = LOCALE === "undefined" ? "english" : LOCALE;
@@ -50,9 +22,6 @@ async function runTests(project, lessonNumber) {
       try {
         const _testOutput = await eval(`(async () => {${test}})();`);
       } catch (e) {
-        // console.log(
-        //   `${t("testFailed")} ${testName}: ${test} ${t("testOutput")}`
-        // );
         return Promise.reject(`- ${hint}\n`);
       }
       return Promise.resolve();

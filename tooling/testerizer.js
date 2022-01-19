@@ -2,7 +2,6 @@
 const marked = require("marked");
 const fs = require("fs");
 const { JSDOM } = require("jsdom");
-// console.log(marked, Prism);
 
 marked.setOptions({
   highlight: (code, lang) => {
