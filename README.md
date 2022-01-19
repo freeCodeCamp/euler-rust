@@ -27,46 +27,6 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [ ] Remove unused/old logic from tooling
 - [ ] Add workflow for translations to Crowdin
 
-## Guide
-
-1. Clone the repo with the course name you want:
-
-```bash
-# Once the repo is transferred. For now, use Gitpod
-git clone https://github.com/freeCodeCamp/external-project rust-in-replit
-```
-
-2. Navigate into the directory, and open VSCode:
-
-```bash
-cd rust-in-replit
-code .
-```
-
-3. Install tooling:
-
-```bash
-npm ci
-```
-
-4. Copy `sample.env` to a new `.env` file:
-
-```bash
-cp sample.env .env
-```
-
-5. Add content to `tooling/locales/english` folder following the example structure provided
-6. For the _seed_ content, commit the _seed_ within the `curriculum` folder as you want the Camper to see it
-
-```bash
-git checkout -b "curriculum"
-# Example
-mkdir curriculum/src
-git add .
-# Commit message must match lesson name/number
-git commit -m "1"
-```
-
 ## How To Run the Course
 
 1. Clone the repo:
@@ -80,14 +40,11 @@ git clone https://github.com/freeCodeCamp/external-project
 ```bash
 cd external-project
 code .
-cp sample.env .env
 ```
 
 3. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`
 
-4. Press `Ctrl + Shift + P` and type `Tasks: Run Task`
-
-5. Select `Start`
+4. Press `Ctrl + Shift + P` and enter `Run Course`
 
 ## Ideal Dev Setup
 
