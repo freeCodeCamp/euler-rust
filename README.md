@@ -29,22 +29,31 @@ Shaun is having fun testing a minimal way to run courses locally.
 
 ## How To Run the Course
 
-1. Clone the repo:
+1. Create an empty directory:
 
 ```bash
-git clone https://github.com/freeCodeCamp/external-project
+mkdir course
+cd course
 ```
 
-2. Navigate into the directory, and open VSCode:
+2. Download/Install `freeCodeCamp Courses` extension in VSCode.
 
 ```bash
-cd external-project
+wget https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix
+code --install-extension freecodecamp-courses-patch.vsix
+```
+
+3. Open VSCode
+
+```bash
 code .
 ```
 
-3. Press `Ctrl / Cmd + Shift + P` and enter `Remote-Containers: Rebuild Container and Reopen in Container`
+4. `Ctrl + Shift + P` and select `freeCodeCamp: Open Course`
 
-4. Press `Ctrl + Shift + P` and enter `Run Course`
+5. Choose the course you want to run
+
+6. Magic happens!
 
 ## Ideal Dev Setup
 
@@ -62,6 +71,11 @@ code .
 ```
 
 3. Download/Install `freeCodeCamp Courses` extension in VSCode.
+
+```bash
+wget https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix
+code --install-extension freecodecamp-courses-patch.vsix
+```
 
 4. Start the dev setup:
 
