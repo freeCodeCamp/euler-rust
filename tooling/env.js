@@ -5,6 +5,7 @@ function readEnv() {
     CURRENT_PROJECT: "calculator",
     LOCALE: "english",
     TEST_POLLING_RATE: "1000",
+    LAST_KNOWN_LESSON_WITH_HASH: "1",
   };
   try {
     const META = fs.readFileSync("./.env", "utf8");
