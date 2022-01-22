@@ -4,69 +4,155 @@
 
 ### --description--
 
-Start by creating a new directory called `src`.
+The main tools within the Rust ecosystem are:
 
-_Tom, once you save, the tests should run_
+- rustc The compiler which takes your Rust code and compiles it into binary (machine readable code)
+- rustup The command line utility to install and update Rust
+- cargo The Rust build system and package manager (you will work with this)
 
-```rust
-fn main() {
-  let my_str: &str = "Wow! Rust is rendered with colour to the terminal!";
-}
+Task: Create a new Rust project by running the following command in the prompt:
+
+```bash
+    $ cargo new calculator
 ```
 
 ### --tests--
 
-You can use the command `mkdir src` to create the directory.
+You can use the command `cargo new calculator` to create the project.
 
 ```js
 const files = await __helpers.getDirectory(".");
 console.log("files: ", files);
-assert.include(files ?? "", "src");
+assert.include(files ?? "", "calculator");
 ```
 
 ## 2
 
 ### --description--
 
-Tom, create a file named `index.js` within `src`.
+You have just created a new Rust project within the `calculator/` directory.
+
+Cargo has created the boilerplate for a 'Hello World'.
+
+Task: Open the `calculator/src/main.rs` file.
+
+This is the default file Cargo uses for your application binary.
 
 ### --tests--
 
-You should add the file `src/index.js`. If you are seeing this, Tom, I am worried about you...
+You should open the `calculator/src/main.rs` file in your editor.
 
 ```js
-const files = await __helpers.getDirectory("src");
-console.log("files: ", files);
-assert.include(files ?? "", "index.js");
+const isFileOpen = await __helpers.isFileOpen("calculator/src/main.rs");
+console.log("files: ", isFileOpen);
+assert(isFileOpen);
 ```
 
 ## 3
 
 ### --description--
 
-Tom, here is some code you can add to your window. This shows you what a long sentence will look like, as well as allows us to test prismjs within the terminal.
+This file contains a function declaration with the handle `main`.
+By default, rustc calls the `main` function first whenever the executable is run.
 
-```js
-console.log("Hello, Tom");
+`println` is a built-in macro.
+
+A macro is similar to a function, but can be thought of as a piece of code which writes other code.
+For now, the main differences between a function and a macro to keep in mind are:
+
+    - Macros are called using a bang (!)
+    - Macros can take a variable number of arguments; functions in Rust cannot
+
+Task: Run your code, using the following command:
+
+```bash
+    $ cargo run
 ```
 
 ### --tests--
 
-You will always fail this. LOL
+You should see the following output: `Hello, world!`
 
 ```js
-assert(false);
+const terminalOutput = await __helpers.getTerminalOutput();
+console.log("terminalOutput: ", terminalOutput);
+assert.include(terminalOutput ?? "", "Hello, world!");
 ```
 
 ## 4
 
 ### --description--
 
-That is all, folks! This lesson is just here to serve as the answer for #3
+Variables are declared using the `let` keyword.
+
+```rust
+    let variable_name = value
+```
+
+Task: Within the `main` function, declare a new variable, and name it `firstName` and give it a value of `"<your_name>"`. Ensure to declare it before the `println!` call, and place your name within double quotes.
+
+_NOTE:_ Variables can also be declared using the const or static keywords.
+
+Task: Run your code to see what the compiler says:
+
+```bash
+    $ cargo run --bin calculator
+```
+
+_HINT:_ If you get stuck, try to follow the compiler's helpful advice.
 
 ### --tests--
 
-Tom failed
+You should declare a variable `firstName` and give it a value of your first name within double quotes.
+
+```js
+const code = await __helpers.getFile("calculator/src/main.rs");
+assert.match(code, /let\s+firstName\s*=\s*\"\w+\"\s*/);
+```
+
+You should follow the compiler's advice to add a semi-colon at the end.
+
+```js
+const code = await __helpers.getFile("calculator/src/main.rs");
+assert.match(code, /let\s+firstName\s*=\s*\"\w+\"\s*;/);
+```
+
+## 5
+
+### --description--
+
+Above, you might notice the rustc compiler is giving two suggestions for your code.
+
+Task: Follow the compiler's advice to convert the variable name into snake_case.
+
+It is convention in Rust to use snake_case for:
+
+- Variable names
+- Function names
+- File names
+
+SCREAMING_SNAKE_CASE is used for constants and statics. Lastly, PascalCase is used for types, traits, and enums (we will cover these later).
+
+### --tests--
+
+You should have a variable `first_name` and give it a value of your first name within double quotes.
+
+```js
+const code = await __helpers.getFile("calculator/src/main.rs");
+assert.match(code, /let\s+first_name\s*=\s*"\w+"\s*;/);
+```
+
+## 6
+
+### --description--
+
+End of course! Well done, Tom!
+
+If you struggled to understand any of this, we can add _Simplified English_ to the translations.
+
+### --tests--
+
+This always fails.
 
 ```js
 assert(false);

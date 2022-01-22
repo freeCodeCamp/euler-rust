@@ -57,29 +57,27 @@ code .
 
 ## Ideal Dev Setup
 
-1. Clone this development repo into the new course:
+1. Create an empty directory:
 
 ```bash
-git clone https://github.com/ShaunSHamilton/external-project new-course
+mkdir course
+cd course
 ```
 
-2. Navigate into the directory, and open VSCode:
-
-```bash
-cd new-course
-code .
-```
-
-3. Download/Install `freeCodeCamp Courses` extension in VSCode.
+2. Download/Install `freeCodeCamp Courses` extension in VSCode.
 
 ```bash
 wget https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix
 code --install-extension freecodecamp-courses-patch.vsix
 ```
 
-4. Start the dev setup:
+3. Open VSCode
 
-- `Ctrl + Shift + P` -> `freeCodeCamp Courses: Develop`
+```bash
+code .
+```
+
+4 `Ctrl + Shift + P` -> `freeCodeCam: Develop New Course`
 
 5. Follow development steps in [Creating a Course](#creating-a-course)
 

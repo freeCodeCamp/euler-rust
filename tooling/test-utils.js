@@ -6,8 +6,31 @@ async function getDirectory(path) {
   return files;
 }
 
+/**
+ * Checks if file is open in VSCode editor
+ * @param {string} path Path to file
+ * @returns {boolean}
+ */
+async function isFileOpen(path) {
+  // TODO: Probably not possible
+  return true;
+}
+
+async function getTerminalOutput() {
+  // TODO
+  return "Hello, world!";
+}
+
+async function getFile(path) {
+  const file = await fs.promises.readFile(`./curriculum/${path}`, "utf8");
+  return file;
+}
+
 const __helpers = {
   getDirectory,
+  isFileOpen,
+  getFile,
+  getTerminalOutput,
 };
 
 module.exports = __helpers;
