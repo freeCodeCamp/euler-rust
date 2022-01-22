@@ -13,11 +13,13 @@ async function getDirectory(path) {
  */
 async function isFileOpen(path) {
   // TODO: Probably not possible
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   return true;
 }
 
 async function getTerminalOutput() {
   // TODO
+  await new Promise((resolve) => setTimeout(resolve, 10000));
   return "Hello, world!";
 }
 

@@ -44,7 +44,7 @@ You should open the `calculator/src/main.rs` file in your editor.
 
 ```js
 const isFileOpen = await __helpers.isFileOpen("calculator/src/main.rs");
-console.log("files: ", isFileOpen);
+console.log("isFileOpen: ", isFileOpen);
 assert(isFileOpen);
 ```
 
