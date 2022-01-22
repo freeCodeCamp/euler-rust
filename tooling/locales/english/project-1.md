@@ -13,7 +13,7 @@ The main tools within the Rust ecosystem are:
 Task: Create a new Rust project by running the following command in the prompt:
 
 ```bash
-    $ cargo new calculator
+cargo new calculator
 ```
 
 ### --tests--
@@ -34,18 +34,16 @@ You have just created a new Rust project within the `calculator/` directory.
 
 Cargo has created the boilerplate for a 'Hello World'.
 
-Task: Open the `calculator/src/main.rs` file.
-
-This is the default file Cargo uses for your application binary.
+Task: Change directory into `calculator/`.
 
 ### --tests--
 
-You should open the `calculator/src/main.rs` file in your editor.
+You should run `cd calculator` to change directory.
 
 ```js
-const isFileOpen = await __helpers.isFileOpen("calculator/src/main.rs");
-console.log("isFileOpen: ", isFileOpen);
-assert(isFileOpen);
+const lastCommand = await __helpers.getLastCommand();
+console.log(lastCommand);
+assert.equal(lastCommand, "cd calculator");
 ```
 
 ## 3
@@ -66,7 +64,7 @@ For now, the main differences between a function and a macro to keep in mind are
 Task: Run your code, using the following command:
 
 ```bash
-    $ cargo run
+cargo run
 ```
 
 ### --tests--
@@ -86,7 +84,7 @@ assert.include(terminalOutput ?? "", "Hello, world!");
 Variables are declared using the `let` keyword.
 
 ```rust
-    let variable_name = value
+let variable_name = value
 ```
 
 Task: Within the `main` function, declare a new variable, and name it `firstName` and give it a value of `"<your_name>"`. Ensure to declare it before the `println!` call, and place your name within double quotes.
@@ -96,7 +94,7 @@ _NOTE:_ Variables can also be declared using the const or static keywords.
 Task: Run your code to see what the compiler says:
 
 ```bash
-    $ cargo run --bin calculator
+cargo run --bin calculator
 ```
 
 _HINT:_ If you get stuck, try to follow the compiler's helpful advice.
