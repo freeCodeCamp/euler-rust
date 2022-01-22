@@ -69,7 +69,7 @@ cargo run
 
 ### --tests--
 
-You should see the following output: `Hello, world!`
+Your code should output the following: `Hello, world!`
 
 ```js
 const terminalOutput = await __helpers.getTerminalOutput();
