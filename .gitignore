@@ -3,4 +3,5 @@ node_modules
 
 # TODO: Ignore temp.html
 
-tooling/bash/**/*
+tooling/bash/.cwd
+tooling/bash/.next_command
