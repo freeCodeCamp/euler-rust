@@ -28,8 +28,7 @@ USER ${USERNAME}
 RUN sudo apt install -y curl git nano bash-completion man-db
 
 # Install Rust for this project
-
-RUN curl https://sh.rustup.rs -sSf | sh -- -y
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Install Node LTS
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -41,6 +40,6 @@ RUN mkdir ${HOMEDIR}/project
 WORKDIR ${HOMEDIR}/project
 
 # Install marked globally for node
-RUN npm install live-server -g
+RUN sudo npm install live-server -g
 
 # RUN cp sample.env .env
