@@ -41,7 +41,7 @@ async function getCommandOutput(command, path = "") {
 }
 
 async function getLastCommand(howManyBack = 0) {
-  const pathToBashLogs = path.join(dir, "../", ".bash_history");
+  const pathToBashLogs = path.join("~/.bash_history");
   const bashLogs = await fs.promises.readFile(pathToBashLogs, "utf8");
 
   if (!bashLogs) {

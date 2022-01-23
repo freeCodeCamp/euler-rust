@@ -35,11 +35,13 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN sudo apt install -y nodejs
 
 
-# Configure project directory?
-RUN mkdir ${HOMEDIR}/project
-WORKDIR ${HOMEDIR}/project
+# Configure project directory to match course name
+RUN mkdir ${HOMEDIR}/external-project
+WORKDIR ${HOMEDIR}/external-project
 
 # Install marked globally for node
 RUN sudo npm install live-server -g
+
+# TODO: COPY wanted content into workdir
 
 # RUN cp sample.env .env

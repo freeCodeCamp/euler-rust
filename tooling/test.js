@@ -21,7 +21,9 @@ async function runTests(project, lessonNumber) {
     const testPromises = hintsAndTestsArr.map(async ([hint, test]) => {
       try {
         const _testOutput = await eval(`(async () => {${test}})();`);
+        console.log("TEST: ", _testOutput);
       } catch (e) {
+        console.log("TEST: ", e);
         return Promise.reject(`- ${hint}\n`);
       }
       return Promise.resolve();
