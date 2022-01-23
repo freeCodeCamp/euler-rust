@@ -94,7 +94,7 @@ _NOTE:_ Variables can also be declared using the const or static keywords.
 Task: Run your code to see what the compiler says:
 
 ```bash
-cargo run --bin calculator
+cargo run
 ```
 
 _HINT:_ If you get stuck, try to follow the compiler's helpful advice.
