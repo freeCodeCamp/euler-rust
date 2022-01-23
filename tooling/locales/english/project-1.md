@@ -22,7 +22,7 @@ You can use the command `cargo new calculator` to create the project.
 
 ```js
 const files = await __helpers.getDirectory(".");
-console.log("files: ", files);
+console.log("Test 1: ", files);
 assert.include(files ?? "", "calculator");
 ```
 
@@ -42,7 +42,7 @@ You should run `cd calculator` to change directory.
 
 ```js
 const lastCommand = await __helpers.getLastCommand();
-console.log(lastCommand);
+console.log("Test 2: ", lastCommand);
 assert.equal(lastCommand, "cd calculator");
 ```
 
@@ -73,7 +73,7 @@ Your code should output the following: `Hello, world!`
 
 ```js
 const terminalOutput = await __helpers.getTerminalOutput();
-console.log("terminalOutput: ", terminalOutput);
+console.log("Test 3: ", terminalOutput);
 assert.include(terminalOutput ?? "", "Hello, world!");
 ```
 
@@ -105,6 +105,7 @@ You should declare a variable `firstName` and give it a value of your first name
 
 ```js
 const code = await __helpers.getFile("calculator/src/main.rs");
+console.log("Test 4: ", code);
 assert.match(code, /let\s+firstName\s*=\s*\"\w+\"\s*/);
 ```
 
@@ -112,6 +113,7 @@ You should follow the compiler's advice to add a semi-colon at the end.
 
 ```js
 const code = await __helpers.getFile("calculator/src/main.rs");
+console.log("Test 4.2: ", code);
 assert.match(code, /let\s+firstName\s*=\s*\"\w+\"\s*;/);
 ```
 
@@ -137,6 +139,7 @@ You should have a variable `first_name` and give it a value of your first name w
 
 ```js
 const code = await __helpers.getFile("calculator/src/main.rs");
+console.log("Test 5: ", code);
 assert.match(code, /let\s+first_name\s*=\s*"\w+"\s*;/);
 ```
 
@@ -150,7 +153,21 @@ If you struggled to understand any of this, we can add _Simplified English_ to t
 
 ### --tests--
 
-This always fails.
+This always fails. 😆
+
+```js
+assert(false);
+```
+
+## 7
+
+### --description--
+
+Notice how lesson 7 needs to be here, even though 5 is the last lesson. _Lesson 6 still is shown_
+
+### --tests--
+
+Another fail - I do not know if this is necessary 🤷‍♂️
 
 ```js
 assert(false);
