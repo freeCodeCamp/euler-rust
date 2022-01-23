@@ -32,7 +32,7 @@ async function ensureNoUnfinishedGit() {
       throw new Error(stderr);
     }
   } catch (e) {
-    console.error(e);
+    // console.error(e);
   }
 }
 
@@ -41,6 +41,10 @@ async function setFileSystemToLessonNumber(lessonNumber) {
   const endHash = await getCommitHashByNumber(lessonNumber);
   const firstHash = await getCommitHashByNumber(1);
   try {
+    // TODO: Continue on this error? Or, bail?
+    if (!endHash || !firstHash) {
+      throw new Error("Could not find commit hash");
+    }
     const { stdout, stderr } = await execute(
       `git cherry-pick ${firstHash}^..${endHash}`
     );
