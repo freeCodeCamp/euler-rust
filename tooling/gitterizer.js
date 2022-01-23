@@ -6,7 +6,7 @@ const { readEnv, updateEnv } = require("./env");
 async function getCommitHashByNumber(number) {
   try {
     const { stdout, stderr } = await execute(
-      `git log curriculum --oneline --grep="${number} --"`
+      `git log curriculum --oneline --grep="${number}" --`
     );
     if (stderr) {
       throw new Error(stderr);
