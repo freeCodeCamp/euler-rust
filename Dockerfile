@@ -27,6 +27,10 @@ USER ${USERNAME}
 # Install packages for projects
 RUN sudo apt install -y curl git nano bash-completion man-db
 
+# Install Rust for this project
+
+RUN curl https://sh.rustup.rs -sSf | sh -- -y
+
 # Install Node LTS
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN sudo apt install -y nodejs
@@ -37,6 +41,6 @@ RUN mkdir ${HOMEDIR}/project
 WORKDIR ${HOMEDIR}/project
 
 # Install marked globally for node
-# RUN cd project && npm install marked prism live-server chai chokidar -g
+RUN npm install live-server -g
 
 # RUN cp sample.env .env

@@ -1,5 +1,5 @@
 {
-  "extensions": ["dbaeumer.vscode-eslint"],
+  "extensions": ["dbaeumer.vscode-eslint", "freecodecamp.freecodecamp-courses"],
   "forwardPorts": [3000],
   "dockerFile": "../Dockerfile",
   "context": ".."

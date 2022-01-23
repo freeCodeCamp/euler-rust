@@ -46,11 +46,15 @@ async function setFileSystemToLessonNumber(lessonNumber) {
       throw new Error("Could not find commit hash");
     }
     // TODO: Probably do not want to always completely clean for each lesson
-    const { stdout, stderr } = await execute(
-      `git clean -f -q -- . && git cherry-pick ${firstHash}^..${endHash}`
-    );
-    if (stderr) {
-      throw new Error(stderr);
+    if (firstHash === endHash) {
+      await execute(`git clean -f -q -- . && git cherry-pick ${endHash}`);
+    } else {
+      const { stdout, stderr } = await execute(
+        `git clean -f -q -- . && git cherry-pick ${firstHash}^..${endHash}`
+      );
+      if (stderr) {
+        throw new Error(stderr);
+      }
     }
   } catch (e) {
     console.error(e);
