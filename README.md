@@ -7,8 +7,8 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [x] Init repo with a whole bunch of boilerplate
 - [x] Refactor files to follow a more specific pattern for structure and pattern
 - [x] Change parser to accept tests in the form of Node/JS codeblocks
-- [ ] Change parser to read seed from Git?
-  - [ ] Probably need to load commit `4` + all previous commits
+- [x] Change parser to read seed from Git?
+  - [x] Probably need to load commit `4` + all previous commits
 - [x] Add ability to automatically run tests on file save/change
 - [x] ~Style terminal to look interactive~ Use `Simple Browser`
 - [x] ~Add Markdown to terminal~ Use `Simple Browser`
@@ -18,13 +18,13 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [x] Add Prism for syntax highlighting
 - [x] Add helpers for testing files/folders
 - [ ] Add logs for terminal input/output
-- [ ] Re-enable more use of Dockerfile
+- [x] Re-enable more use of Dockerfile
 - [ ] Integrate with `freeCodeCamp Courses` extension
 - Spruce up `temp.html`:
   - [ ] Use logic for toggling loader animation
   - [ ] Separate CSS from HTML file
 - [ ] Refactor tooling/file names and structure to something that makes sense
-- [ ] Remove unused/old logic from tooling
+- [x] Remove unused/old logic from tooling
 - [ ] Add workflow for translations to Crowdin
 
 ## How To Run the Course
@@ -53,7 +53,9 @@ code .
 
 5. Choose the course you want to run
 
-6. Magic happens!
+6. `Ctrl + Shift + P` and select `Remote-Containers: Rebuild and Reopen in Container`
+
+7. `Ctrl + Shift + P` and select `freeCodeCamp: Run Course`
 
 ## Ideal Dev Setup
 
