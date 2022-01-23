@@ -6,7 +6,7 @@ const { readEnv, updateEnv } = require("./env");
 async function getCommitHashByNumber(number) {
   try {
     const { stdout, stderr } = await execute(
-      `git log curriculum --oneline --grep="${number}" --`
+      `git log origin/curriculum --oneline --grep="${number}" --`
     );
     if (stderr) {
       throw new Error(stderr);
@@ -45,8 +45,9 @@ async function setFileSystemToLessonNumber(lessonNumber) {
     if (!endHash || !firstHash) {
       throw new Error("Could not find commit hash");
     }
+    // TODO: Probably do not want to always completely clean for each lesson
     const { stdout, stderr } = await execute(
-      `git cherry-pick ${firstHash}^..${endHash}`
+      `git clean -f -q -- . && git cherry-pick ${firstHash}^..${endHash}`
     );
     if (stderr) {
       throw new Error(stderr);

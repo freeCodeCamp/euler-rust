@@ -1,6 +1,7 @@
 // TODO: This file has some helper functions to make testing FUN!
 const fs = require("fs");
 const util = require("util");
+const path = require("path");
 const execute = util.promisify(require("child_process").exec);
 
 async function getDirectory(path) {
@@ -40,8 +41,8 @@ async function getCommandOutput(command, path = "") {
 }
 
 async function getLastCommand(howManyBack = 0) {
-  const pathToBashLogs = "~/.bash_history";
-  const bashLogs = await readFile(pathToBashLogs, "utf8");
+  const pathToBashLogs = path.join(dir, "../", ".bash_history");
+  const bashLogs = await fs.promises.readFile(pathToBashLogs, "utf8");
 
   if (!bashLogs) {
     throw new Error(`Could not find ${pathToBashLogs}`);
