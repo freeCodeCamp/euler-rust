@@ -36,11 +36,28 @@ RUN sudo apt install -y nodejs
 
 
 # Configure project directory to match course name
-RUN mkdir ${HOMEDIR}/external-project
-WORKDIR ${HOMEDIR}/external-project
+RUN mkdir ${HOMEDIR}/curriculum
+WORKDIR ${HOMEDIR}/curriculum
 
 # Install marked globally for node
 RUN sudo npm install live-server -g
 
-COPY * ${HOMEDIR}/
-COPY curriculum/* ./
+# Copy necessary files
+COPY .devcontainer/ ${HOMEDIR}/.devcontainer/
+COPY assets/ ${HOMEDIR}/assets/
+COPY tooling/ ${HOMEDIR}/tooling/
+COPY .gitignore ${HOMEDIR}/.gitignore
+COPY sample.env ${HOMEDIR}/sample.env
+COPY package.json ${HOMEDIR}/package.json
+COPY package-lock.json ${HOMEDIR}/package-lock.json
+COPY temp.html ${HOMEDIR}/temp.html
+
+# Create history file for bash
+RUN touch ${HOMEDIR}/.bash_history
+
+# Append history to .bash_history
+RUN echo 'PROMPT_COMMAND="history -a ~/.bash_history"' >> ${HOMEDIR}/.bashrc
+
+# Copy curriculum content to project directory
+COPY .vscode/ .vscode/
+COPY curriculum/ ./
