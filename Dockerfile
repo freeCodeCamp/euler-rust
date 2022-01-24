@@ -42,9 +42,5 @@ WORKDIR ${HOMEDIR}/external-project
 # Install marked globally for node
 RUN sudo npm install live-server -g
 
-# TODO: COPY wanted content into workdir
-
-COPY * ${HOMEDIR}
-COPY curriculum .
-
-# RUN cp sample.env .env
+COPY * ${HOMEDIR}/
+COPY curriculum/* ./
