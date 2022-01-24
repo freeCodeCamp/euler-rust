@@ -44,4 +44,7 @@ RUN sudo npm install live-server -g
 
 # TODO: COPY wanted content into workdir
 
+COPY * ${HOMEDIR}
+COPY curriculum .
+
 # RUN cp sample.env .env
