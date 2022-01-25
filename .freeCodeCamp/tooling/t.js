@@ -1,4 +1,4 @@
-const { readEnv, PATH } = require("./env");
+const { readEnv } = require("./env");
 
 const LOCALE = readEnv(".meta").LOCALE;
 
@@ -7,7 +7,7 @@ function t(key, args = {}, forceLangToUse) {
   // Get key from ./locales/{locale}/comments.json
   // Read file and parse JSON
   const locale = forceLangToUse ?? loc === "undefined" ? "english" : loc;
-  const comments = require(`${PATH}/tooling/locales/${locale}/comments.json`);
+  const comments = require(`./locales/${locale}/comments.json`);
 
   // Get value from JSON
   const value = comments[key];
