@@ -10,7 +10,7 @@ function readEnv() {
     LAST_KNOWN_LESSON_WITH_HASH: "1",
   };
   try {
-    const META = fs.readFileSync("./.env", "utf8");
+    const META = fs.readFileSync(`${PATH}/.env`, "utf8");
     const metaArr = META.split("\n").filter(Boolean);
     const new_meta = metaArr.reduce((meta, line) => {
       const [key, value] = line.split("=");

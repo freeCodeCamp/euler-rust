@@ -105,5 +105,4 @@ module.exports = {
   getLessonHintsAndTests,
   parseMarkdown,
   removeMarkdownFromSeed,
-  setLessonToGitSeed,
 };

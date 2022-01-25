@@ -48,11 +48,8 @@ COPY .git/ .git/
 COPY .freeCodeCamp/ .freeCodeCamp/
 COPY .gitignore .gitignore
 
-# Create history file for bash
-RUN touch ${HOMEDIR}/.bash_history
-
 # Append history to .bash_history
-RUN echo 'PROMPT_COMMAND="history -a ~/.bash_history"' >> ${HOMEDIR}/.bashrc
+RUN echo 'PROMPT_COMMAND="history -a ${HOMEDIR}/curriculum/.freecodecamp/.bash_history"' >> ${HOMEDIR}/.bashrc
 
 # Copy curriculum content to project directory
 COPY .vscode/ .vscode/
