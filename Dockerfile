@@ -43,15 +43,10 @@ WORKDIR ${HOMEDIR}/curriculum
 RUN sudo npm install live-server -g
 
 # Copy necessary files
-COPY .devcontainer/ ${HOMEDIR}/.devcontainer/
-COPY .git/ ${HOMEDIR}/.git/
-COPY assets/ ${HOMEDIR}/assets/
-COPY tooling/ ${HOMEDIR}/tooling/
-COPY .gitignore ${HOMEDIR}/.gitignore
-COPY sample.env ${HOMEDIR}/sample.env
-COPY package.json ${HOMEDIR}/package.json
-COPY package-lock.json ${HOMEDIR}/package-lock.json
-COPY temp.html ${HOMEDIR}/temp.html
+COPY .devcontainer/ .devcontainer/
+COPY .git/ .git/
+COPY ./freeCodeCamp/ .freeCodeCamp/
+COPY .gitignore .gitignore
 
 # Create history file for bash
 RUN touch ${HOMEDIR}/.bash_history
