@@ -45,7 +45,7 @@ RUN sudo npm install live-server -g
 # Copy necessary files
 COPY .devcontainer/ .devcontainer/
 COPY .git/ .git/
-COPY ./freeCodeCamp/ .freeCodeCamp/
+COPY .freeCodeCamp/ .freeCodeCamp/
 COPY .gitignore .gitignore
 
 # Create history file for bash
