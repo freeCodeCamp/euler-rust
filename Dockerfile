@@ -49,7 +49,7 @@ COPY .freeCodeCamp/ .freeCodeCamp/
 COPY .gitignore .gitignore
 
 # Append history to .bash_history
-RUN echo 'PROMPT_COMMAND="history -a ${HOMEDIR}/curriculum/.freecodecamp/.bash_history"' >> ${HOMEDIR}/.bashrc
+RUN echo 'PROMPT_COMMAND="history -a ~/curriculum/.freecodecamp/.bash_history"' >> ${HOMEDIR}/.bashrc
 
 # Copy curriculum content to project directory
 COPY .vscode/ .vscode/

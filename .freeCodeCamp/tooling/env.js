@@ -27,7 +27,7 @@ function updateEnv(obj) {
   // TODO: Maybe not completely overwrite the file?
   const env = { ...readEnv(), ...obj };
   fs.writeFileSync(
-    "./.env",
+    `${PATH}/.env`,
     Object.entries(env).reduce((acc, [key, value]) => {
       return `${acc}\n${key}=${value}`;
     }, "")
