@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+const PATH = ".freeCodeCamp";
+
 function readEnv() {
   let meta = {
     CURRENT_PROJECT: "calculator",
@@ -32,4 +34,4 @@ function updateEnv(obj) {
   );
 }
 
-module.exports = { readEnv, updateEnv };
+module.exports = { readEnv, updateEnv, PATH };

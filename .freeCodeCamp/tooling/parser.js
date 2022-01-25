@@ -1,7 +1,5 @@
 // This file contains the parser for the markdown lessons
 const fs = require("fs");
-const util = require("util");
-const execute = util.promisify(require("child_process").exec);
 
 const DESCRIPTION_MARKER = "### --description--";
 // const SEED_MARKER = "### --seed--"; // No seed with .git
@@ -31,17 +29,6 @@ function getLessonDescription(lesson) {
     new RegExp(`${DESCRIPTION_MARKER}\n(.*)\n${TEST_MARKER}`, "s")
   )?.[1];
   return description;
-}
-
-/**
- * Sets `/curriculum` to match the lesson seed
- * @param {number} lessonNumber - The lesson number
- */
-function setLessonToGitSeed(lessonNumber, done) {
-  // Reset /curriculum folder to match the git history based on the lessonNumber
-  // TODO(TOM): Get help reading/using Node to execute `git reset` command?
-  // TODO: done error, if git reset fails
-  // TODO: done success, if git reset succeeds
 }
 
 /**

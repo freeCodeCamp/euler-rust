@@ -5,7 +5,7 @@ const runLesson = require("./lesson");
 const runTests = require("./test");
 const { resetTests } = require("./testerizer");
 const chokidar = require("chokidar");
-const { TEST_POLLING_RATE } = readEnv("../.env");
+const { TEST_POLLING_RATE } = readEnv();
 const curriculumFolder = "./curriculum";
 
 console.log(`Watching for file changes on ${curriculumFolder}`);
@@ -22,7 +22,7 @@ chokidar.watch(curriculumFolder).on("all", (event, name) => {
       isWait = false;
     }, TEST_POLLING_RATE);
 
-    const { CURRENT_PROJECT, CURRENT_LESSON } = readEnv("../.env");
+    const { CURRENT_PROJECT, CURRENT_LESSON } = readEnv();
     if (isClearConsole) {
       console.clear();
     }
@@ -33,7 +33,7 @@ chokidar.watch(curriculumFolder).on("all", (event, name) => {
 });
 
 function reset() {
-  const { CURRENT_LESSON, CURRENT_PROJECT } = readEnv("../.env");
+  const { CURRENT_LESSON, CURRENT_PROJECT } = readEnv();
   runLesson(CURRENT_PROJECT, Number(CURRENT_LESSON));
   resetTests();
 }
