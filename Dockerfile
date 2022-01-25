@@ -43,14 +43,14 @@ WORKDIR ${HOMEDIR}/curriculum
 RUN sudo npm install live-server -g
 
 # Copy necessary files
-COPY --chown=root .devcontainer/ .devcontainer/
-COPY --chown=root .git/ .git/
-COPY --chown=root .freeCodeCamp/ .freeCodeCamp/
-COPY --chown=root .gitignore .gitignore
+COPY --chown=camper .devcontainer/ .devcontainer/
+COPY --chown=camper .git/ .git/
+COPY --chown=camper .freeCodeCamp/ .freeCodeCamp/
+COPY --chown=camper .gitignore .gitignore
 
 # Append history to .bash_history
 RUN echo 'PROMPT_COMMAND="history -a ~/curriculum/.freecodecamp/.bash_history"' >> ${HOMEDIR}/.bashrc
 
 # Copy curriculum content to project directory
-COPY --chown=root .vscode/ .vscode/
-COPY --chown=root curriculum/ ./
+COPY --chown=camper .vscode/ .vscode/
+COPY --chown=camper curriculum/ ./
