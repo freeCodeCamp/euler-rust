@@ -6,7 +6,7 @@ const runTests = require("./test");
 const { resetTests } = require("./testerizer");
 const chokidar = require("chokidar");
 const { TEST_POLLING_RATE } = readEnv();
-const curriculumFolder = "./curriculum";
+const curriculumFolder = process.env.ACTOR === "dev" ? "./curriculum" : ".";
 
 console.log(`Watching for file changes on ${curriculumFolder}`);
 

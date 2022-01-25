@@ -5,7 +5,8 @@ const path = require("path");
 const execute = util.promisify(require("child_process").exec);
 
 async function getDirectory(path) {
-  const files = await fs.promises.readdir(`./curriculum/${path}`);
+  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
+  const files = await fs.promises.readdir(`${root}/${path}`);
   return files;
 }
 
@@ -33,15 +34,17 @@ async function getTerminalOutput() {
  * @returns
  */
 async function getCommandOutput(command, path = "") {
+  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
   const { stdout } = await execute(command, {
-    cwd: `curriculum/${path}`,
+    cwd: `${root}/${path}`,
     shell: "/bin/bash",
   });
   return stdout;
 }
 
 async function getLastCommand(howManyBack = 0) {
-  const pathToBashLogs = path.join("~/.bash_history");
+  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
+  const pathToBashLogs = path.join(`${root}/.freecodecamp/.bash_history`);
   const bashLogs = await fs.promises.readFile(pathToBashLogs, "utf8");
 
   if (!bashLogs) {
@@ -55,7 +58,8 @@ async function getLastCommand(howManyBack = 0) {
 }
 
 async function getFile(path) {
-  const file = await fs.promises.readFile(`./curriculum/${path}`, "utf8");
+  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
+  const file = await fs.promises.readFile(`${root}/${path}`, "utf8");
   return file;
 }
 
