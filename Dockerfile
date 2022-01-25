@@ -44,6 +44,7 @@ RUN sudo npm install live-server -g
 
 # Copy necessary files
 COPY .devcontainer/ ${HOMEDIR}/.devcontainer/
+COPY .git/ ${HOMEDIR}/.git/
 COPY assets/ ${HOMEDIR}/assets/
 COPY tooling/ ${HOMEDIR}/tooling/
 COPY .gitignore ${HOMEDIR}/.gitignore
