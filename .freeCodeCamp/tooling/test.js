@@ -37,7 +37,8 @@ async function runTests(project, lessonNumber) {
         runLesson(project, lessonNumber + 1);
         updateTests("");
         // Current lesson number is used because commit contains expected answer for lesson
-        await setFileSystemToLessonNumber(lessonNumber);
+        // TODO: This works as expected, but breaks in Docker container, because of file structure being changed.
+        // await setFileSystemToLessonNumber(lessonNumber);
       }
     } catch (e) {
       console.log(e);
