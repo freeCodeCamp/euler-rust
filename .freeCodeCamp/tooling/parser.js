@@ -2,8 +2,12 @@
 const fs = require("fs");
 
 const DESCRIPTION_MARKER = "### --description--";
-// const SEED_MARKER = "### --seed--"; // No seed with .git
 const TEST_MARKER = "### --tests--";
+const SEED_MARKER = "### --seed--";
+const CMD_HIDDEN_MARKER = "#### --cmd-hidden--";
+const CMD_MARKER = "#### --cmd--";
+const FILE_MARKER_REG = '#### --"(.*?)"--';
+const NEXT_MARKER_REG = "(?=(#{2} d+)|(#{4} --))";
 
 /**
  * Gets all content within a lesson
@@ -32,16 +36,6 @@ function getLessonDescription(lesson) {
 }
 
 /**
- * Removes the Markdown from the seed
- * @param {string} seed - The seed content
- * @returns {string} The seed without the markdown
- */
-function removeMarkdownFromSeed(seed) {
-  const seedWithoutMarkdown = seed.replace(/\n```rust\n/g, "");
-  return seedWithoutMarkdown.replace(/```/g, "");
-}
-
-/**
  * Gets the hints and tests of the lesson
  * @param {string} lesson - The lesson content
  * @returns {[string, string]} An array of [hint, test]
@@ -63,6 +57,53 @@ function getLessonHintsAndTests(lesson) {
       hintsAndTestsArr.push([hint, test]);
     });
   return hintsAndTestsArr;
+}
+
+/**
+ * Gets the seed of the lesson. If none is found, returns `null`.
+ * @param {string} lesson - The lesson content
+ * @returns {string|null} The seed of the lesson
+ */
+function getLessonSeed(lesson) {
+  const seed = lesson.match(new RegExp(`${SEED_MARKER}\n(.*)`, "s"))?.[1];
+  return seed ?? null;
+}
+
+/**
+ * Gets any commands of the lesson seed. If none is found, returns an empty array.
+ * @param {string} seed - The seed content
+ * @returns {string[]} The commands of the lesson in order
+ */
+function getCommands(seed) {
+  const cmds = seed.match(
+    new RegExp(`${CMD_MARKER}\n(.*?)${NEXT_MARKER_REG}`, "s")
+  );
+  return cmds;
+}
+
+/**
+ * Gets any hidden commands of the lesson seed. If none is found, returns an empty array.
+ * @param {string} seed - The seed content
+ * @returns {string[]} The hidden commands of the lesson in order
+ */
+function getHiddenCommands(seed) {
+  const cmds = seed.match(
+    new RegExp(`${CMD_HIDDEN_MARKER}\n(.*?)${NEXT_MARKER_REG}`, "s")
+  );
+  return cmds;
+}
+
+/**
+ * Gets any seed for specified files of the lesson seed. If none is found, returns an empty array.
+ * @param {string} seed - The seed content
+ * @returns {[string, string][]} [[filePath, fileSeed]]
+ */
+function getFilesWithSeed(seed) {
+  const files = seed.match(
+    new RegExp(`${FILE_MARKER_REG}\n(.*?)${NEXT_MARKER_REG}`, "s")
+  );
+  console.log("getFilesWithSeed: ", files);
+  return files;
 }
 
 // ----------------
@@ -104,5 +145,8 @@ module.exports = {
   getLessonDescription,
   getLessonHintsAndTests,
   parseMarkdown,
-  removeMarkdownFromSeed,
+  getLessonSeed,
+  getCommands,
+  getHiddenCommands,
+  getFilesWithSeed,
 };

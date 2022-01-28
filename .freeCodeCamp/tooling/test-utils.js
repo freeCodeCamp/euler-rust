@@ -23,7 +23,9 @@ async function isFileOpen(path) {
 
 async function getTerminalOutput() {
   const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
-  const pathToTerminalLogs = path.join(`${root}/.freecodecamp/.output.log`);
+  const pathToTerminalLogs = path.join(
+    `${root}/.freecodecamp/.terminal-out.log`
+  );
   const terminalLogs = await fs.promises.readFile(pathToTerminalLogs, "utf8");
 
   if (!terminalLogs) {
@@ -63,6 +65,13 @@ async function getLastCommand(howManyBack = 0) {
   return lastLog;
 }
 
+async function getCWD() {
+  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
+  const pathToCWD = path.join(`${root}/.freecodecamp/.cwd`);
+  const cwd = await fs.promises.readFile(pathToCWD, "utf8");
+  return cwd;
+}
+
 async function getFile(path) {
   const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
   const file = await fs.promises.readFile(`${root}/${path}`, "utf8");
@@ -76,6 +85,7 @@ const __helpers = {
   getTerminalOutput,
   getCommandOutput,
   getLastCommand,
+  getCWD,
 };
 
 module.exports = __helpers;

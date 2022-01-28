@@ -26,6 +26,7 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [ ] Refactor tooling/file names and structure to something that makes sense
 - [x] Remove unused/old logic from tooling
 - [ ] Add workflow for translations to Crowdin
+- [ ] Refactor Markdown to use new seed syntax
 
 ## How To Run the Course
 
@@ -251,3 +252,65 @@ gitpod /workspace/external-project/curriculum $ git log --oneline
 1fc0ffb 1
 a1b92d7 (origin/main, origin/HEAD, main) chore: add .gitpod.yml because Shaun likes to
 ```
+
+## Markdown Syntax
+
+### Headers
+
+- `## <number>` - Lesson number heading _(required)_
+- `### --description--` - Lesson description _(required)_
+- `### --tests--` - Tests for lesson _(required)_
+- `### --seed--` - Seed for lesson _(optional)_
+- `#### --cmd--` - Command for lesson seed (Camper will see) _(optional)_
+- `#### --cmd-hidden--` - Command for lesson seed (Hidden from Camper) _(optional)_
+- `#### --"<string>"--` - File name and seed heading _(optional)_
+
+### Example
+
+````markdown
+## 1
+
+### --description--
+
+Teach Campers amazing things here...
+
+### --tests--
+
+At least one line as a hint in the tests
+
+```js
+assert("Chai.js tests with async code");
+```
+
+### --seed--
+
+#### --cmd--
+
+```bash
+cd somewhere
+```
+
+#### --cmd-hidden--
+
+```bash
+echo Campers should not see this
+```
+
+#### --"somewhere/index.rs"--
+
+```rust
+let seed_for_file = "I am what the 'somewhere/index.rs' file should start with'";
+```
+
+#### --cmd--
+
+```bash
+echo "All seed is run in order"
+```
+
+## 2
+````
+
+### Notables
+
+-
