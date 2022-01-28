@@ -14,23 +14,25 @@ reset();
 
 let isWait = false;
 let isClearConsole = false;
-chokidar.watch(curriculumFolder).on("all", (event, name) => {
-  // TODO: event and name can be easily used for tests
-  if (name) {
-    if (isWait) return;
-    isWait = setTimeout(() => {
-      isWait = false;
-    }, TEST_POLLING_RATE);
+chokidar
+  .watch(curriculumFolder, { ignored: ".freecodecamp/.temp.log" })
+  .on("all", (event, name) => {
+    // TODO: event and name can be easily used for tests
+    if (name) {
+      if (isWait) return;
+      isWait = setTimeout(() => {
+        isWait = false;
+      }, TEST_POLLING_RATE);
 
-    const { CURRENT_PROJECT, CURRENT_LESSON } = readEnv();
-    if (isClearConsole) {
-      console.clear();
+      const { CURRENT_PROJECT, CURRENT_LESSON } = readEnv();
+      if (isClearConsole) {
+        console.clear();
+      }
+      runLesson(CURRENT_PROJECT, Number(CURRENT_LESSON));
+      console.log(`Watcher: ${event} - ${name}`);
+      runTests(CURRENT_PROJECT, Number(CURRENT_LESSON));
     }
-    runLesson(CURRENT_PROJECT, Number(CURRENT_LESSON));
-    console.log(`Watcher: ${event} - ${name}`);
-    runTests(CURRENT_PROJECT, Number(CURRENT_LESSON));
-  }
-});
+  });
 
 function reset() {
   const { CURRENT_LESSON, CURRENT_PROJECT } = readEnv();
