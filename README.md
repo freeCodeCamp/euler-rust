@@ -88,7 +88,7 @@ code .
 ### General Information
 
 - You should not need to make any changes other than to the following files:
-  - `tooling/locales/english/project-1.md`
+  - `.freeCodeCamp/tooling/locales/english/project-1.md`
   - `curriculum/`
   - Edit this `README.md` to include information about the course
 

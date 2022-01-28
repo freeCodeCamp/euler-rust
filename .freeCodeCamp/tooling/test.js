@@ -9,7 +9,7 @@ const { t, LOCALE } = require("./t");
 const { updateEnv, PATH } = require("./env.js");
 const { updateTests } = require("./testerizer.js");
 const runLesson = require("./lesson");
-const { setFileSystemToLessonNumber } = require("./gitterizer");
+// const { setFileSystemToLessonNumber } = require("./gitterizer");
 
 async function runTests(project, lessonNumber) {
   const locale = LOCALE === "undefined" ? "english" : LOCALE;

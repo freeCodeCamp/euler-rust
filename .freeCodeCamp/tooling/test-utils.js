@@ -22,9 +22,15 @@ async function isFileOpen(path) {
 }
 
 async function getTerminalOutput() {
-  // TODO: Pipe output to a file and terminal
-  await new Promise((resolve) => setTimeout(resolve, 10000));
-  return "Hello, world!";
+  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
+  const pathToTerminalLogs = path.join(`${root}/.freecodecamp/.output.log`);
+  const terminalLogs = await fs.promises.readFile(pathToTerminalLogs, "utf8");
+
+  if (!terminalLogs) {
+    throw new Error("No terminal logs found");
+  }
+
+  return terminalLogs;
 }
 
 /**

@@ -25,7 +25,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 USER ${USERNAME}
 
 # Install packages for projects
-RUN sudo apt install -y curl git nano bash-completion man-db
+RUN sudo apt install -y curl git bash-completion man-db
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -48,8 +48,9 @@ COPY --chown=camper .git/ .git/
 COPY --chown=camper .freeCodeCamp/ .freeCodeCamp/
 COPY --chown=camper .gitignore .gitignore
 
-# Append history to .bash_history
-RUN echo 'PROMPT_COMMAND="history -a ~/curriculum/.freecodecamp/.bash_history"' >> ${HOMEDIR}/.bashrc
+# Append terminal to .output.log
+RUN echo "PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.output.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.output.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log'" >> ${HOMEDIR}/.bashrc
+RUN echo "exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1" >> ${HOMEDIR}/.bashrc
 
 # Copy curriculum content to project directory
 COPY --chown=camper .vscode/ .vscode/

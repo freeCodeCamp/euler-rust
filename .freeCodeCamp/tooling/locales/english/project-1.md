@@ -41,9 +41,9 @@ Task: Change directory into `calculator/`.
 You should run `cd calculator` to change directory.
 
 ```js
-const lastCommand = await __helpers.getLastCommand();
+const lastCommand = await __helpers.getTerminalOutput();
 console.log("Test 2: ", lastCommand);
-assert.equal(lastCommand, "cd calculator");
+assert.match(lastCommand, /cd calculator/);
 ```
 
 ## 3
@@ -74,7 +74,7 @@ Your code should output the following: `Hello, world!`
 ```js
 const terminalOutput = await __helpers.getTerminalOutput();
 console.log("Test 3: ", terminalOutput);
-assert.include(terminalOutput ?? "", "Hello, world!");
+assert.match(terminalOutput ?? "", /Hello, world!/);
 ```
 
 ## 4

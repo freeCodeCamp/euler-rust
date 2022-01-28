@@ -45,6 +45,8 @@ async function setFileSystemToLessonNumber(lessonNumber) {
     if (!endHash || !firstHash) {
       throw new Error("Could not find commit hash");
     }
+    // VOLUME BINDING?
+    //
     // TODO: Probably do not want to always completely clean for each lesson
     if (firstHash === endHash) {
       await execute(`git clean -f -q -- . && git cherry-pick ${endHash}`);
