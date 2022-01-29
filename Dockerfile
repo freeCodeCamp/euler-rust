@@ -36,7 +36,7 @@ RUN sudo apt install -y nodejs
 
 
 # Configure project directory to match course name
-RUN mkdir -p ${HOMEDIR}
+RUN sudo mkdir -p ${HOMEDIR}
 RUN mkdir ${HOMEDIR}/curriculum
 WORKDIR ${HOMEDIR}/curriculum
 
