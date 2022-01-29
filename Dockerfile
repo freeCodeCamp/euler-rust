@@ -31,14 +31,14 @@ RUN sudo useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod git
     && sudo sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # Install packages for projects - Docker for testing
-RUN sudo apt install -y curl git bash-completion man-db docker
+RUN sudo apt-get install -y curl git bash-completion man-db docker
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Install Node LTS
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-RUN sudo apt install -y nodejs
+RUN sudo apt-get install -y nodejs
 
 
 # Configure project directory to match course name
