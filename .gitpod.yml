@@ -1,7 +1,6 @@
 image:
   file: Dockerfile
 
-checkoutLocation: "../home/camper/curriculum"
 workspaceLocation: "../home/camper/curriculum"
 
 vscode:
