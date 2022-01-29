@@ -24,8 +24,14 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 
 USER ${USERNAME}
 
-# Install packages for projects
-RUN sudo apt install -y curl git bash-completion man-db
+### Gitpod user ###
+# '-l': see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
+RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
+    # passwordless sudo for users in the 'sudo' group
+    && sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
+
+# Install packages for projects - Docker for testing
+RUN sudo apt install -y curl git bash-completion man-db docker
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -37,7 +43,7 @@ RUN sudo apt install -y nodejs
 
 # Configure project directory to match course name
 RUN sudo mkdir -p ${HOMEDIR}
-RUN mkdir ${HOMEDIR}/curriculum
+RUN sudo mkdir ${HOMEDIR}/curriculum
 WORKDIR ${HOMEDIR}/curriculum
 
 # Install marked globally for node
@@ -57,8 +63,4 @@ RUN echo "exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1" >> ${HOME
 COPY --chown=camper .vscode/ .vscode/
 COPY --chown=camper curriculum/ ./
 
-### Gitpod user ###
-# '-l': see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
-RUN useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
-    # passwordless sudo for users in the 'sudo' group
-    && sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
+
