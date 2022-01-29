@@ -1,6 +1,9 @@
 image:
   file: Dockerfile
 
+checkoutLocation: "../home/camper/curriculum"
+workspaceLocation: "../home/camper/curriculum"
+
 vscode:
   extensions:
     - https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix
