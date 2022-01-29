@@ -4,7 +4,7 @@ const fs = require("fs");
 const { JSDOM } = require("jsdom");
 const { PATH } = require("./env");
 
-const temp = `${PATH}/temp.html`;
+const temp = `${PATH}/output/temp.html`;
 
 marked.setOptions({
   highlight: (code, lang) => {
@@ -18,6 +18,13 @@ marked.setOptions({
 
 function parseMarkdown(markdown) {
   return marked.parse(markdown, { gfm: true });
+}
+
+function updateProjectHeading(h1, h2, lessonNumber) {
+  const document = new JSDOM(fs.readFileSync(temp, "utf8")).window.document;
+  const projectHeadingElement = document.querySelector("#project-heading");
+  projectHeadingElement.innerHTML = `${h1} - ${h2} - Lesson ${lessonNumber}`;
+  fs.writeFileSync(temp, document.documentElement.outerHTML);
 }
 
 function updateDescription(markdown) {
@@ -53,4 +60,5 @@ module.exports = {
   updateTests,
   resetTests,
   toggleLoaderAnimation,
+  updateProjectHeading,
 };
