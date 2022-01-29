@@ -1,7 +1,8 @@
 image:
   file: Dockerfile
 
-workspaceLocation: "../home/camper/curriculum"
+checkoutLocation: "./camper/curriculum"
+workspaceLocation: "./camper/curriculum"
 
 vscode:
   extensions:
