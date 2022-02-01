@@ -1,8 +1,4 @@
-image:
-  file: Dockerfile
-
-checkoutLocation: "./camper/curriculum"
-workspaceLocation: "./camper/curriculum"
+image: gitpod/workspace-full
 
 vscode:
   extensions:
