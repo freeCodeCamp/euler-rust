@@ -21,14 +21,28 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [x] Re-enable more use of Dockerfile
 - [ ] Integrate with `freeCodeCamp Courses` extension
 - Spruce up `temp.html`:
-  - [ ] Use logic for toggling loader animation
-  - [ ] Separate CSS from HTML file
+  - [x] Use logic for toggling loader animation
+  - [x] Separate CSS from HTML file
 - [ ] Refactor tooling/file names and structure to something that makes sense
 - [x] Remove unused/old logic from tooling
 - [ ] Add workflow for translations to Crowdin
-- [ ] Refactor Markdown to use new seed syntax
+- [x] Refactor Markdown to use new seed syntax
+- [ ] Fix `package.json` issue with script `$PWD` in `.bashrc`
 
 ## How To Run the Course
+
+### In Gitpod!
+
+1. Ensure you have the Gitpod extension. _Otherwise [click here](https://gitpod.io/#https://github.com/ShaunSHamilton/external-project)_
+2. Once Gitpod opens, ensure it is done doing its stuffs
+3. Open Command Palette, run `freeCodeCamp: Develop Course`
+
+**Notes**
+
+- When doing the course, ensure you are in the `curriculum/` directory
+- The preview window does not automatically refresh :sad: - do this manually
+
+### Locally
 
 1. Create an empty directory:
 
