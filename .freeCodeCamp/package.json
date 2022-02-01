@@ -13,7 +13,7 @@
     "dev:bashrc-exec": "echo \"exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",
     "ensure-tools": "npm run dev:npm && npm run dev:bashrc-prompt && npm run dev:bashrc-exec && source ~/.bashrc",
     "gitpod:bashrc-exec": "echo \"exec > >(tee -ia /workspace/external-project/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",
-    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc-exec && source ~/.bashrc"
+    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc-exec"
   },
   "dependencies": {
     "chai": "^4.3.4",
