@@ -1,7 +1,7 @@
 FROM ubuntu
 
 ARG USERNAME=camper
-ARG HOMEDIR=/workspace/$USERNAME
+ARG HOMEDIR=/home/$USERNAME
 
 ENV TZ="America/New_York"
 
