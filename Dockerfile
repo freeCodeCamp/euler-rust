@@ -42,8 +42,7 @@ RUN sudo apt-get install -y nodejs
 
 
 # Configure project directory to match course name
-RUN sudo mkdir -p ${HOMEDIR}
-RUN sudo mkdir ${HOMEDIR}/curriculum
+RUN sudo mkdir -p ${HOMEDIR}/curriculum
 WORKDIR ${HOMEDIR}/curriculum
 
 # Install marked globally for node
