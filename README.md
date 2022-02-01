@@ -43,7 +43,7 @@ Shaun is having fun testing a minimal way to run courses locally.
 **Notes**
 
 - When doing the course, ensure you are in the `curriculum/` directory
-- The preview window does not automatically refresh :sad: - do this manually
+- The preview window is forced to refresh quite often - it might look like it is flickering
 
 ### Locally
 
