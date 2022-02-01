@@ -49,7 +49,7 @@ COPY --chown=camper .freeCodeCamp/ .freeCodeCamp/
 COPY --chown=camper .gitignore .gitignore
 
 # Append terminal to .output.log
-RUN echo "PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.output.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.output.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freeCodeCamp/test/.cwd; history -a'" >> ${HOMEDIR}/.bashrc
+RUN echo "PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.terminal-out.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freeCodeCamp/test/.cwd; history -a'" >> ${HOMEDIR}/.bashrc
 RUN echo "exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1" >> ${HOMEDIR}/.bashrc
 
 # Copy curriculum content to project directory

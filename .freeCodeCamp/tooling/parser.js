@@ -2,12 +2,11 @@
 const fs = require("fs");
 
 const DESCRIPTION_MARKER = "### --description--";
-const TEST_MARKER = "### --tests--";
 const SEED_MARKER = "### --seed--";
-const NEXT_MARKER = "### --";
+const NEXT_MARKER = `### --`;
 const CMD_HIDDEN_MARKER = "#### --cmd-hidden--";
 const CMD_MARKER = "#### --cmd--";
-const FILE_MARKER_REG = '#### --"([^"]+)"--';
+const FILE_MARKER_REG = '(?<=#### --")[^"]+(?="--)';
 
 /**
  * Gets all content within a lesson
@@ -41,16 +40,11 @@ function getLessonDescription(lesson) {
  * @returns {[string, string]} An array of [hint, test]
  */
 function getLessonHintsAndTests(lesson) {
-  // Ensure there is a NEXT_MARKER to match, in the case where there is no seed
-  const testsString = `${lesson}\n${NEXT_MARKER}`.match(
-    new RegExp(`${TEST_MARKER}\n(.*?)${NEXT_MARKER}`, "s")
-  )?.[1];
+  const testsString = lesson.trim().split(NEXT_MARKER)?.[2];
   const hintsAndTestsArr = [];
-  console.log(testsString);
-  const hints = testsString?.match(/^(.*?)$\n+```js/gm);
-  const tests = testsString
-    .replace(/^([^(```)\n]+)$\n+```js/gm, "")
-    .split(/```js\n(.*?)\n```/s);
+  const hints = testsString?.match(/^(.*?)$(?=\n+```js)/gm).filter(Boolean);
+  const tests = testsString.match(/(?<=```js\n).*?(?=\n```)/gms);
+
   if (hints?.length) {
     for (let i = 0; i < hints.length; i++) {
       hintsAndTestsArr.push([hints[i], tests[i]]);
@@ -60,13 +54,13 @@ function getLessonHintsAndTests(lesson) {
 }
 
 /**
- * Gets the seed of the lesson. If none is found, returns `null`.
+ * Gets the seed of the lesson. If none is found, returns `''`.
  * @param {string} lesson - The lesson content
- * @returns {string|null} The seed of the lesson
+ * @returns {string} The seed of the lesson
  */
 function getLessonSeed(lesson) {
   const seed = lesson.match(new RegExp(`${SEED_MARKER}\n(.*)`, "s"))?.[1];
-  return seed ?? null;
+  return seed ?? "";
 }
 
 /**
@@ -99,9 +93,20 @@ function getHiddenCommands(seed) {
  * @returns {[string, string][]} [[filePath, fileSeed]]
  */
 function getFilesWithSeed(seed) {
-  const files = seed.match(new RegExp(`${FILE_MARKER_REG}\n`, "s"));
-  // console.log("getFilesWithSeed: ", files);
-  return files ?? [];
+  const files = seed.match(
+    new RegExp(`#### --"([^"]+)"--\n(.*?\`\`\`\n)`, "gs")
+  );
+  const filePaths = seed.match(new RegExp(FILE_MARKER_REG, "gsm"));
+  const fileSeeds = files?.map((file) => extractStringFromCode(file)?.trim());
+
+  console.log(filePaths, fileSeeds, files);
+  const pathAndSeedArr = [];
+  if (filePaths?.length) {
+    for (let i = 0; i < filePaths.length; i++) {
+      pathAndSeedArr.push([filePaths[i], fileSeeds[i]]);
+    }
+  }
+  return pathAndSeedArr;
 }
 
 /**
@@ -110,7 +115,7 @@ function getFilesWithSeed(seed) {
  * @returns {string} The stripped codeblock
  */
 function extractStringFromCode(code) {
-  return code.replace(/.*?```[a-z]+\n([^(\n```)]+)\n```.*?/s, "$1");
+  return code.replace(/.*?```[a-z]+\n(.*?)\n```/s, "$1");
 }
 
 // ----------------
