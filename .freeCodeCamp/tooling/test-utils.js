@@ -49,6 +49,9 @@ async function getCommandOutput(command, path = "") {
   return stdout;
 }
 
+/**
+ * TODO
+ */
 async function getLastCommand(howManyBack = 0) {
   const pathToBashLogs = path.join(`${ROOT}/.freecodecamp/.bash_history`);
   const bashLogs = await fs.promises.readFile(pathToBashLogs, "utf8");

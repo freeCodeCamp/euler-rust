@@ -7,7 +7,14 @@
     "live-server": "live-server --port=8080 --entry-file='output/temp.html' --no-browser",
     "ensure-env": "cp sample.env .env",
     "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run watcher",
-    "dev:live-server": "npm run live-server"
+    "dev:live-server": "cd output && live-server --port=8080 --entry-file='temp.html' --no-browser",
+    "dev:npm": "npm install live-server -g",
+    "dev:bashrc-prompt": "echo \"PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.terminal-out.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freeCodeCamp/.cwd; history -a'\" >> ~/.bashrc",
+    "dev:bashrc-exec": "echo \"exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",
+    "ensure-tools": "npm run dev:npm && npm run dev:bashrc-prompt && npm run dev:bashrc-exec && source ~/.bashrc",
+    "gitpod:bashrc-prompt": "echo \"PROMPT_COMMAND='>| /workspace/external-project/curriculum/.freecodecamp/.terminal-out.log && cat /workspace/external-project/curriculum/.freecodecamp/.temp.log >| /workspace/external-project/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 /workspace/external-project/curriculum/.freecodecamp/.temp.log; echo $PWD >> /workspace/external-project/curriculum/.freecodecamp/.cwd; history -a'\" >> ~/.bashrc",
+    "gitpod:bashrc-exec": "echo \"exec > >(tee -ia /workspace/external-project/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",
+    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc-prompt && npm run gitpod:bashrc-exec && source ~/.bashrc"
   },
   "dependencies": {
     "chai": "^4.3.4",

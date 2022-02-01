@@ -1,5 +1,14 @@
 image: gitpod/workspace-full
 
+# Commands to start on workspace startup
+tasks:
+  - init: gitpod prepare
+    command: npm run gitpod:ensure-tools
+
+ports:
+  - port: 8080
+    onOpen: open-preview
+
 vscode:
   extensions:
     - https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix

@@ -1,16 +1,10 @@
-# freeCodeCamp - Rust in Replit - Image Combiner
+# freeCodeCamp - Rust for Tom
 
 ## 1
 
 ### --description--
 
-The main tools within the Rust ecosystem are:
-
-- rustc The compiler which takes your Rust code and compiles it into binary (machine readable code)
-- rustup The command line utility to install and update Rust
-- cargo The Rust build system and package manager (you will work with this)
-
-Task: Create a new Rust project by running the following command in the prompt:
+To start a new Rust project, you can use the Rust build system and package manager - Cargo.
 
 ```bash
 cargo new calculator
@@ -18,12 +12,26 @@ cargo new calculator
 
 ### --tests--
 
-You can use the command `cargo new calculator` to create the project.
+You can use the `cargo new calculator` command to create the project.
 
 ```js
 const files = await __helpers.getDirectory(".");
 console.log("Test 1: ", files);
 assert.include(files ?? "", "calculator");
+```
+
+### --seed--
+
+#### --cmd-hidden--
+
+```bash
+echo "Tom has just reset his progress"
+```
+
+#### --cmd--
+
+```bash
+echo "Tom should be able to see this, if he looks quick enough"
 ```
 
 ## 2
@@ -32,36 +40,31 @@ assert.include(files ?? "", "calculator");
 
 You have just created a new Rust project within the `calculator/` directory.
 
-Cargo has created the boilerplate for a 'Hello World'.
+Change directory into `calculator/`.
 
-Task: Change directory into `calculator/`.
+### --test--
 
-### --tests--
-
-You should run `cd calculator` to change directory.
+You should us `cd calculator` to change into the directory.
 
 ```js
-const lastCommand = await __helpers.getTerminalOutput();
-console.log("Test 2: ", lastCommand);
-assert.match(lastCommand, /cd calculator/);
+const cwd = await __helpers.getCWD();
+console.log("Test 2: ", cwd);
+assert.include(cwd, "calculator");
+```
+
+### --seed--
+
+#### --cmd--
+
+```bash
+cargo new calculator
 ```
 
 ## 3
 
 ### --description--
 
-This file contains a function declaration with the handle `main`.
-By default, rustc calls the `main` function first whenever the executable is run.
-
-`println` is a built-in macro.
-
-A macro is similar to a function, but can be thought of as a piece of code which writes other code.
-For now, the main differences between a function and a macro to keep in mind are:
-
-    - Macros are called using a bang (!)
-    - Macros can take a variable number of arguments; functions in Rust cannot
-
-Task: Run your code, using the following command:
+Use Cargo to run your code:
 
 ```bash
 cargo run
@@ -69,43 +72,37 @@ cargo run
 
 ### --tests--
 
-Your code should output the following: `Hello, world!`
+You should be within the `calculator/` directory.
+
+```js
+const cwd = await __helpers.getCWD();
+console.log("Test 3: ", cwd);
+assert.include(cwd, "calculator");
+```
+
+You should run your code using the `cargo run` command.
 
 ```js
 const terminalOutput = await __helpers.getTerminalOutput();
-console.log("Test 3: ", terminalOutput);
-assert.match(terminalOutput ?? "", /Hello, world!/);
+console.log("Test 4: ", terminalOutput);
+assert.match(terminalOutput, /Hello, world!/);
 ```
 
 ## 4
 
 ### --description--
 
-Variables are declared using the `let` keyword.
+Open the `src/main.rs` file, and use the `let` keyword to add a variable named `firstName` and assign it a value of your first name within double quotes.
 
-```rust
-let variable_name = value
-```
-
-Task: Within the `main` function, declare a new variable, and name it `firstName` and give it a value of `"<your_name>"`. Ensure to declare it before the `println!` call, and place your name within double quotes.
-
-_NOTE:_ Variables can also be declared using the const or static keywords.
-
-Task: Run your code to see what the compiler says:
-
-```bash
-cargo run
-```
-
-_HINT:_ If you get stuck, try to follow the compiler's helpful advice.
+_Run your code, if you want_
 
 ### --tests--
 
-You should declare a variable `firstName` and give it a value of your first name within double quotes.
+You should declare a variable `firstName`.
 
 ```js
 const code = await __helpers.getFile("calculator/src/main.rs");
-console.log("Test 4: ", code);
+console.log("Test 5: ", code);
 assert.match(code, /let\s+firstName\s*=\s*\"\w+\"\s*/);
 ```
 
@@ -113,7 +110,7 @@ You should follow the compiler's advice to add a semi-colon at the end.
 
 ```js
 const code = await __helpers.getFile("calculator/src/main.rs");
-console.log("Test 4.2: ", code);
+console.log("Test 5.2: ", code);
 assert.match(code, /let\s+firstName\s*=\s*\"\w+\"\s*;/);
 ```
 
@@ -121,53 +118,90 @@ assert.match(code, /let\s+firstName\s*=\s*\"\w+\"\s*;/);
 
 ### --description--
 
-Above, you might notice the rustc compiler is giving two suggestions for your code.
-
-Task: Follow the compiler's advice to convert the variable name into snake_case.
-
-It is convention in Rust to use snake_case for:
-
-- Variable names
-- Function names
-- File names
-
-SCREAMING_SNAKE_CASE is used for constants and statics. Lastly, PascalCase is used for types, traits, and enums (we will cover these later).
+Run your code to see what the compiler has to say.
 
 ### --tests--
 
-You should have a variable `first_name` and give it a value of your first name within double quotes.
+You should run `cargo run`.
 
 ```js
-const code = await __helpers.getFile("calculator/src/main.rs");
-console.log("Test 5: ", code);
-assert.match(code, /let\s+first_name\s*=\s*"\w+"\s*;/);
+const lastCommand = await __helpers.getLastCommand();
+console.log("Test 6: ", lastCommand);
+assert.include(lastCommand, "cargo run");
+```
+
+### --seed--
+
+#### --"calculator/src/main.rs"--
+
+```rust
+fn main() {
+  let firstName = "Tommm";
+  println!("Hello, world!");
+}
 ```
 
 ## 6
 
 ### --description--
 
-End of course! Well done, Tom!
-
-If you struggled to understand any of this, we can add _Simplified English_ to the translations.
+Follow the compiler's advice to convert the variable name into _snake_case_.
 
 ### --tests--
 
-This always fails. 😆
+You should have a variable `first_name`.
 
 ```js
-assert(false);
+const code = await __helpers.getFile("calculator/src/main.rs");
+console.log("Test 7: ", code);
+assert.match(code, /let\s+first_name\s*=\s*\"\w+\"\s*/);
+```
+
+### --seed--
+
+#### --"calculator/src/main.rs"--
+
+```rust
+fn main() {
+  let firstName = "Tommm";
+  println!("Hello, world!");
+}
 ```
 
 ## 7
 
 ### --description--
 
-Notice how lesson 7 needs to be here, even though 5 is the last lesson. _Lesson 6 still is shown_
+Well done! You are likely one of the first people to use _ShaunOS_.
 
 ### --tests--
 
-Another fail - I do not know if this is necessary 🤷‍♂️
+Something to always fail. Did you know emojis are supported? 🤔
+
+```js
+assert(false);
+```
+
+### --seed--
+
+#### --"calculator/src/main.rs"--
+
+```rust
+fn main() {
+  let first_name = "Tommm";
+  println!("Hello, world!");
+}
+```
+
+## 8
+
+### --description--
+
+Is this necessary?
+
+### --tests--
+
+Hi, I'm a test.
 
 ```js
 assert(false);
