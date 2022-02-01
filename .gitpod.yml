@@ -2,8 +2,8 @@ image: gitpod/workspace-full
 
 # Commands to start on workspace startup
 tasks:
-  - init: gitpod prepare
-    command: npm run gitpod:ensure-tools
+  - init: code --install-extension freeCodeCamp.freecodecamp-dark-vscode-theme && cd .freeCodeCamp && npm run gitpod:ensure-tools
+    command: echo "PROMPT_COMMAND='>| /workspace/external-project/curriculum/.freecodecamp/.terminal-out.log && cat /workspace/external-project/curriculum/.freecodecamp/.temp.log >| /workspace/external-project/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 /workspace/external-project/curriculum/.freecodecamp/.temp.log; echo $PWD >> /workspace/external-project/curriculum/.freecodecamp/.cwd; history -a'" >> ~/.bashrc
 
 ports:
   - port: 8080

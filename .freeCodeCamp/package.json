@@ -12,9 +12,8 @@
     "dev:bashrc-prompt": "echo \"PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.terminal-out.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freeCodeCamp/.cwd; history -a'\" >> ~/.bashrc",
     "dev:bashrc-exec": "echo \"exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",
     "ensure-tools": "npm run dev:npm && npm run dev:bashrc-prompt && npm run dev:bashrc-exec && source ~/.bashrc",
-    "gitpod:bashrc-prompt": "echo \"PROMPT_COMMAND='>| /workspace/external-project/curriculum/.freecodecamp/.terminal-out.log && cat /workspace/external-project/curriculum/.freecodecamp/.temp.log >| /workspace/external-project/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 /workspace/external-project/curriculum/.freecodecamp/.temp.log; echo $PWD >> /workspace/external-project/curriculum/.freecodecamp/.cwd; history -a'\" >> ~/.bashrc",
     "gitpod:bashrc-exec": "echo \"exec > >(tee -ia /workspace/external-project/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",
-    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc-prompt && npm run gitpod:bashrc-exec && source ~/.bashrc"
+    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc-exec && source ~/.bashrc"
   },
   "dependencies": {
     "chai": "^4.3.4",
