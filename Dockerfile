@@ -24,19 +24,25 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 
 USER ${USERNAME}
 
-# Install packages for projects
-RUN sudo apt install -y curl git bash-completion man-db
+### Gitpod user ###
+# '-l': see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
+RUN sudo useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
+    # passwordless sudo for users in the 'sudo' group
+    && sudo sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
+
+# Install packages for projects - Docker for testing
+RUN sudo apt-get install -y curl git bash-completion man-db docker
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 # Install Node LTS
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-RUN sudo apt install -y nodejs
+RUN sudo apt-get install -y nodejs
 
 
 # Configure project directory to match course name
-RUN mkdir ${HOMEDIR}/curriculum
+RUN sudo mkdir -p ${HOMEDIR}/curriculum
 WORKDIR ${HOMEDIR}/curriculum
 
 # Install marked globally for node
@@ -49,9 +55,11 @@ COPY --chown=camper .freeCodeCamp/ .freeCodeCamp/
 COPY --chown=camper .gitignore .gitignore
 
 # Append terminal to .output.log
-RUN echo "PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.terminal-out.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freeCodeCamp/test/.cwd; history -a'" >> ${HOMEDIR}/.bashrc
-RUN echo "exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1" >> ${HOMEDIR}/.bashrc
+RUN echo "PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.terminal-out.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freeCodeCamp/test/.cwd; history -a'" >> ~/.bashrc
+RUN echo "exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1" >> ~/.bashrc
 
 # Copy curriculum content to project directory
 COPY --chown=camper .vscode/ .vscode/
 COPY --chown=camper curriculum/ ./
+
+
