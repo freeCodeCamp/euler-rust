@@ -20,7 +20,7 @@
   color: white;
 }
 body {
-  background-color: black;
+  background-color: var(--dark-1);
   margin: 0;
   text-align: center;
   font-family: monospace;
@@ -80,7 +80,7 @@ footer > button {
   width: 80%;
   margin: 0 auto;
   height: 100%;
-  background-color: var(--dark-1);
+  background-color: var(--light-yellow);
   border: none;
   font-size: 1.2rem;
   font-weight: bold;

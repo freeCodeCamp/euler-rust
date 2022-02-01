@@ -28,6 +28,9 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [ ] Add workflow for translations to Crowdin
 - [x] Refactor Markdown to use new seed syntax
 - [ ] Fix `package.json` issue with script `$PWD` in `.bashrc`
+- [x] Hack to refresh
+- [x] Add lesson number to html
+- [ ] `Go to Next Lesson` button?
 
 ## How To Run the Course
 
