@@ -2,12 +2,11 @@
 const fs = require("fs");
 
 const DESCRIPTION_MARKER = "### --description--";
-const TEST_MARKER = "### --tests--";
 const SEED_MARKER = "### --seed--";
+const NEXT_MARKER = `### --`;
 const CMD_HIDDEN_MARKER = "#### --cmd-hidden--";
 const CMD_MARKER = "#### --cmd--";
-const FILE_MARKER_REG = '#### --"(.*?)"--';
-const NEXT_MARKER_REG = "(?=(#{2} d+)|(#{4} --))";
+const FILE_MARKER_REG = '(?<=#### --")[^"]+(?="--)';
 
 /**
  * Gets all content within a lesson
@@ -30,7 +29,7 @@ function getLessonFromFile(file, lessonNumber) {
  */
 function getLessonDescription(lesson) {
   const description = lesson.match(
-    new RegExp(`${DESCRIPTION_MARKER}\n(.*)\n${TEST_MARKER}`, "s")
+    new RegExp(`${DESCRIPTION_MARKER}\n(.*?)\n(?=${NEXT_MARKER})`, "s")
   )?.[1];
   return description;
 }
@@ -41,32 +40,27 @@ function getLessonDescription(lesson) {
  * @returns {[string, string]} An array of [hint, test]
  */
 function getLessonHintsAndTests(lesson) {
-  const testsString = lesson.match(
-    new RegExp(`${TEST_MARKER}\n(.*)`, "s")
-  )?.[1];
+  const testsString = lesson.trim().split(NEXT_MARKER)?.[2];
   const hintsAndTestsArr = [];
-  testsString
-    .split(/```\n/)
-    .slice(0, -1)
-    .forEach((x) => {
-      if (x.length < 1) {
-        return;
-      }
-      const test = x.replace(/.*?```js/s, "").trim();
-      const hint = x.replace(/\n```js.*/s, "").trim();
-      hintsAndTestsArr.push([hint, test]);
-    });
+  const hints = testsString?.match(/^(.*?)$(?=\n+```js)/gm).filter(Boolean);
+  const tests = testsString.match(/(?<=```js\n).*?(?=\n```)/gms);
+
+  if (hints?.length) {
+    for (let i = 0; i < hints.length; i++) {
+      hintsAndTestsArr.push([hints[i], tests[i]]);
+    }
+  }
   return hintsAndTestsArr;
 }
 
 /**
- * Gets the seed of the lesson. If none is found, returns `null`.
+ * Gets the seed of the lesson. If none is found, returns `''`.
  * @param {string} lesson - The lesson content
- * @returns {string|null} The seed of the lesson
+ * @returns {string} The seed of the lesson
  */
 function getLessonSeed(lesson) {
   const seed = lesson.match(new RegExp(`${SEED_MARKER}\n(.*)`, "s"))?.[1];
-  return seed ?? null;
+  return seed ?? "";
 }
 
 /**
@@ -75,10 +69,9 @@ function getLessonSeed(lesson) {
  * @returns {string[]} The commands of the lesson in order
  */
 function getCommands(seed) {
-  const cmds = seed.match(
-    new RegExp(`${CMD_MARKER}\n(.*?)${NEXT_MARKER_REG}`, "s")
-  );
-  return cmds;
+  const cmds = seed.match(new RegExp(`${CMD_MARKER}\n(.*?\`\`\`\n)`, "gs"));
+  const commands = cmds?.map((cmd) => extractStringFromCode(cmd)?.trim());
+  return commands ?? [];
 }
 
 /**
@@ -88,9 +81,10 @@ function getCommands(seed) {
  */
 function getHiddenCommands(seed) {
   const cmds = seed.match(
-    new RegExp(`${CMD_HIDDEN_MARKER}\n(.*?)${NEXT_MARKER_REG}`, "s")
+    new RegExp(`${CMD_HIDDEN_MARKER}\n(.*?\`\`\`\n)`, "gs")
   );
-  return cmds;
+  const commands = cmds?.map((cmd) => extractStringFromCode(cmd)?.trim());
+  return commands ?? [];
 }
 
 /**
@@ -100,10 +94,28 @@ function getHiddenCommands(seed) {
  */
 function getFilesWithSeed(seed) {
   const files = seed.match(
-    new RegExp(`${FILE_MARKER_REG}\n(.*?)${NEXT_MARKER_REG}`, "s")
+    new RegExp(`#### --"([^"]+)"--\n(.*?\`\`\`\n)`, "gs")
   );
-  console.log("getFilesWithSeed: ", files);
-  return files;
+  const filePaths = seed.match(new RegExp(FILE_MARKER_REG, "gsm"));
+  const fileSeeds = files?.map((file) => extractStringFromCode(file)?.trim());
+
+  console.log(filePaths, fileSeeds, files);
+  const pathAndSeedArr = [];
+  if (filePaths?.length) {
+    for (let i = 0; i < filePaths.length; i++) {
+      pathAndSeedArr.push([filePaths[i], fileSeeds[i]]);
+    }
+  }
+  return pathAndSeedArr;
+}
+
+/**
+ * Returns a string stripped from the input codeblock
+ * @param {string} code - The codeblock to strip
+ * @returns {string} The stripped codeblock
+ */
+function extractStringFromCode(code) {
+  return code.replace(/.*?```[a-z]+\n(.*?)\n```/s, "$1");
 }
 
 // ----------------

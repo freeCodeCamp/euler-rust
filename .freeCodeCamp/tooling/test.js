@@ -7,12 +7,13 @@ const { getLessonFromFile, getLessonHintsAndTests } = require("./parser.js");
 
 const { t, LOCALE } = require("./t");
 const { updateEnv, PATH } = require("./env.js");
-const { updateTests } = require("./testerizer.js");
+const { updateTests, toggleLoaderAnimation } = require("./testerizer.js");
 const runLesson = require("./lesson");
 // const { setFileSystemToLessonNumber } = require("./gitterizer");
 
 async function runTests(project, lessonNumber) {
   const locale = LOCALE === "undefined" ? "english" : LOCALE;
+  toggleLoaderAnimation();
   try {
     const answerFile = `${PATH}/tooling/locales/${locale}/${project}.md`;
     const lesson = getLessonFromFile(answerFile, lessonNumber);
@@ -47,6 +48,8 @@ async function runTests(project, lessonNumber) {
   } catch (e) {
     console.log(t("tests-error"));
     console.log(e);
+  } finally {
+    toggleLoaderAnimation();
   }
 }
 
