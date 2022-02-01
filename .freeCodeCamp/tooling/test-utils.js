@@ -4,9 +4,10 @@ const util = require("util");
 const path = require("path");
 const execute = util.promisify(require("child_process").exec);
 
+const ROOT = process.env.ACTOR === "dev" ? "../curriculum" : ".";
+
 async function getDirectory(path) {
-  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
-  const files = await fs.promises.readdir(`${root}/${path}`);
+  const files = await fs.promises.readdir(`${ROOT}/${path}`);
   return files;
 }
 
@@ -22,9 +23,8 @@ async function isFileOpen(path) {
 }
 
 async function getTerminalOutput() {
-  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
   const pathToTerminalLogs = path.join(
-    `${root}/.freecodecamp/.terminal-out.log`
+    `${ROOT}/.freecodecamp/.terminal-out.log`
   );
   const terminalLogs = await fs.promises.readFile(pathToTerminalLogs, "utf8");
 
@@ -42,17 +42,15 @@ async function getTerminalOutput() {
  * @returns
  */
 async function getCommandOutput(command, path = "") {
-  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
   const { stdout } = await execute(command, {
-    cwd: `${root}/${path}`,
+    cwd: `${ROOT}/${path}`,
     shell: "/bin/bash",
   });
   return stdout;
 }
 
 async function getLastCommand(howManyBack = 0) {
-  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
-  const pathToBashLogs = path.join(`${root}/.freecodecamp/.bash_history`);
+  const pathToBashLogs = path.join(`${ROOT}/.freecodecamp/.bash_history`);
   const bashLogs = await fs.promises.readFile(pathToBashLogs, "utf8");
 
   if (!bashLogs) {
@@ -66,15 +64,13 @@ async function getLastCommand(howManyBack = 0) {
 }
 
 async function getCWD() {
-  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
-  const pathToCWD = path.join(`${root}/.freecodecamp/.cwd`);
+  const pathToCWD = path.join(`${ROOT}/.freecodecamp/.cwd`);
   const cwd = await fs.promises.readFile(pathToCWD, "utf8");
   return cwd;
 }
 
 async function getFile(path) {
-  const root = process.env.ACTOR === "dev" ? "./curriculum" : ".";
-  const file = await fs.promises.readFile(`${root}/${path}`, "utf8");
+  const file = await fs.promises.readFile(`${ROOT}/${path}`, "utf8");
   return file;
 }
 

@@ -2,6 +2,13 @@
   "name": "external-project",
   "author": "freeCodeCamp",
   "description": "Template used for freeCodeCamp projects with the freeCodeCamp Courses VSCode extension",
+  "scripts": {
+    "watcher": "node ./tooling/hot-reload.js",
+    "live-server": "live-server --port=8080 --entry-file='output/temp.html' --no-browser",
+    "ensure-env": "cp sample.env .env",
+    "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run watcher",
+    "dev:live-server": "npm run live-server"
+  },
   "dependencies": {
     "chai": "^4.3.4",
     "chokidar": "^3.5.2",

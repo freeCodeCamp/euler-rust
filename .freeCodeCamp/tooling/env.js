@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const PATH = ".freeCodeCamp";
+const PATH = process.env.ACTOR === "dev" ? "." : ".freeCodeCamp";
 
 function readEnv() {
   let meta = {

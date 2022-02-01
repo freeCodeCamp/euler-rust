@@ -36,9 +36,9 @@
     "**/.svn": true,
     "**/.hg": true,
     "**/CVS": true,
-    "**/.DS_Store": true,
-    ".freecodecamp": true,
-    ".vscode": true
+    "**/.DS_Store": true
+    // ".freecodecamp": true,
+    // ".vscode": true
     // ".gitignore": true,
     // ".freeCodeCamp": true,
     // ".env": true,
