@@ -4,10 +4,11 @@
   "description": "Template used for freeCodeCamp projects with the freeCodeCamp Courses VSCode extension",
   "scripts": {
     "watcher": "node ./tooling/hot-reload.js",
-    "live-server": "live-server --port=8080 --entry-file='output/temp.html' --no-browser",
+    "live-server": "live-server --port=8080 --entry-file='output/index.html' --no-browser",
     "ensure-env": "cp sample.env .env",
     "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run watcher",
-    "dev:live-server": "cd output && live-server --port=8080 --entry-file='temp.html' --no-browser",
+    "dev:live-server": "cd output && live-server --port=8080 --entry-file='index.html' --no-browser",
+    "test:live-server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
     "dev:npm": "npm install live-server -g",
     "dev:bashrc-prompt": "echo \"PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.terminal-out.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freecodecamp/.cwd; history -a ~/curriculum/.freecodecamp/.bash_history'\" >> ~/.bashrc",
     "dev:bashrc-exec": "echo \"exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",

@@ -47,11 +47,6 @@
     // "package-lock.json": true,
     // "package.json": true,
     // "README.md": true,
-    // "sample.env": true,
-    // "temp.html": true,
-    // "tooling": true,
-    // "node_modules": true,
-    // "assets": true,
     // ".devcontainer": true,
     // "curriculum": true
   },

@@ -1,7 +1,6 @@
 node_modules
 .env
 
-# TODO: Ignore temp.html
 # TODO: Ignore .freeCodeCamp?
 curriculum/.freecodecamp/.bash_history
 curriculum/.freecodecamp/.cwd

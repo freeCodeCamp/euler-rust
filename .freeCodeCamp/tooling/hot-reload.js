@@ -7,13 +7,14 @@ const { resetTests } = require("./testerizer");
 const chokidar = require("chokidar");
 const { TEST_POLLING_RATE } = readEnv();
 const curriculumFolder = process.env.ACTOR === "dev" ? "../curriculum" : "../";
-
+const { RUN_TESTS_ON_WATCH } = readEnv();
 console.log(`Watching for file changes on ${curriculumFolder}`);
 
 reset();
 
 let isWait = false;
 let isClearConsole = false;
+
 chokidar
   .watch(curriculumFolder, { ignored: ".freecodecamp/.temp.log" })
   .on("all", (event, name) => {
@@ -30,7 +31,9 @@ chokidar
       }
       runLesson(CURRENT_PROJECT, Number(CURRENT_LESSON));
       console.log(`Watcher: ${event} - ${name}`);
-      runTests(CURRENT_PROJECT, Number(CURRENT_LESSON));
+      if (RUN_TESTS_ON_WATCH) {
+        runTests(CURRENT_PROJECT, Number(CURRENT_LESSON));
+      }
     }
   });
 

@@ -1,0 +1,64 @@
+<html>
+  <head>
+    <link href="./styles.css" rel="stylesheet" type="text/css" />
+    <link href="./prism.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <img
+        src="https://raw.githubusercontent.com/freeCodeCamp/cdn/main/build/platform/universal/fcc_primary.svg"
+        id="logo"
+        alt="freeCodeCamp logo"
+      />
+    </header>
+    <h1 id="project-heading">Rust - project-1 - Lesson 7</h1>
+    <h2>Description</h2>
+    <section id="description">
+      <p>
+        Well done! You are likely one of the first people to use
+        <em>ShaunOS</em>.
+      </p>
+    </section>
+
+    <h2>Tests</h2>
+    <details>
+      <summary>Click for Hints</summary>
+      <section id="tests">
+        <ul>
+          <li>
+            Something to always fail. Did you know emojis are supported? 🤔
+          </li>
+        </ul>
+      </section>
+    </details>
+    <div id="loader" class="loader hidden"></div>
+    <footer>
+      <button onclick="runTests()">Run Tests</button>
+      <button onclick="resetProject()">Reset Project</button>
+      <button onclick="goToNextLesson()">Go To Next Lesson</button>
+    </footer>
+    <script src="./prism.js"></script>
+    <script>
+      function runTests() {
+        makeRequest("/run-tests");
+      }
+      function resetProject() {
+        makeRequest("/reset-project");
+      }
+      function goToNextLesson() {
+        makeRequest("/go-to-next-lesson");
+      }
+      function makeRequest(endpoint) {
+        (async () => {
+          try {
+            const data = await fetch(endpoint);
+            console.log(data);
+          } catch (e) {
+            console.error(e);
+          }
+        })();
+      }
+    </script>
+  </body>
+</html>

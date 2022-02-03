@@ -44,7 +44,7 @@ Change directory into `calculator/`.
 
 ### --test--
 
-You should us `cd calculator` to change into the directory.
+You should use `cd calculator` to change into the directory.
 
 ```js
 const cwd = await __helpers.getCWD();
