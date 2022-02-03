@@ -19,6 +19,14 @@ Shaun is having fun testing a minimal way to run courses locally.
 - Testing can be done with **any** valid Nodejs
 - _freeCodeCamp-stylised_ preview for instruction delivery
 
+### Feature Flags
+
+- `RUN_TESTS_ON_WATCH` - whether or not to run the tests on every input/save/change - defaults to `false`
+- `CURRENT_PROJECT` - must match `/tooling/locales/en/<project_name>.md` filename
+- `LAST_KNOWN_LESSON_WITH_HASH` - legacy, but left in case we want a Git-saving workflow
+- `TEST_POLLING_RATE` - how often to refresh for changes in `ms`
+- `LOCALE` - one of `/tooling/locales/conf.js` - defaults to `english`
+
 ## How To Run the Course
 
 ### In Gitpod!
