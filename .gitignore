@@ -3,3 +3,8 @@ node_modules
 
 # TODO: Ignore temp.html
 # TODO: Ignore .freeCodeCamp?
+curriculum/.freecodecamp/.bash_history
+curriculum/.freecodecamp/.cwd
+curriculum/.freecodecamp/.temp.log
+curriculum/.freecodecamp/.terminal-out.log
+curriculum/.freecodecamp/.next_command
