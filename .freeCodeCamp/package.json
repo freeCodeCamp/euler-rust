@@ -10,11 +10,9 @@
     "dev:live-server": "cd output && live-server --port=8080 --entry-file='index.html' --no-browser",
     "test:live-server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
     "dev:npm": "npm install live-server -g",
-    "dev:bashrc-prompt": "echo \"PROMPT_COMMAND='>| ~/curriculum/.freecodecamp/.terminal-out.log && cat ~/curriculum/.freecodecamp/.temp.log >| ~/curriculum/.freecodecamp/.terminal-out.log && truncate -s 0 ~/curriculum/.freecodecamp/.temp.log; echo $PWD >> ~/curriculum/.freecodecamp/.cwd; history -a ~/curriculum/.freecodecamp/.bash_history'\" >> ~/.bashrc",
-    "dev:bashrc-exec": "echo \"exec > >(tee -ia ~/curriculum/.freecodecamp/.temp.log) 2>&1\" >> ~/.bashrc",
-    "ensure-tools": "npm run dev:npm && npm run dev:bashrc-prompt && npm run dev:bashrc-exec && source ~/.bashrc",
+    "ensure-tools": "npm run dev:npm && source .freeCodeCamp/tooling/.bashrc",
     "gitpod:bashrc": "cat .freeCodeCamp/tooling/.bashrc >| ~/.bashrc && source ~/.bashrc",
-    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc-exec"
+    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc"
   },
   "dependencies": {
     "chai": "^4.3.4",
