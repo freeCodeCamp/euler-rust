@@ -12,7 +12,8 @@
   --light-blue: #99c9ff;
   --light-green: #acd157;
   --dark-purple: #5a01a7;
-  --dark-yellow: #4d3800;
+  --dark-yellow: #ffac33;
+  --dark-something: #4d3800;
   --dark-blue: #002ead;
   --dark-green: #00471b;
 }
@@ -48,6 +49,45 @@ header {
   font-size: 1.5rem;
 }
 
+#lesson-number {
+  border-radius: 50%;
+  width: 2rem;
+  animation-duration: 1s;
+  animation-name: sparkle;
+}
+
+@keyframes sparkle {
+  0% {
+    outline-color: var(--dark-purple);
+    outline-style: dotted;
+    outline-size: 3px;
+    font-size: 0.3em;
+    color: rgb(255, 0, 0);
+  }
+  20% {
+    outline-color: var(--light-purple);
+    color: rgb(251, 255, 0);
+  }
+  40% {
+    outline-style: dotted;
+    outline-color: var(--light-blue);
+    color: rgb(0, 255, 0);
+  }
+  60% {
+    outline-color: var(--light-green);
+    color: rgb(0, 162, 255);
+  }
+  80% {
+    outline-color: var(--light-yellow);
+    color: rgb(174, 0, 255);
+  }
+  100% {
+    font-size: 1em;
+    outline-style: none;
+    color: none;
+  }
+}
+
 h2 {
   font-size: 1.4rem;
 }
@@ -80,16 +120,18 @@ footer > button {
   width: 80%;
   margin: 0 auto;
   height: 100%;
-  background-color: var(--light-yellow);
-  border: none;
+  background-image: linear-gradient(var(--light-yellow), var(--dark-yellow));
+  border-width: 3px;
+  border-color: var(--dark-yellow);
   font-size: 1.2rem;
   font-weight: bold;
-  color: var(--light-1);
+  color: var(--dark-1);
   cursor: pointer;
   margin-top: 20px;
 }
 footer > button:hover {
-  background-color: var(--dark-3);
+  background-image: none;
+  background-color: var(--light-yellow);
 }
 
 .loader {

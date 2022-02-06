@@ -179,7 +179,14 @@ Well done! You are likely one of the first people to use _ShaunOS_.
 Something to always fail. Did you know emojis are supported? 🤔
 
 ```js
-assert(false);
+assert(true);
+```
+
+This test takes a while so you can see the loader :smiley:
+
+```js
+const p = await new Promise((resolve) => setTimeout(resolve, 2000));
+assert(p === true);
 ```
 
 ### --seed--
