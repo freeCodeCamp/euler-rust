@@ -7,7 +7,7 @@ Shaun is having fun testing a minimal way to run courses locally.
 - [ ] Refactor tooling/file names and structure to something that makes sense
 - [ ] Add workflow for translations to Crowdin
 - [ ] Fix `package.json` issue with script `$PWD` in `.bashrc`
-- [ ] `Go to Next Lesson` button?
+- [x] `Go to Next Lesson` button?
 - [ ] Enable seed parsing for resetting
 - [ ] Feature flag for seed to always use seed on next lesson?
 

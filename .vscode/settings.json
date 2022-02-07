@@ -3,29 +3,29 @@
     "dist": true // set this to false to include "dist" folder in search results
   },
   // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-  "typescript.tsc.autoDetect": "off",
-  "breadcrumbs.enabled": false,
+  // "typescript.tsc.autoDetect": "off",
+  // "breadcrumbs.enabled": false,
   "debug.internalConsoleOptions": "neverOpen",
   "debug.showInStatusBar": "never",
-  "editor.acceptSuggestionOnCommitCharacter": false,
-  "editor.acceptSuggestionOnEnter": "off",
+  // "editor.acceptSuggestionOnCommitCharacter": false,
+  // "editor.acceptSuggestionOnEnter": "off",
   // "editor.autoClosingBrackets": "never",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
   // "editor.hover.enabled": false,
   // "editor.inlineSuggest.enabled": false,
-  "editor.minimap.enabled": false,
+  // "editor.minimap.enabled": false,
   // "editor.parameterHints.enabled": false,
-  "editor.quickSuggestions": {
-    "other": false,
-    "comments": false,
-    "strings": false
-  },
-  "editor.referenceInfos": false,
+  // "editor.quickSuggestions": {
+  //   "other": false,
+  //   "comments": false,
+  //   "strings": false
+  // },
+  // "editor.referenceInfos": false,
   // "editor.snippetSuggestions": "none",
-  "editor.suggest.statusBar.visible": false,
-  "editor.suggestOnTriggerCharacters": false,
+  // "editor.suggest.statusBar.visible": false,
+  // "editor.suggestOnTriggerCharacters": false,
   "editor.tabSize": 2,
   "explorer.autoReveal": false,
   "explorer.openEditors.visible": 0,

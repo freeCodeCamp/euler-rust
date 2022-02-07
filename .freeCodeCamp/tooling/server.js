@@ -2,7 +2,7 @@
 const root = require("child_process").execSync("npm root -g").toString().trim();
 const liveServer = require(`${root}/live-server`);
 const runTests = require("./test");
-const { readEnv } = require("./env");
+const { readEnv, updateEnv } = require("./env");
 
 const options = {
   port: 8080,
@@ -26,6 +26,7 @@ const routes = {
     "/run-tests": handleRunTests,
     "/reset-project": handleResetProject,
     "/go-to-next-lesson": handleGoToNextLesson,
+    "/go-to-previous-lesson": handleGoToPreviousLesson,
   },
   POST: {},
 };
@@ -37,4 +38,14 @@ function handleRunTests(req, res, next) {
 
 function handleResetProject(req, res, next) {}
 
-function handleGoToNextLesson(req, res, next) {}
+function handleGoToNextLesson(req, res, next) {
+  const { CURRENT_LESSON } = readEnv();
+  const nextLesson = Number(CURRENT_LESSON) + 1;
+  updateEnv({ CURRENT_LESSON: nextLesson });
+}
+
+function handleGoToPreviousLesson(req, res, next) {
+  const { CURRENT_LESSON } = readEnv();
+  const prevLesson = Number(CURRENT_LESSON) - 1;
+  updateEnv({ CURRENT_LESSON: prevLesson });
+}

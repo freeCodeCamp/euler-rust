@@ -11,7 +11,7 @@
     "test:live-server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
     "dev:npm": "npm install live-server -g",
     "ensure-tools": "npm run dev:npm && source .freeCodeCamp/tooling/.bashrc",
-    "gitpod:bashrc": "cat .freeCodeCamp/tooling/.bashrc >| ~/.bashrc && source ~/.bashrc",
+    "gitpod:bashrc": "cat ./tooling/.bashrc >| ~/.bashrc && source ~/.bashrc",
     "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc"
   },
   "dependencies": {

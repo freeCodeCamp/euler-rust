@@ -41,6 +41,7 @@ function updateProjectHeading(h1, h2, lessonNumber) {
       .document;
     const projectHeadingElement = document.querySelector("#project-heading");
     projectHeadingElement.innerHTML = `${h1} - ${h2} - Lesson <span id="lesson-number">${lessonNumber}</span>`;
+    projectHeadingElement.querySelector("span").classList.toggle("sparkle");
     fs.writeFileSync(indexHTML, document.documentElement.outerHTML);
     handleUpdate();
     latestLessonNumber = lessonNumber;

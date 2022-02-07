@@ -52,6 +52,9 @@ header {
 #lesson-number {
   border-radius: 50%;
   width: 2rem;
+}
+
+.sparkle {
   animation-duration: 1s;
   animation-name: sparkle;
 }

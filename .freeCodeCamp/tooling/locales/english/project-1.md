@@ -6,6 +6,8 @@
 
 To start a new Rust project, you can use the Rust build system and package manager - Cargo.
 
+Run the following command to create a new project named `calculator`:
+
 ```bash
 cargo new calculator
 ```
@@ -16,7 +18,7 @@ You can use the `cargo new calculator` command to create the project.
 
 ```js
 const files = await __helpers.getDirectory(".");
-console.log("Test 1: ", files);
+// console.log("Test 1: ", files);
 assert.include(files ?? "", "calculator");
 ```
 
@@ -48,7 +50,7 @@ You should use `cd calculator` to change into the directory.
 
 ```js
 const cwd = await __helpers.getCWD();
-console.log("Test 2: ", cwd);
+// console.log("Test 2: ", cwd);
 assert.include(cwd, "calculator");
 ```
 
@@ -76,7 +78,7 @@ You should be within the `calculator/` directory.
 
 ```js
 const cwd = await __helpers.getCWD();
-console.log("Test 3: ", cwd);
+// console.log("Test 3: ", cwd);
 assert.include(cwd, "calculator");
 ```
 
@@ -84,7 +86,7 @@ You should run your code using the `cargo run` command.
 
 ```js
 const terminalOutput = await __helpers.getTerminalOutput();
-console.log("Test 4: ", terminalOutput);
+// console.log("Test 4: ", terminalOutput);
 assert.match(terminalOutput, /Hello, world!/);
 ```
 

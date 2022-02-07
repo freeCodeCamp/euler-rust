@@ -7,6 +7,9 @@ function resetProject() {
 function goToNextLesson() {
   makeRequest("/go-to-next-lesson");
 }
+function goToPreviousLesson() {
+  makeRequest("/go-to-previous-lesson");
+}
 function makeRequest(endpoint) {
   (async () => {
     try {

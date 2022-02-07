@@ -21,11 +21,11 @@ async function runTests(project, lessonNumber) {
 
     const testPromises = hintsAndTestsArr.map(async ([hint, test]) => {
       try {
-        console.log(hint, test);
+        // console.log(hint, test);
         const _testOutput = await eval(`(async () => {${test}})();`);
-        console.log("TEST1: ", _testOutput);
+        // console.log("TEST1: ", _testOutput);
       } catch (e) {
-        console.log("TEST2: ", e);
+        // console.log("TEST2: ", e);
         return Promise.reject(`- ${hint}\n`);
       }
       return Promise.resolve();
@@ -43,7 +43,7 @@ async function runTests(project, lessonNumber) {
         // await setFileSystemToLessonNumber(lessonNumber);
       }
     } catch (e) {
-      console.log(e);
+      // console.log(e);
       updateTests(e);
     }
   } catch (e) {

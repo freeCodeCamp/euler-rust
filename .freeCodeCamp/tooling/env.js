@@ -9,6 +9,7 @@ function readEnv() {
     TEST_POLLING_RATE: "1000",
     LAST_KNOWN_LESSON_WITH_HASH: "1",
     RUN_TESTS_ON_WATCH: "false",
+    CURRENT_LESSON: "1",
   };
   try {
     const META = fs.readFileSync(`${PATH}/.env`, "utf8");

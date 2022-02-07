@@ -99,7 +99,7 @@ function getFilesWithSeed(seed) {
   const filePaths = seed.match(new RegExp(FILE_MARKER_REG, "gsm"));
   const fileSeeds = files?.map((file) => extractStringFromCode(file)?.trim());
 
-  console.log(filePaths, fileSeeds, files);
+  // console.log(filePaths, fileSeeds, files);
   const pathAndSeedArr = [];
   if (filePaths?.length) {
     for (let i = 0; i < filePaths.length; i++) {
