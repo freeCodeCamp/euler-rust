@@ -144,16 +144,12 @@ assert("Chai.js tests with async code");
 
 ### --seed--
 
+#### --force--
+
 #### --cmd--
 
 ```bash
 cd somewhere
-```
-
-#### --cmd-hidden--
-
-```bash
-echo Campers should not see this
 ```
 
 #### --"somewhere/index.rs"--
@@ -177,7 +173,7 @@ echo "All seed is run in order"
 
 ---
 
-# freeCodeCamp - <course name>
+# freeCodeCamp - Rust: CLI Calculator
 
 ## Course Desciption
 
