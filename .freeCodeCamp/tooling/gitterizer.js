@@ -51,6 +51,7 @@ async function setFileSystemToLessonNumber(lessonNumber) {
     if (firstHash === endHash) {
       await execute(`git clean -f -q -- . && git cherry-pick ${endHash}`);
     } else {
+      // TODO: Why not git checkout ${endHash}
       const { stdout, stderr } = await execute(
         `git clean -f -q -- . && git cherry-pick ${firstHash}^..${endHash}`
       );

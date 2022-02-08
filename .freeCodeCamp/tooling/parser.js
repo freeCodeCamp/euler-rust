@@ -1,5 +1,6 @@
 // This file contains the parser for the markdown lessons
 const fs = require("fs");
+const readline = require("readline");
 
 const DESCRIPTION_MARKER = "### --description--";
 const SEED_MARKER = "### --seed--";
@@ -7,6 +8,24 @@ const NEXT_MARKER = `### --`;
 const CMD_HIDDEN_MARKER = "#### --cmd-hidden--";
 const CMD_MARKER = "#### --cmd--";
 const FILE_MARKER_REG = '(?<=#### --")[^"]+(?="--)';
+
+/**
+ * Reads the first line of the file to get the project name
+ * @param {string} file - The relative path to the locale file
+ * @returns {string}
+ */
+async function getProjectTitle(file) {
+  const readable = fs.createReadStream(file);
+  const reader = readline.createInterface({ input: readable });
+  const firstLine = await new Promise((resolve) => {
+    reader.on("line", (line) => {
+      reader.close();
+      resolve(line);
+    });
+  });
+  readable.close();
+  return firstLine.replace("# ", "");
+}
 
 /**
  * Gets all content within a lesson
@@ -161,4 +180,5 @@ module.exports = {
   getCommands,
   getHiddenCommands,
   getFilesWithSeed,
+  getProjectTitle,
 };

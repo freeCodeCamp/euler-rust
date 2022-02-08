@@ -1,4 +1,4 @@
-# freeCodeCamp - Rust for Tom
+# Rust - CLI Calculator
 
 ## 1
 
@@ -27,7 +27,7 @@ assert.include(files ?? "", "calculator");
 #### --cmd-hidden--
 
 ```bash
-echo "Tom has just reset his progress"
+rm -rf calculator
 ```
 
 #### --cmd--
@@ -35,6 +35,10 @@ echo "Tom has just reset his progress"
 ```bash
 echo "Tom should be able to see this, if he looks quick enough"
 ```
+
+<!-- ### --prepare-- -->
+
+<!-- Git on build of project -->
 
 ## 2
 
@@ -94,7 +98,7 @@ assert.match(terminalOutput, /Hello, world!/);
 
 ### --description--
 
-Open the `src/main.rs` file, and use the `let` keyword to add a variable named `firstName` and assign it a value of your first name within double quotes.
+Within the `src/main.rs` file, use the `let` keyword to add a variable named `firstName` and assign it a value of your first name within double quotes.
 
 _Run your code, if you want_
 
