@@ -12,7 +12,8 @@
     "dev:npm": "npm install live-server -g",
     "ensure-tools": "npm run dev:npm && source .freeCodeCamp/tooling/.bashrc",
     "gitpod:bashrc": "cat ./tooling/.bashrc >| ~/.bashrc && source ~/.bashrc",
-    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc"
+    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc",
+    "build": "node ./tooling/git/build.js"
   },
   "dependencies": {
     "chai": "^4.3.4",
