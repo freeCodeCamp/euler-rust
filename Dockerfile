@@ -40,6 +40,11 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
 RUN sudo apt-get install -y nodejs
 
+# /usr/lib/node_modules is owned by root, so this creates a folder ${USERNAME} 
+# can use for npm install --global
+WORKDIR ${HOMEDIR}
+RUN mkdir ~/.npm-global
+RUN npm config set prefix '~/.npm-global'
 
 # Configure project directory to match course name
 RUN sudo mkdir -p ${HOMEDIR}/curriculum
