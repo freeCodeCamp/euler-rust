@@ -35,12 +35,12 @@ function handleUpdate() {
 }
 
 let latestLessonNumber = 0;
-function updateProjectHeading(h1, h2, lessonNumber) {
+function updateProjectHeading(projectHeading, lessonNumber) {
   if (lessonNumber !== latestLessonNumber) {
     const document = new JSDOM(fs.readFileSync(indexHTML, "utf8")).window
       .document;
     const projectHeadingElement = document.querySelector("#project-heading");
-    projectHeadingElement.innerHTML = `${h1} - ${h2} - Lesson <span id="lesson-number">${lessonNumber}</span>`;
+    projectHeadingElement.innerHTML = `${projectHeading} - Lesson <span id="lesson-number">${lessonNumber}</span>`;
     projectHeadingElement.querySelector("span").classList.toggle("sparkle");
     fs.writeFileSync(indexHTML, document.documentElement.outerHTML);
     handleUpdate();

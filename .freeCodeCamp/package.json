@@ -7,12 +7,9 @@
     "live-server": "live-server --port=8080 --entry-file='output/index.html' --no-browser",
     "ensure-env": "cp sample.env .env",
     "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run watcher",
-    "dev:live-server": "cd output && live-server --port=8080 --entry-file='index.html' --no-browser",
-    "test:live-server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
+    "dev:live-server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
     "dev:npm": "npm install live-server -g",
-    "ensure-tools": "npm run dev:npm && source .freeCodeCamp/tooling/.bashrc",
-    "gitpod:bashrc": "cat ./tooling/.bashrc >| ~/.bashrc && source ~/.bashrc",
-    "gitpod:ensure-tools": "npm run dev:npm && npm run gitpod:bashrc",
+    "ensure-tools": "npm run dev:npm && source ./tooling/.bashrc",
     "build": "node ./tooling/git/build.js"
   },
   "dependencies": {

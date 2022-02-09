@@ -37,7 +37,8 @@ Shaun is having fun testing a minimal way to run courses locally.
 
 1. Ensure you have the Gitpod extension. _Otherwise [click here](https://gitpod.io/#https://github.com/ShaunSHamilton/external-project)_
 2. Once Gitpod opens, ensure it is done doing its stuffs
-3. Open Command Palette, run `freeCodeCamp: Develop Course`
+3. `source .freeCodeCamp/tooling/.bashrc` likely will not work. So, manually run this.
+4. Open Command Palette, run `freeCodeCamp: Develop Course`
 
 **Notes**
 
