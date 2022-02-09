@@ -24,21 +24,11 @@ assert.include(files ?? "", "calculator");
 
 ### --seed--
 
-#### --cmd-hidden--
-
-```bash
-rm -rf calculator
-```
-
 #### --cmd--
 
 ```bash
 echo "Tom should be able to see this, if he looks quick enough"
 ```
-
-<!-- ### --prepare-- -->
-
-<!-- Git on build of project -->
 
 ## 2
 

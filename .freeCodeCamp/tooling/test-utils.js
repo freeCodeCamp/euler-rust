@@ -66,6 +66,7 @@ async function getLastCommand(howManyBack = 0) {
   return lastLog;
 }
 
+// TODO: Do not return whole file
 async function getCWD() {
   const pathToCWD = path.join(`${ROOT}/.freecodecamp/.cwd`);
   const cwd = await fs.promises.readFile(pathToCWD, "utf8");

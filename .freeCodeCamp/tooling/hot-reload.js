@@ -15,6 +15,7 @@ reset();
 let isWait = false;
 let isClearConsole = false;
 
+// TODO: refresh watcher on button pushing
 chokidar
   .watch(curriculumFolder, { ignored: ".freecodecamp/.temp.log" })
   .on("all", (event, name) => {
@@ -31,7 +32,7 @@ chokidar
       }
       runLesson(CURRENT_PROJECT, Number(CURRENT_LESSON));
       console.log(`Watcher: ${event} - ${name}`);
-      if (RUN_TESTS_ON_WATCH) {
+      if (RUN_TESTS_ON_WATCH === "true") {
         runTests(CURRENT_PROJECT, Number(CURRENT_LESSON));
       }
     }
