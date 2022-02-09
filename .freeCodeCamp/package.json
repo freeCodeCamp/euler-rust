@@ -9,7 +9,7 @@
     "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run watcher",
     "dev:live-server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
     "dev:npm": "npm install live-server -g",
-    "ensure-tools": "npm run dev:npm && source ./tooling/.bashrc",
+    "ensure-tools": "npm run dev:npm",
     "build": "node ./tooling/git/build.js"
   },
   "dependencies": {

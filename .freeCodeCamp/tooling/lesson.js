@@ -3,6 +3,7 @@ const {
   getLessonFromFile,
   getLessonDescription,
   getProjectTitle,
+  getLessonSeed,
   isForceFlag,
 } = require("./parser");
 const { LOCALE } = require("./t");
