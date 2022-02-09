@@ -60,10 +60,10 @@ COPY --chown=camper .freeCodeCamp/ .freeCodeCamp/
 COPY --chown=camper .gitignore .gitignore
 
 # Append terminal to .output.log
-RUN cat .freeCodeCamp/tooling/.bashrc >| ~/.bashrc
+# TODO: Potentially handled via extension to just directly source the `/tooling/.bashrc` file
+# RUN cat .freeCodeCamp/tooling/.bashrc >| ~/.bashrc
 
 # Copy curriculum content to project directory
 COPY --chown=camper .vscode/ .vscode/
 COPY --chown=camper curriculum/ ./
-
 

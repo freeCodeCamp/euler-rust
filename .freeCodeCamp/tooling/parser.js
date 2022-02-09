@@ -5,14 +5,13 @@ const readline = require("readline");
 const DESCRIPTION_MARKER = "### --description--";
 const SEED_MARKER = "### --seed--";
 const NEXT_MARKER = `### --`;
-const CMD_HIDDEN_MARKER = "#### --cmd-hidden--";
 const CMD_MARKER = "#### --cmd--";
 const FILE_MARKER_REG = '(?<=#### --")[^"]+(?="--)';
 
 /**
  * Reads the first line of the file to get the project name
  * @param {string} file - The relative path to the locale file
- * @returns {string}
+ * @returns {Promise<string>} The project name
  */
 async function getProjectTitle(file) {
   const readable = fs.createReadStream(file);
@@ -94,19 +93,6 @@ function getCommands(seed) {
 }
 
 /**
- * Gets any hidden commands of the lesson seed. If none is found, returns an empty array.
- * @param {string} seed - The seed content
- * @returns {string[]} The hidden commands of the lesson in order
- */
-function getHiddenCommands(seed) {
-  const cmds = seed.match(
-    new RegExp(`${CMD_HIDDEN_MARKER}\n(.*?\`\`\`\n)`, "gs")
-  );
-  const commands = cmds?.map((cmd) => extractStringFromCode(cmd)?.trim());
-  return commands ?? [];
-}
-
-/**
  * Gets any seed for specified files of the lesson seed. If none is found, returns an empty array.
  * @param {string} seed - The seed content
  * @returns {[string, string][]} [[filePath, fileSeed]]
@@ -129,6 +115,15 @@ function getFilesWithSeed(seed) {
 }
 
 /**
+ * Returns `boolean` for if lesson seed contains `force` flag
+ * @param {string} seed - The seed content
+ * @returns {boolean} Whether the seed has the `force` flag
+ */
+function isForceFlag(seed) {
+  return seed.includes("#### --force--");
+}
+
+/**
  * Returns a string stripped from the input codeblock
  * @param {string} code - The codeblock to strip
  * @returns {string} The stripped codeblock
@@ -138,47 +133,15 @@ function extractStringFromCode(code) {
 }
 
 // ----------------
-// MARKED PARSING
-// ----------------
-const marked = require("marked");
-const prism = require("prismjs");
-
-require("prismjs/components/prism-markup-templating");
-require("prismjs/components/prism-css");
-// require("prismjs/components/prism-html");
-require("prismjs/components/prism-json");
-require("prismjs/components/prism-javascript");
-require("prismjs/components/prism-jsx");
-require("prismjs/components/prism-bash");
-require("prismjs/components/prism-yaml");
-require("prismjs/components/prism-toml");
-require("prismjs/components/prism-rust");
-
-marked.setOptions({
-  highlight: (code, lang) => {
-    if (prism.languages[lang]) {
-      return prism.highlight(code, prism.languages[lang], lang);
-    } else {
-      return code;
-    }
-  },
-});
-
-function parseMarkdown(markdown) {
-  return marked.parse(markdown, { gfm: true });
-}
-
-// ----------------
 // EXPORT
 // ----------------
 module.exports = {
   getLessonFromFile,
   getLessonDescription,
   getLessonHintsAndTests,
-  parseMarkdown,
   getLessonSeed,
   getCommands,
-  getHiddenCommands,
   getFilesWithSeed,
   getProjectTitle,
+  isForceFlag,
 };
