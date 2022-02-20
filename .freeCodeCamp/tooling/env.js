@@ -4,7 +4,7 @@ const PATH = process.env.ACTOR === "dev" ? "." : ".freeCodeCamp";
 
 function readEnv() {
   let meta = {
-    CURRENT_PROJECT: "calculator",
+    CURRENT_PROJECT: "project-euler",
     LOCALE: "english",
     TEST_POLLING_RATE: "1000",
     LAST_KNOWN_LESSON_WITH_HASH: "1",

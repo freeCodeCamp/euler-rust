@@ -1,9 +1,23 @@
 // IMPORTS
+const fs = require("fs");
 // These are used in the local scope of the `eval` in `runTests`
 const assert = require("chai").assert;
 const __helpers = require("./test-utils");
 
-const { getLessonFromFile, getLessonHintsAndTests } = require("./parser.js");
+let wasm = {};
+const wasmBuffer = fs.readFileSync("../curriculum/pkg/curriculum_bg.wasm");
+WebAssembly.instantiate(wasmBuffer).then((wasmModule) => {
+  // Exported function live under instance.exports
+  wasm = wasmModule.instance.exports;
+  Object.entries(wasm).forEach(([id, func]) => {
+    global[id] = func;
+  });
+});
+
+const {
+  getLessonHintsAndTests,
+  getLessonFromDirectory,
+} = require("./parser.js");
 
 const { t, LOCALE } = require("./t");
 const { updateEnv, PATH } = require("./env.js");
@@ -15,17 +29,14 @@ async function runTests(project, lessonNumber) {
   const locale = LOCALE === "undefined" ? "english" : LOCALE;
   toggleLoaderAnimation();
   try {
-    const answerFile = `${PATH}/tooling/locales/${locale}/${project}.md`;
-    const lesson = getLessonFromFile(answerFile, lessonNumber);
+    const projectDir = `${PATH}/tooling/locales/${locale}/${project}`;
+    const lesson = getLessonFromDirectory(projectDir, lessonNumber);
     const hintsAndTestsArr = getLessonHintsAndTests(lesson);
 
     const testPromises = hintsAndTestsArr.map(async ([hint, test]) => {
       try {
-        // console.log(hint, test);
         const _testOutput = await eval(`(async () => {${test}})();`);
-        // console.log("TEST1: ", _testOutput);
       } catch (e) {
-        // console.log("TEST2: ", e);
         return Promise.reject(`- ${hint}\n`);
       }
       return Promise.resolve();
@@ -38,9 +49,6 @@ async function runTests(project, lessonNumber) {
         updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
         runLesson(project, lessonNumber + 1);
         updateTests("");
-        // Current lesson number is used because commit contains expected answer for lesson
-        // TODO: This works as expected, but breaks in Docker container, because of file structure being changed.
-        // await setFileSystemToLessonNumber(lessonNumber);
       }
     } catch (e) {
       // console.log(e);

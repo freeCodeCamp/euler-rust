@@ -1,6 +1,6 @@
 // This might not be necessary for every course, but is needed for the preview window to interact with the test environment
-const root = require("child_process").execSync("npm root -g").toString().trim();
-const liveServer = require(`${root}/live-server`);
+// const root = require("child_process").execSync("npm root -g").toString().trim();
+const liveServer = require(`live-server`);
 const runTests = require("./test");
 const { readEnv, updateEnv } = require("./env");
 

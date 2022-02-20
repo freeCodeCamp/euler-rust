@@ -16,8 +16,10 @@
     "chai": "^4.3.4",
     "chokidar": "^3.5.2",
     "jsdom": "^19.0.0",
+    "live-server": "^1.2.1",
     "marked": "^4.0.9",
-    "prismjs": "^1.26.0"
+    "prismjs": "^1.26.0",
+    "yaml-js": "^0.3.1"
   },
   "repository": {
     "type": "git",
