@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack-config.js",
   "scripts": {
-    "build": "wasm-pack build && npm run build",
+    "build": "wasm-pack build && npm run webpack-build",
     "webpack-build": "webpack --config webpack.config.js",
     "dev": "webpack-dev-server --config webpack.config.js --hot"
   },
