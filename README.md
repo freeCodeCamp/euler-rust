@@ -14,5 +14,5 @@ Failing the first test should give you the function name you need for the instru
 
 You can write all the functions within one file, and follow the pattern given for the first example.
 
-1. `Ctrl + Shift + P` and `freeCodeCamp: Run Course`
+1. `Ctrl + Shift + P` and `freeCodeCamp: Develop Course`
 2. _Within `curriculum/` directory_, `npm run build` to compile the Rust code, before each test.
