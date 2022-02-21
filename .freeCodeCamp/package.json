@@ -7,7 +7,7 @@
     "live-server": "live-server --port=8080 --entry-file='output/index.html' --no-browser",
     "ensure-env": "cp sample.env .env",
     "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run watcher",
-    "dev:live-server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
+    "dev:server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
     "dev:npm": "npm install live-server -g",
     "dev:curriculum": "cd ../curriculum && cargo install wasm-pack && npm run build",
     "ensure-tools": "npm run dev:npm && npm run dev:curriculum",
@@ -16,10 +16,12 @@
   "dependencies": {
     "chai": "^4.3.4",
     "chokidar": "^3.5.2",
+    "express": "^4.17.3",
     "jsdom": "^19.0.0",
     "live-server": "^1.2.1",
     "marked": "^4.0.9",
     "prismjs": "^1.26.0",
+    "ws": "^8.5.0",
     "yaml-js": "^0.3.1"
   },
   "repository": {

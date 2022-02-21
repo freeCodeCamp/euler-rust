@@ -3,7 +3,6 @@
 const { readEnv } = require("./env");
 const runLesson = require("./lesson");
 const runTests = require("./test");
-const { resetTests } = require("./testerizer");
 const chokidar = require("chokidar");
 const { TEST_POLLING_RATE } = readEnv();
 const curriculumFolder = process.env.ACTOR === "dev" ? "../curriculum" : "../";
@@ -41,5 +40,5 @@ chokidar
 function reset() {
   const { CURRENT_LESSON, CURRENT_PROJECT } = readEnv();
   runLesson(CURRENT_PROJECT, Number(CURRENT_LESSON));
-  resetTests();
+  // resetTests();
 }

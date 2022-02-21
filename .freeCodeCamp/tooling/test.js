@@ -5,14 +5,6 @@ const assert = require("chai").assert;
 const __helpers = require("./test-utils");
 
 let wasm = {};
-const wasmBuffer = fs.readFileSync("../curriculum/pkg/curriculum_bg.wasm");
-WebAssembly.instantiate(wasmBuffer).then((wasmModule) => {
-  // Exported function live under instance.exports
-  wasm = wasmModule.instance.exports;
-  Object.entries(wasm).forEach(([id, func]) => {
-    global[id] = func;
-  });
-});
 
 const {
   getLessonHintsAndTests,
@@ -21,13 +13,20 @@ const {
 
 const { t, LOCALE } = require("./t");
 const { updateEnv, PATH } = require("./env.js");
-const { updateTests, toggleLoaderAnimation } = require("./testerizer.js");
 const runLesson = require("./lesson");
-// const { setFileSystemToLessonNumber } = require("./gitterizer");
+const { toggleLoaderAnimation, updateTests } = require("./client-socks");
 
-async function runTests(project, lessonNumber) {
+async function runTests(ws, project, lessonNumber) {
+  const wasmBuffer = fs.readFileSync("../curriculum/pkg/curriculum_bg.wasm");
+  WebAssembly.instantiate(wasmBuffer).then((wasmModule) => {
+    // Exported function live under instance.exports
+    wasm = wasmModule.instance.exports;
+    Object.entries(wasm).forEach(([id, func]) => {
+      global[id] = func;
+    });
+  });
   const locale = LOCALE === "undefined" ? "english" : LOCALE;
-  toggleLoaderAnimation();
+  toggleLoaderAnimation(ws);
   try {
     const projectDir = `${PATH}/tooling/locales/${locale}/${project}`;
     const lesson = getLessonFromDirectory(projectDir, lessonNumber);
@@ -47,18 +46,18 @@ async function runTests(project, lessonNumber) {
       if (passed) {
         console.log(t("lesson-correct", { lessonNumber }));
         updateEnv({ CURRENT_LESSON: lessonNumber + 1 });
-        runLesson(project, lessonNumber + 1);
-        updateTests("");
+        runLesson(ws, project, lessonNumber + 1);
+        updateTests(ws, "");
       }
     } catch (e) {
       // console.log(e);
-      updateTests(e);
+      updateTests(ws, e);
     }
   } catch (e) {
     console.log(t("tests-error"));
     console.log(e);
   } finally {
-    toggleLoaderAnimation();
+    toggleLoaderAnimation(ws);
   }
 }
 
