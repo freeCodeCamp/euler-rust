@@ -11,3 +11,8 @@ pub fn multiples_of_3_and_5(n: i32) -> i32 {
     }
     t
 }
+
+#[wasm_bindgen(js_name = fiboEvenSum)]
+pub fn fibo_even_sum(n: i32) -> i32 {
+    n
+}

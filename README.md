@@ -4,6 +4,8 @@
 
 This enables you to complete the [Project Euler](https://projecteuler.net/) problems in Rust.
 
+#![Euler in Rust](euler-rust.png)
+
 ## How to Get Started
 
 Open in Gitpod: https://gitpod.io/#https://github.com/ShaunSHamilton/euler-rust/
