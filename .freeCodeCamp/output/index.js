@@ -11,12 +11,11 @@ const handle = {
 
 // Connection opened
 socket.addEventListener("open", function (event) {
-  sock("connect", { message: "Client Connected" });
+  sock("connect");
 });
 
 // Listen for messages
 socket.addEventListener("message", function (event) {
-  console.log(event);
   const parsedData = parse(event.data);
   handle[parsedData.event]?.(parsedData.data);
 });

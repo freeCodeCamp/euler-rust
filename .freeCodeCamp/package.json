@@ -3,15 +3,12 @@
   "author": "freeCodeCamp",
   "description": "Template used for freeCodeCamp projects with the freeCodeCamp Courses VSCode extension",
   "scripts": {
-    "watcher": "node ./tooling/hot-reload.js",
-    "live-server": "live-server --port=8080 --entry-file='output/index.html' --no-browser",
+    "start": "nodemon ./tooling/hot-reload.js",
     "ensure-env": "cp sample.env .env",
-    "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run watcher",
-    "dev:server": "export ACTOR=dev || set ACTOR=dev && node tooling/server.js",
-    "dev:npm": "npm install live-server -g",
+    "dev:watcher": "export ACTOR=dev || set ACTOR=dev && npm run start",
+    "dev:server": "export ACTOR=dev || set ACTOR=dev && nodemon tooling/server.js",
     "dev:curriculum": "cd ../curriculum && cargo install wasm-pack && npm run build",
-    "ensure-tools": "npm run dev:npm && npm run dev:curriculum",
-    "build": "node ./tooling/git/build.js"
+    "ensure-tools": "npm run dev:curriculum"
   },
   "dependencies": {
     "chai": "^4.3.4",
@@ -27,5 +24,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/ShaunSHamilton/external-project"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }

@@ -35,13 +35,18 @@ function handleGoToPreviousLesson(ws, data) {
   resetTests(ws);
 }
 
+function handleConnect(ws) {
+  const { CURRENT_PROJECT, CURRENT_LESSON } = readEnv();
+  runLesson(ws, CURRENT_PROJECT, CURRENT_LESSON);
+}
+
 const server = app.listen(8080, () => {
   console.log("Listening on port 8080");
 });
 
 const handle = {
   connect: (ws, data) => {
-    console.log(data.data.message);
+    handleConnect(ws);
   },
   "run-tests": handleRunTests,
   "reset-project": handleResetProject,
