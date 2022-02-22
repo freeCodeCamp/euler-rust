@@ -10,11 +10,9 @@ This enables you to complete the [Project Euler](https://projecteuler.net/) prob
 
 Open in Gitpod: https://gitpod.io/#https://github.com/ShaunSHamilton/euler-rust/
 
-You should work entirely within the `curriculum/src` directory.
-
 Failing the first test should give you the function name you need for the instructions.
 
 You can write all the functions within one file, and follow the pattern given for the first example.
 
-1. `Ctrl + Shift + P` and `freeCodeCamp: Develop Course`
-2. _Within `curriculum/` directory_, `npm run build` to compile the Rust code, before each test.
+1. `Ctrl + Shift + P` and `freeCodeCamp: Run Course`
+2. `npm run build` to compile the Rust code, before each test.

@@ -4,7 +4,7 @@ const util = require("util");
 const path = require("path");
 const execute = util.promisify(require("child_process").exec);
 
-const ROOT = process.env.ACTOR === "dev" ? "../curriculum" : ".";
+const ROOT = ".";
 
 async function getDirectory(path) {
   const files = await fs.promises.readdir(`${ROOT}/${path}`);
@@ -23,9 +23,7 @@ async function isFileOpen(path) {
 }
 
 async function getTerminalOutput() {
-  const pathToTerminalLogs = path.join(
-    `${ROOT}/.freecodecamp/.terminal-out.log`
-  );
+  const pathToTerminalLogs = path.join(`${ROOT}/.logs/.terminal-out.log`);
   const terminalLogs = await fs.promises.readFile(pathToTerminalLogs, "utf8");
 
   if (!terminalLogs) {
@@ -53,7 +51,7 @@ async function getCommandOutput(command, path = "") {
  * TODO
  */
 async function getLastCommand(howManyBack = 0) {
-  const pathToBashLogs = path.join(`${ROOT}/.freecodecamp/.bash_history`);
+  const pathToBashLogs = path.join(`${ROOT}/.logs/.bash_history`);
   const bashLogs = await fs.promises.readFile(pathToBashLogs, "utf8");
 
   if (!bashLogs) {
@@ -68,7 +66,7 @@ async function getLastCommand(howManyBack = 0) {
 
 // TODO: Do not return whole file
 async function getCWD() {
-  const pathToCWD = path.join(`${ROOT}/.freecodecamp/.cwd`);
+  const pathToCWD = path.join(`${ROOT}/.logs/.cwd`);
   const cwd = await fs.promises.readFile(pathToCWD, "utf8");
   return cwd;
 }

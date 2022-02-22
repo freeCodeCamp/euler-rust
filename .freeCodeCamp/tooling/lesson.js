@@ -2,13 +2,10 @@
 const {
   getLessonDescription,
   getProjectTitle,
-  getLessonSeed,
-  isForceFlag,
   getLessonFromDirectory,
 } = require("./parser");
 const { LOCALE } = require("./t");
-const { PATH, readEnv } = require("./env");
-const { seedLesson } = require("./seed");
+const { PATH } = require("./env");
 const { updateProjectHeading, updateDescription } = require("./client-socks");
 
 async function runLesson(ws, project, lessonNumber) {
@@ -20,17 +17,6 @@ async function runLesson(ws, project, lessonNumber) {
   const projectHeading = await getProjectTitle(lesson);
   updateProjectHeading(ws, projectHeading, lessonNumber);
   updateDescription(ws, description);
-
-  const { SEED_EVERY_LESSON } = readEnv();
-  const seed = getLessonSeed(lesson);
-  const isForce = isForceFlag(seed);
-  // force flag overrides seed flag
-  if (
-    (SEED_EVERY_LESSON === "true" && !isForce) ||
-    (SEED_EVERY_LESSON !== "true" && isForce)
-  ) {
-    await seedLesson(seed);
-  }
 }
 
 module.exports = runLesson;

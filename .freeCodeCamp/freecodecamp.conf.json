@@ -1,0 +1,15 @@
+{
+  "path": ".freeCodeCamp",
+  "scripts": {
+    "develop-course": "npm run dev:curriculum && npm run dev:server",
+    "run-course": "npm run dev:curriculum && npm run start",
+    "test": ""
+  },
+  "preview": {
+    "open": true,
+    "url": "http://127.0.0.1:8080"
+  },
+  "bashrc": {
+    "enabled": false
+  }
+}

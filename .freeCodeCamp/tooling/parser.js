@@ -1,6 +1,6 @@
 // This file contains the parser for the markdown lessons
 const fs = require("fs");
-const yamljs = require("yaml-js");
+const jsyaml = require("js-yaml");
 const DESCRIPTION_MARKER = "# --description--";
 const SEED_MARKER = "### --seed--";
 const NEXT_MARKER = `# --`;
@@ -14,7 +14,7 @@ const FILE_MARKER_REG = '(?<=#### --")[^"]+(?="--)';
  */
 async function getProjectTitle(lesson) {
   const yamlString = lesson.match(/(?<=---\n).*?(?=---\n)/s)?.[0];
-  const yaml = await yamljs.load(yamlString);
+  const yaml = await jsyaml.load(yamlString);
   return yaml.title;
 }
 

@@ -17,7 +17,7 @@ const runLesson = require("./lesson");
 const { toggleLoaderAnimation, updateTests } = require("./client-socks");
 
 async function runTests(ws, project, lessonNumber) {
-  const wasmBuffer = fs.readFileSync("../curriculum/pkg/curriculum_bg.wasm");
+  const wasmBuffer = fs.readFileSync("../pkg/curriculum_bg.wasm");
   WebAssembly.instantiate(wasmBuffer).then((wasmModule) => {
     // Exported function live under instance.exports
     wasm = wasmModule.instance.exports;
