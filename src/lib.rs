@@ -31,3 +31,8 @@ pub fn fibo_even_sum(n: i32) -> i32 {
         return even_sum;
     }
 }
+
+#[wasm_bindgen(js_name = largestPrimeFactor)]
+pub fn largest_prime_factor(n: i32) -> i32 {
+    n
+}
