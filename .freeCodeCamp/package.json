@@ -12,7 +12,6 @@
     "chokidar": "^3.5.2",
     "express": "^4.17.3",
     "js-yaml": "^4.1.0",
-    "live-server": "^1.2.1",
     "marked": "^4.0.9",
     "prismjs": "^1.26.0",
     "ws": "^8.5.0"
