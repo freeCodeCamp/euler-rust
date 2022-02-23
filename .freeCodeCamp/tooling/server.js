@@ -4,7 +4,7 @@ const { readEnv, updateEnv } = require("./env");
 
 const { WebSocketServer } = require("ws");
 const runLesson = require("./lesson");
-const { resetTests } = require("./client-socks");
+const { updateTests } = require("./client-socks");
 
 const app = express();
 
@@ -24,7 +24,7 @@ function handleGoToNextLesson(ws, data) {
   const nextLesson = Number(CURRENT_LESSON) + 1;
   updateEnv({ CURRENT_LESSON: nextLesson });
   runLesson(ws, CURRENT_PROJECT, nextLesson);
-  resetTests(ws);
+  updateTests(ws, "");
 }
 
 function handleGoToPreviousLesson(ws, data) {
@@ -32,7 +32,7 @@ function handleGoToPreviousLesson(ws, data) {
   const prevLesson = Number(CURRENT_LESSON) - 1;
   updateEnv({ CURRENT_LESSON: prevLesson });
   runLesson(ws, CURRENT_PROJECT, prevLesson);
-  resetTests(ws);
+  updateTests(ws, "");
 }
 
 function handleConnect(ws) {
