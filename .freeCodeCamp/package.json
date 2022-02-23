@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./tooling/server.js",
     "dev:server": "nodemon ./tooling/server.js",
-    "dev:curriculum": "cd ../ && cargo install wasm-pack && npm run build"
+    "dev:curriculum": "cd ../ && npm ci && cargo install wasm-pack && npm run build"
   },
   "dependencies": {
     "chai": "^4.3.4",
