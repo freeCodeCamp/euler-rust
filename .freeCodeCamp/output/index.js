@@ -1,5 +1,9 @@
 // Create WebSocket connection.
-const socket = new WebSocket("ws://localhost:8080");
+const socket = new WebSocket(
+  `${window.location.protocol.includes("https") ? "wss" : "ws"}://${
+    window.location.host
+  }`
+);
 
 const handle = {
   "toggle-loader-animation": toggleLoaderAnimation,
