@@ -8,7 +8,7 @@
     "dev:curriculum": "cd ../ && npm ci && cargo install wasm-pack && npm run build"
   },
   "dependencies": {
-    "chai": "^4.3.4",
+    "chai": "4.3.6",
     "chokidar": "^3.5.2",
     "express": "^4.17.3",
     "js-yaml": "^4.1.0",
