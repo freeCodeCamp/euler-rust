@@ -26,7 +26,7 @@ RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
 
 
 # Install packages for projects - Docker for testing
-RUN sudo apt-get install -y curl git bash-completion man-db docker wget
+RUN sudo apt-get install -y curl git bash-completion man-db docker wget build-essential
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y

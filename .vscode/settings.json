@@ -12,7 +12,8 @@
     "**/.hg": true,
     "**/.svn": true,
     "**/CVS": true,
-    "Dockerfile": true
+    "Dockerfile": true,
+    "LICENSE": true
   },
   "workbench.startupEditor": "none",
   "workbench.colorTheme": "freeCodeCamp Dark Theme"
