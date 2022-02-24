@@ -1,10 +1,7 @@
 {
-  "extensions": [
-    "dbaeumer.vscode-eslint",
-    "/workspaces/external-project/.devcontainer/freecodecamp-courses-patch.vsix"
-  ],
-  "forwardPorts": [3000],
-  "workspaceFolder": "/home/camper/curriculum",
+  "extensions": ["dbaeumer.vscode-eslint"],
+  "forwardPorts": [8080],
+  "workspaceFolder": "/home/camper",
   "dockerFile": "../Dockerfile",
   "context": ".."
 }

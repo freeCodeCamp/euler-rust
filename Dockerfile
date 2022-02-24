@@ -46,24 +46,9 @@ WORKDIR ${HOMEDIR}
 RUN mkdir ~/.npm-global
 RUN npm config set prefix '~/.npm-global'
 
-# Configure project directory to match course name
-RUN sudo mkdir -p ${HOMEDIR}/curriculum
-WORKDIR ${HOMEDIR}/curriculum
+# Configure course-specific environment
+RUN cd .freeCodeCamp && cp sample.env .env && npm ci && npm run dev:curriculum
+RUN code --install-extension ../.devcontainer/freeCodeCamp.freecodecamp-dark-vscode-theme-0.1.0.vsix
 
-# Install marked globally for node
-RUN sudo npm install live-server -g
-
-# Copy necessary files
-COPY --chown=camper .devcontainer/ .devcontainer/
-COPY --chown=camper .git/ .git/
-COPY --chown=camper .freeCodeCamp/ .freeCodeCamp/
-COPY --chown=camper .gitignore .gitignore
-
-# Append terminal to .output.log
-# TODO: Potentially handled via extension to just directly source the `/tooling/.bashrc` file
-# RUN cat .freeCodeCamp/tooling/.bashrc >| ~/.bashrc
-
-# Copy curriculum content to project directory
-COPY --chown=camper .vscode/ .vscode/
-COPY --chown=camper curriculum/ ./
-
+RUN wget https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix
+RUN code --install-extension freecodecamp-courses-patch.vsix
