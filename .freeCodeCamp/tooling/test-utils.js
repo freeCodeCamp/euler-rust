@@ -1,10 +1,10 @@
 // TODO: This file has some helper functions to make testing FUN!
-const fs = require("fs");
-const util = require("util");
-const path = require("path");
-const execute = util.promisify(require("child_process").exec);
+const fs = require('fs');
+const util = require('util');
+const path = require('path');
+const execute = util.promisify(require('child_process').exec);
 
-const ROOT = ".";
+const ROOT = '.';
 
 async function getDirectory(path) {
   const files = await fs.promises.readdir(`${ROOT}/${path}`);
@@ -18,16 +18,16 @@ async function getDirectory(path) {
  */
 async function isFileOpen(_path) {
   // TODO: Probably not possible
-  await new Promise((resolve) => setTimeout(resolve, 10000));
+  await new Promise(resolve => setTimeout(resolve, 10000));
   return true;
 }
 
 async function getTerminalOutput() {
   const pathToTerminalLogs = path.join(`${ROOT}/.logs/.terminal-out.log`);
-  const terminalLogs = await fs.promises.readFile(pathToTerminalLogs, "utf8");
+  const terminalLogs = await fs.promises.readFile(pathToTerminalLogs, 'utf8');
 
   if (!terminalLogs) {
-    throw new Error("No terminal logs found");
+    throw new Error('No terminal logs found');
   }
 
   return terminalLogs;
@@ -39,10 +39,10 @@ async function getTerminalOutput() {
  * @param {string} path Path relative to curriculum folder
  * @returns
  */
-async function getCommandOutput(command, path = "") {
+async function getCommandOutput(command, path = '') {
   const { stdout } = await execute(command, {
     cwd: `${ROOT}/${path}`,
-    shell: "/bin/bash",
+    shell: '/bin/bash'
   });
   return stdout;
 }
@@ -52,13 +52,13 @@ async function getCommandOutput(command, path = "") {
  */
 async function getLastCommand(howManyBack = 0) {
   const pathToBashLogs = path.join(`${ROOT}/.logs/.bash_history`);
-  const bashLogs = await fs.promises.readFile(pathToBashLogs, "utf8");
+  const bashLogs = await fs.promises.readFile(pathToBashLogs, 'utf8');
 
   if (!bashLogs) {
     throw new Error(`Could not find ${pathToBashLogs}`);
   }
 
-  const logs = bashLogs.split("\n");
+  const logs = bashLogs.split('\n');
   const lastLog = logs[logs.length - howManyBack - 2];
 
   return lastLog;
@@ -67,12 +67,12 @@ async function getLastCommand(howManyBack = 0) {
 // TODO: Do not return whole file
 async function getCWD() {
   const pathToCWD = path.join(`${ROOT}/.logs/.cwd`);
-  const cwd = await fs.promises.readFile(pathToCWD, "utf8");
+  const cwd = await fs.promises.readFile(pathToCWD, 'utf8');
   return cwd;
 }
 
 async function getFile(path) {
-  const file = await fs.promises.readFile(`${ROOT}/${path}`, "utf8");
+  const file = await fs.promises.readFile(`${ROOT}/${path}`, 'utf8');
   return file;
 }
 
@@ -83,7 +83,7 @@ const __helpers = {
   getTerminalOutput,
   getCommandOutput,
   getLastCommand,
-  getCWD,
+  getCWD
 };
 
 module.exports = __helpers;

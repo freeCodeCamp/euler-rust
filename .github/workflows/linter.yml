@@ -26,6 +26,6 @@ jobs:
 
       - name: Lint Source Files
         run: |
-          npm ci
           cd .freeCodeCamp
+          npm ci
           npm run lint
