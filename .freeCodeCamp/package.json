@@ -10,17 +10,17 @@
   "dependencies": {
     "chai": "4.3.6",
     "chokidar": "3.5.3",
-    "express": "^4.17.3",
-    "js-yaml": "^4.1.0",
+    "express": "4.17.3",
+    "js-yaml": "4.1.0",
     "marked": "4.0.12",
     "prismjs": "1.27.0",
-    "ws": "^8.5.0"
+    "ws": "8.5.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/ShaunSHamilton/external-project"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "2.0.15"
   }
 }
