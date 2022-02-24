@@ -35,6 +35,7 @@ RUN sudo apt-get install -y curl git bash-completion man-db docker
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Install Node LTS
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -47,6 +48,9 @@ RUN mkdir ~/.npm-global
 RUN npm config set prefix '~/.npm-global'
 
 # Configure course-specific environment
+
+COPY --chown=camper ./ ./
+
 RUN cd .freeCodeCamp && cp sample.env .env && npm ci && npm run dev:curriculum
 RUN code --install-extension ../.devcontainer/freeCodeCamp.freecodecamp-dark-vscode-theme-0.1.0.vsix
 
