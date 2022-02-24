@@ -14,6 +14,7 @@
   "extensions.ignoreRecommendations": true,
   "files.exclude": {
     ".devcontainer": true,
+    ".github": true,
     ".vscode": true,
     ".gitpod.yml": true,
     "renovate.json": true,
