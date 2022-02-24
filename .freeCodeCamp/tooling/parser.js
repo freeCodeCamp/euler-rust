@@ -1,10 +1,10 @@
 // This file contains the parser for the markdown lessons
-const fs = require("fs");
-const jsyaml = require("js-yaml");
-const DESCRIPTION_MARKER = "# --description--";
-const SEED_MARKER = "### --seed--";
-const NEXT_MARKER = `# --`;
-const CMD_MARKER = "#### --cmd--";
+const fs = require('fs');
+const jsyaml = require('js-yaml');
+const DESCRIPTION_MARKER = '# --description--';
+const SEED_MARKER = '### --seed--';
+const NEXT_MARKER = '# --';
+const CMD_MARKER = '#### --cmd--';
 const FILE_MARKER_REG = '(?<=#### --")[^"]+(?="--)';
 
 /**
@@ -28,9 +28,9 @@ function getLessonFromDirectory(dir, lessonNumber) {
   // get lesson file contents from directory, that matches `problem-${lessonNumber}-`
   const lessonFile = fs
     .readdirSync(dir)
-    .find((file) => file.includes(`problem-${lessonNumber}-`));
+    .find(file => file.includes(`problem-${lessonNumber}-`));
   const lessonFilePath = `${dir}/${lessonFile}`;
-  const lesson = fs.readFileSync(lessonFilePath, "utf8");
+  const lesson = fs.readFileSync(lessonFilePath, 'utf8');
   return lesson;
 }
 
@@ -41,7 +41,7 @@ function getLessonFromDirectory(dir, lessonNumber) {
  */
 function getLessonDescription(lesson) {
   const description = lesson.match(
-    new RegExp(`${DESCRIPTION_MARKER}\n(.*?)\n(?=${NEXT_MARKER})`, "s")
+    new RegExp(`${DESCRIPTION_MARKER}\n(.*?)\n(?=${NEXT_MARKER})`, 's')
   )?.[1];
   return description;
 }
@@ -71,8 +71,8 @@ function getLessonHintsAndTests(lesson) {
  * @returns {string} The seed of the lesson
  */
 function getLessonSeed(lesson) {
-  const seed = lesson.match(new RegExp(`${SEED_MARKER}\n(.*)`, "s"))?.[1];
-  return seed ?? "";
+  const seed = lesson.match(new RegExp(`${SEED_MARKER}\n(.*)`, 's'))?.[1];
+  return seed ?? '';
 }
 
 /**
@@ -81,8 +81,8 @@ function getLessonSeed(lesson) {
  * @returns {string[]} The commands of the lesson in order
  */
 function getCommands(seed) {
-  const cmds = seed.match(new RegExp(`${CMD_MARKER}\n(.*?\`\`\`\n)`, "gs"));
-  const commands = cmds?.map((cmd) => extractStringFromCode(cmd)?.trim());
+  const cmds = seed.match(new RegExp(`${CMD_MARKER}\n(.*?\`\`\`\n)`, 'gs'));
+  const commands = cmds?.map(cmd => extractStringFromCode(cmd)?.trim());
   return commands ?? [];
 }
 
@@ -92,11 +92,10 @@ function getCommands(seed) {
  * @returns {[string, string][]} [[filePath, fileSeed]]
  */
 function getFilesWithSeed(seed) {
-  const files = seed.match(
-    new RegExp(`#### --"([^"]+)"--\n(.*?\`\`\`\n)`, "gs")
-  );
-  const filePaths = seed.match(new RegExp(FILE_MARKER_REG, "gsm"));
-  const fileSeeds = files?.map((file) => extractStringFromCode(file)?.trim());
+  // eslint-disable-next-line no-control-regex
+  const files = seed.match(new RegExp('#### --"([^"]+)"--\n(.*?```\n)', 'gs'));
+  const filePaths = seed.match(new RegExp(FILE_MARKER_REG, 'gsm'));
+  const fileSeeds = files?.map(file => extractStringFromCode(file)?.trim());
 
   // console.log(filePaths, fileSeeds, files);
   const pathAndSeedArr = [];
@@ -114,7 +113,7 @@ function getFilesWithSeed(seed) {
  * @returns {boolean} Whether the seed has the `force` flag
  */
 function isForceFlag(seed) {
-  return seed.includes("#### --force--");
+  return seed.includes('#### --force--');
 }
 
 /**
@@ -123,38 +122,7 @@ function isForceFlag(seed) {
  * @returns {string} The stripped codeblock
  */
 function extractStringFromCode(code) {
-  return code.replace(/.*?```[a-z]+\n(.*?)\n```/s, "$1");
-}
-
-// ----------------
-// MARKED PARSING
-// ----------------
-const marked = require("marked");
-const prism = require("prismjs");
-
-require("prismjs/components/prism-markup-templating");
-require("prismjs/components/prism-css");
-// require("prismjs/components/prism-html");
-require("prismjs/components/prism-json");
-require("prismjs/components/prism-javascript");
-require("prismjs/components/prism-jsx");
-require("prismjs/components/prism-bash");
-require("prismjs/components/prism-yaml");
-require("prismjs/components/prism-toml");
-require("prismjs/components/prism-rust");
-
-marked.setOptions({
-  highlight: (code, lang) => {
-    if (prism.languages[lang]) {
-      return prism.highlight(code, prism.languages[lang], lang);
-    } else {
-      return code;
-    }
-  },
-});
-
-function parseMarkdown(markdown) {
-  return marked.parse(markdown, { gfm: true });
+  return code.replace(/.*?```[a-z]+\n(.*?)\n```/s, '$1');
 }
 
 // ----------------
@@ -168,5 +136,5 @@ module.exports = {
   getCommands,
   getFilesWithSeed,
   getProjectTitle,
-  isForceFlag,
+  isForceFlag
 };

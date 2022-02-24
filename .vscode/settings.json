@@ -1,17 +1,4 @@
 {
-  "search.exclude": {
-    "dist": true // set this to false to include "dist" folder in search results
-  },
-  "debug.internalConsoleOptions": "neverOpen",
-  "debug.showInStatusBar": "never",
-  "editor.codeActionsOnSave": {
-    "source.fixAll": true
-  },
-  "editor.tabSize": 2,
-  "explorer.autoReveal": false,
-  "explorer.openEditors.visible": 0,
-  "extensions.autoCheckUpdates": false,
-  "extensions.ignoreRecommendations": true,
   "files.exclude": {
     ".devcontainer": true,
     ".github": true,
@@ -27,18 +14,6 @@
     "**/CVS": true,
     "Dockerfile": true
   },
-  "task.slowProviderWarning": false,
-  "terminal.integrated.allowChords": false,
-  "terminal.integrated.enableFileLinks": false,
-  "terminal.integrated.macOptionIsMeta": true,
-  "terminal.integrated.showExitAlert": false,
-  "telemetry.enableTelemetry": false,
-  "update.mode": "none",
-  "update.showReleaseNotes": false,
-  "workbench.enableExperiments": false,
   "workbench.startupEditor": "none",
-  "workbench.colorTheme": "freeCodeCamp Dark Theme",
-  "workbench.tips.enabled": false,
-  "workbench.tree.renderIndentGuides": "none",
-  "zenMode.centerLayout": false
+  "workbench.colorTheme": "freeCodeCamp Dark Theme"
 }

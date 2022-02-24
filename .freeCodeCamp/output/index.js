@@ -14,7 +14,7 @@ const handle = {
 };
 
 // Connection opened
-socket.addEventListener("open", function (event) {
+socket.addEventListener("open", function (_event) {
   sock("connect");
 });
 
