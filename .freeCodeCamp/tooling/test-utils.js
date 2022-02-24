@@ -16,7 +16,7 @@ async function getDirectory(path) {
  * @param {string} path Path to file
  * @returns {boolean}
  */
-async function isFileOpen(path) {
+async function isFileOpen(_path) {
   // TODO: Probably not possible
   await new Promise((resolve) => setTimeout(resolve, 10000));
   return true;
