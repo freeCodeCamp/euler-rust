@@ -19,19 +19,14 @@ RUN adduser --disabled-password \
 
 RUN adduser ${USERNAME} sudo
 
+RUN sudo usermod -aG root ${USERNAME}
+
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
   /etc/sudoers
 
-USER ${USERNAME}
-
-### Gitpod user ###
-# '-l': see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
-RUN sudo useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
-    # passwordless sudo for users in the 'sudo' group
-    && sudo sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # Install packages for projects - Docker for testing
-RUN sudo apt-get install -y curl git bash-completion man-db docker
+RUN sudo apt-get install -y curl git bash-completion man-db docker wget
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
@@ -48,11 +43,10 @@ RUN mkdir ~/.npm-global
 RUN npm config set prefix '~/.npm-global'
 
 # Configure course-specific environment
-
-COPY --chown=camper ./ ./
+RUN mkdir curriculum
+COPY ./ ./curriculum/
+WORKDIR ${HOMEDIR}/curriculum
 
 RUN cd .freeCodeCamp && cp sample.env .env && npm ci && npm run dev:curriculum
-RUN code --install-extension ../.devcontainer/freeCodeCamp.freecodecamp-dark-vscode-theme-0.1.0.vsix
-
 RUN wget https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix
-RUN code --install-extension freecodecamp-courses-patch.vsix
+

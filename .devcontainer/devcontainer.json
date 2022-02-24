@@ -1,7 +1,7 @@
 {
   "extensions": ["dbaeumer.vscode-eslint"],
   "forwardPorts": [8080],
-  "workspaceFolder": "/home/camper",
+  "workspaceFolder": "/home/camper/curriculum",
   "dockerFile": "../Dockerfile",
   "context": ".."
 }
