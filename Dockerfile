@@ -19,22 +19,18 @@ RUN adduser --disabled-password \
 
 RUN adduser ${USERNAME} sudo
 
+RUN sudo usermod -aG root ${USERNAME}
+
 RUN echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> \
   /etc/sudoers
 
-USER ${USERNAME}
-
-### Gitpod user ###
-# '-l': see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
-RUN sudo useradd -l -u 33333 -G sudo -md /home/gitpod -s /bin/bash -p gitpod gitpod \
-    # passwordless sudo for users in the 'sudo' group
-    && sudo sed -i.bkp -e 's/%sudo\s\+ALL=(ALL\(:ALL\)\?)\s\+ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
 
 # Install packages for projects - Docker for testing
-RUN sudo apt-get install -y curl git bash-completion man-db docker
+RUN sudo apt-get install -y curl git bash-completion man-db docker wget build-essential
 
 # Install Rust for this project
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
 # Install Node LTS
 RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -46,24 +42,11 @@ WORKDIR ${HOMEDIR}
 RUN mkdir ~/.npm-global
 RUN npm config set prefix '~/.npm-global'
 
-# Configure project directory to match course name
-RUN sudo mkdir -p ${HOMEDIR}/curriculum
+# Configure course-specific environment
+RUN mkdir curriculum
+COPY ./ ./curriculum/
 WORKDIR ${HOMEDIR}/curriculum
 
-# Install marked globally for node
-RUN sudo npm install live-server -g
-
-# Copy necessary files
-COPY --chown=camper .devcontainer/ .devcontainer/
-COPY --chown=camper .git/ .git/
-COPY --chown=camper .freeCodeCamp/ .freeCodeCamp/
-COPY --chown=camper .gitignore .gitignore
-
-# Append terminal to .output.log
-# TODO: Potentially handled via extension to just directly source the `/tooling/.bashrc` file
-# RUN cat .freeCodeCamp/tooling/.bashrc >| ~/.bashrc
-
-# Copy curriculum content to project directory
-COPY --chown=camper .vscode/ .vscode/
-COPY --chown=camper curriculum/ ./
+RUN cd .freeCodeCamp && cp sample.env .env && npm ci && npm run dev:curriculum
+RUN wget https://github.com/ShaunSHamilton/courses-plus/raw/main/freecodecamp-courses-patch.vsix
 
