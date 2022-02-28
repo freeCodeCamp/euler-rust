@@ -1,5 +1,5 @@
 {
-  "extensions": ["dbaeumer.vscode-eslint"],
+  "extensions": ["dbaeumer.vscode-eslint", "freeCodeCamp.freecodecamp-courses"],
   "forwardPorts": [8080],
   "workspaceFolder": "/home/camper/curriculum",
   "dockerFile": "../Dockerfile",
