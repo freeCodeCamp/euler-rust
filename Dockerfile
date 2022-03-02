@@ -48,5 +48,3 @@ COPY ./ ./curriculum/
 WORKDIR ${HOMEDIR}/curriculum
 
 RUN cd .freeCodeCamp && cp sample.env .env && npm ci && npm run dev:curriculum
-RUN wget https://github.com/freeCodeCamp/freecodecamp-courses/raw/main/freecodecamp-courses-patch.vsix
-
