@@ -8,7 +8,7 @@ This enables you to complete the [Project Euler](https://projecteuler.net/) prob
 
 ## How to Get Started
 
-Read the [article on `/news`](https://freecodecamp.org/news/freecodecamp-project-euler-challenges-in-rust/)
+Read the [article on `/news`](https://www.freecodecamp.org/news/project-euler-problems-in-rust/)
 
 ## WASM Specific
 
