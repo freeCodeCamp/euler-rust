@@ -13,6 +13,6 @@ jobs:
       - name: Checkout Source Files
         uses: actions/checkout@v3
 
-      - name: Test test
+      - name: Build Dockerfile
         run: |
           docker build -f Dockerfile -t euler-rust .
