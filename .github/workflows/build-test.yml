@@ -1,0 +1,18 @@
+name: "Docker Build"
+on:
+  push:
+    branches-ignore:
+      - "renovate/**"
+  pull_request:
+jobs:
+  test:
+    name: Dock
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout Source Files
+        uses: actions/checkout@v3
+
+      - name: Build Dockerfile
+        run: |
+          docker build -f Dockerfile -t euler-rust .
