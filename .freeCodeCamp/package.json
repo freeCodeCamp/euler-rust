@@ -25,9 +25,9 @@
     "url": "https://github.com/ShaunSHamilton/external-project"
   },
   "devDependencies": {
-    "eslint": "8.13.0",
+    "eslint": "8.14.0",
     "eslint-config-prettier": "8.5.0",
-    "lint-staged": "12.3.8",
+    "lint-staged": "12.4.1",
     "nodemon": "2.0.15",
     "prettier": "2.6.2"
   }
