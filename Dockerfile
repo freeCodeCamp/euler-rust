@@ -47,4 +47,4 @@ RUN mkdir curriculum
 COPY ./ ./curriculum/
 WORKDIR ${HOMEDIR}/curriculum
 
-RUN cd .freeCodeCamp && cp sample.env .env && npm ci && npm run dev:curriculum
+RUN cd .freeCodeCamp && cp sample.env .env && npm ci && cd ../ && npm ci && cargo install wasm-pack && npm run build
