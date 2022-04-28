@@ -5,7 +5,6 @@
   "scripts": {
     "start": "node ./tooling/server.js",
     "dev:server": "nodemon ./tooling/server.js",
-    "dev:curriculum": "cd ../ && npm ci && cargo install wasm-pack && npm run build",
     "lint": "npm run lint:js && npm run lint:prettier",
     "lint:js": "eslint --max-warnings 0 .",
     "lint:rs": "cd .. && cargo clippy --all -- -D warnings",

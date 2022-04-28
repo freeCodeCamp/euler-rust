@@ -1,8 +1,9 @@
 {
   "path": ".freeCodeCamp",
+  "prepare": "cd ../ && npm ci && cargo install wasm-pack && npm run build",
   "scripts": {
-    "develop-course": "npm run dev:curriculum && npm run dev:server",
-    "run-course": "npm run dev:curriculum && npm run start",
+    "develop-course": "npm run dev:server",
+    "run-course": "npm run start",
     "test": ""
   },
   "workspace": {
@@ -10,7 +11,7 @@
       {
         "open": true,
         "url": "http://localhost:8080",
-        "timeout": 2000
+        "showLoader": true
       }
     ],
     "terminals": [
