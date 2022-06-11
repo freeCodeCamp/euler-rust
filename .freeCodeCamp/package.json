@@ -17,7 +17,7 @@
     "js-yaml": "4.1.0",
     "marked": "4.0.16",
     "prismjs": "1.28.0",
-    "ws": "8.7.0"
+    "ws": "8.8.0"
   },
   "repository": {
     "type": "git",
