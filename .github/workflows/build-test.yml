@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout Source Files
-        uses: actions/checkout@v3
+        uses: actions/checkout@7dd9e2a3dc350cf687eb1b2a4fadfee8c8e49675 # v3
 
       - name: Build Dockerfile
         run: |
