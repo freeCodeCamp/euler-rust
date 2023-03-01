@@ -1,9 +1,13 @@
 {
-  "extensions": [
-    "dbaeumer.vscode-eslint",
-    "freeCodeCamp.freecodecamp-courses@1.1.1",
-    "freeCodeCamp.freecodecamp-dark-vscode-theme"
-  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "freeCodeCamp.freecodecamp-courses@1.1.1",
+        "freeCodeCamp.freecodecamp-dark-vscode-theme"
+      ]
+    }
+  },
   "forwardPorts": [8080],
   "workspaceFolder": "/home/camper/curriculum",
   "dockerFile": "../Dockerfile",
