@@ -28,6 +28,6 @@
     "eslint-config-prettier": "8.7.0",
     "lint-staged": "12.5.0",
     "nodemon": "2.0.22",
-    "prettier": "2.8.4"
+    "prettier": "2.8.7"
   }
 }
