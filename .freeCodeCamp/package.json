@@ -11,7 +11,7 @@
     "lint:prettier": "prettier --list-different ."
   },
   "dependencies": {
-    "chai": "4.3.10",
+    "chai": "4.4.1",
     "chokidar": "3.5.3",
     "express": "4.18.2",
     "js-yaml": "4.1.0",
