@@ -1,0 +1,38 @@
+{
+  "version": "0.1.0",
+  "port": 8080,
+  "client": {
+    "landing": {
+      "english": {
+        "title": "Project Euler in Rust",
+        "description": "Complete the freeCodeCamp Project Euler problems using the Rust programming language with WebAssembly.",
+        "faq-link": "https://www.freecodecamp.org/news/project-euler-problems-in-rust/",
+        "faq-text": "News Guide Article"
+      }
+    }
+  },
+  "config": {
+    "projects.json": "./config/projects.json",
+    "state.json": "./config/state.json"
+  },
+  "curriculum": {
+    "locales": {
+      "english": "./curriculum/locales/english"
+    }
+  },
+  "hotReload": {
+    "ignore": [
+      ".logs/.temp.log",
+      "config/",
+      "/node_modules/",
+      ".git",
+      "/target/",
+      "/test-ledger/",
+      ".vscode",
+      "freecodecamp.conf.json"
+    ]
+  },
+  "tooling": {
+    "helpers": "./tooling/helpers.js"
+  }
+}

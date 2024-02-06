@@ -2,7 +2,8 @@ image: gitpod/workspace-full
 
 # Commands to start on workspace startup
 tasks:
-  - init: cd .freeCodeCamp && cp sample.env .env && npm ci && cd ../ && npm ci && cargo install wasm-pack && npm run build
+  - init: npm ci && cargo install wasm-pack
+  - command: node tooling/adjust-url.js
 
 ports:
   - port: 8080
@@ -10,22 +11,5 @@ ports:
 
 vscode:
   extensions:
-    - https://github.com/freeCodeCamp/courses-vscode-extension/releases/download/v1.1.1/freecodecamp-courses-patch.vsix
+    - https://github.com/freeCodeCamp/courses-vscode-extension/releases/download/v3.0.0/freecodecamp-courses-3.0.0.vsix
     - https://github.com/freeCodeCamp/freecodecamp-dark-vscode-theme/releases/download/v1.0.0/freecodecamp-dark-vscode-theme-1.0.0.vsix
-
-github:
-  prebuilds:
-    # enable for the default branch (defaults to true)
-    master: false
-    # enable for all branches in this repo (defaults to false)
-    branches: false
-    # enable for pull requests coming from this repo (defaults to true)
-    pullRequests: false
-    # enable for pull requests coming from forks (defaults to false)
-    pullRequestsFromForks: false
-    # add a check to pull requests (defaults to true)
-    addCheck: false
-    # add a "Review in Gitpod" button as a comment to pull requests (defaults to false)
-    addComment: false
-    # add a "Review in Gitpod" button to the pull request's description (defaults to false)
-    addBadge: false

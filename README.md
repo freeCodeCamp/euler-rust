@@ -1,6 +1,6 @@
 # freeCodeCamp - Project Euler with Rust
 
-## Course Desciption
+## Course Description
 
 This enables you to complete the [Project Euler](https://projecteuler.net/) problems in Rust.
 
