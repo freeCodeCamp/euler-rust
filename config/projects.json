@@ -1,0 +1,57 @@
+[
+  {
+    "id": 0,
+    "dashedName": "project-euler-problems-1-to-100",
+    "isIntegrated": false,
+    "isPublic": true,
+    "currentLesson": 0,
+    "runTestsOnWatch": false,
+    "seedEveryLesson": false,
+    "isResetEnabled": false,
+    "numberOfLessons": 100
+  },
+  {
+    "id": 1,
+    "dashedName": "project-euler-problems-101-to-200",
+    "isIntegrated": false,
+    "isPublic": true,
+    "currentLesson": 0,
+    "runTestsOnWatch": false,
+    "seedEveryLesson": false,
+    "isResetEnabled": false,
+    "numberOfLessons": 100
+  },
+  {
+    "id": 2,
+    "dashedName": "project-euler-problems-201-to-300",
+    "isIntegrated": false,
+    "isPublic": true,
+    "currentLesson": 0,
+    "runTestsOnWatch": false,
+    "seedEveryLesson": false,
+    "isResetEnabled": false,
+    "numberOfLessons": 100
+  },
+  {
+    "id": 3,
+    "dashedName": "project-euler-problems-301-to-400",
+    "isIntegrated": false,
+    "isPublic": true,
+    "currentLesson": 0,
+    "runTestsOnWatch": false,
+    "seedEveryLesson": false,
+    "isResetEnabled": false,
+    "numberOfLessons": 100
+  },
+  {
+    "id": 4,
+    "dashedName": "project-euler-problems-401-to-480",
+    "isIntegrated": false,
+    "isPublic": true,
+    "currentLesson": 0,
+    "runTestsOnWatch": false,
+    "seedEveryLesson": false,
+    "isResetEnabled": false,
+    "numberOfLessons": 80
+  }
+]
